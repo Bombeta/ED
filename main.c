@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
 	char border[10];
 	char txto;
 
-	//int numero;
+
 
 
 	/* FILE openGeo; */
