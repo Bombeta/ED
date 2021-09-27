@@ -3,7 +3,7 @@
 #include <string.h>
 //#include "circulo.h"
 
-teste
+
 
 //* TESTES FUNCIONANDO *//
 

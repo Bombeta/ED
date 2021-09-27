@@ -3,29 +3,101 @@
 #include <string.h>
 #include "ret.h"
 
+/*falta testar */
 
-void cria_Retangulo(LIST* l, int id, double x, double y, double w, double h, char *fill, char *border)
-{
-	int i;
-	int r;
+typedef void* retangulo;
 
-	i = l->nroElem;
-	r = l->nroR;
+typedef struct Retangulo{
+	int id;
+	double w;
+	double h;
+	double x;
+	double y;
+	char fill[100];
+	char border[100];
+    
+}retangulo_t;
 
-	if(i > MAX-1)
-	{
-		printf("A LISTA está cheia!\n");
-		exit(0);
-	}
+int getId(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->id;
+}
 
-	l->R[r].id = id;
-	l->R[r].x = x;
-	l->R[r].y = y;
-	l->R[r].w = w;
-	l->R[r].h = h;
-	strcpy(l->R[r].fill, fill);
-	strcpy(l->R[r].border, border);
+double getWidth(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->w;
+}
 
-	l->nroElem = i + 1;
+double getHeight(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->h;
+}
 
+double getX(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->x;
+}
+
+double getY(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->y;
+}
+
+char* getFill(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->fill;
+}
+
+char* getBorder(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->border;
+}
+
+void setId(int id, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->id = id;
+}
+
+void setWidth(double w, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->w = w;
+}
+
+void setHeight(double h, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->h = h;
+}
+
+void setX(double x, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->x = x;
+}
+
+void setY(double y, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this.y = y;
+}
+
+void setFill(char* fill, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	strcpy(this->fill, fill);
+}
+
+void setBorder(char* border, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	strcpy(this->border, border);
 }
