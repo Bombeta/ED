@@ -38,8 +38,32 @@ int length(Lista* li){
 	return cont
 }
 
-void insert(Lista* li, int p){
+void insertFirst(Lista* li, int p){
 
+	if(li == NULL){
+		printf("A lista não foi alocada.");
+		return 0;
+	}
+
+	/*Alocando novo elemento para lista */
+	Elem* no = (Elem*) malloc(sizeof(Elem));
+	if(no == NULL){
+		printf("no não foi alocado!");
+		return 0;
+	}
+
+	/*fazer o cast aqui?? */
+	no->dados = al;
+	no->next = (*li);
+	no->prev = NULL;
+
+	// para lista não vazia: apontar para elemento anterior
+	if(*li != NULL){
+		(*li)->prev = no;
+	}
+	*li = no;
+
+	
 }
 
 void remove(Lista* li, int p){
