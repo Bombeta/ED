@@ -39,13 +39,13 @@ int main(int argc, char const *argv[])
 	int id;
 	int xd;
 	char dirGeo[3] = "./";
-	char nx[3] = "nx";
-	int tam = 1000;				/* tamanho do vetor comando nx */
+	// char nx[3] = "nx";
+	// int tam = 1000;				/* tamanho do vetor comando nx */
 
-	double r, x, y, w, h;
-	char fill[10];
-	char border[10];
-	char txto;
+	// double r, x, y, w, h;
+	// char fill[10];
+	// char border[10];
+	// char txto;
 
 
 

@@ -48,14 +48,16 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 	char color[100];
 	char txto;
 
-	// Lista *li;
-	// // li = cria_lista();
-	// // int vazia = lista_vazia(Lista* li);
+
 	
 
+	Lista *li;
+	li = create_lista();
+   
 
-    LIST* lista = (LIST*) malloc(sizeof(LIST));
-	inicia_Lista(lista);
+	void* circulo_teste;
+	void* retangulo_teste;
+	void* linhas_teste;
 
 
 	arqSvg = fopen(outSvg, "w");
@@ -77,14 +79,14 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
     }else
 	{	
 
-		fgets(nx,3,arq);
+		// fgets(nx,3,arq);
 
-		if(strncmp(nx,"nx",2) == 0)
-		{
-			fscanf(arq,"%d", &tam);
-			printf("O tamanho do vetor eh: %d\n",tam);
+		// if(strncmp(nx,"nx",2) == 0)
+		// {
+		// 	fscanf(arq,"%d", &tam);
+		// 	printf("O tamanho do vetor eh: %d\n",tam);
 
-		}
+		// }
 
 
 		
@@ -165,7 +167,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 	fprintf(arqSvg, "</svg>");
 
 
-	
+	libera_lista(li);
 	fclose(arqSvg);
 	fclose(arq);
     free(lista);
