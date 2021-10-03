@@ -48,16 +48,13 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 	char color[100];
 	char txto;
 
-
-	
-
-	Lista *li;
-	li = create_lista();
+	// Lista *li;
+	// li = create_lista();
    
 
-	void* circulo_teste;
-	void* retangulo_teste;
-	void* linhas_teste;
+	// void* circulo_teste;
+	// void* retangulo_teste;
+	// void* linhas_teste;
 
 
 	arqSvg = fopen(outSvg, "w");
@@ -86,10 +83,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 		// 	fscanf(arq,"%d", &tam);
 		// 	printf("O tamanho do vetor eh: %d\n",tam);
 
-		// }
-
-
-		
+		// }	
 
 		while((fscanf(arq,"%c", &fig))!=EOF)
 		{	
@@ -101,11 +95,11 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 				fscanf(arq, "%d %lf %lf %lf %s %s\n", &id, &r, &x, &y, fill, border);
 				
 				/*Adiciona um circulo a lista */
-				cria_Circulo(lista, id, x, y, r, fill, border);
+				// cria_Circulo(lista, id, x, y, r, fill, border);
 
 				arqSvg = fopen(outSvg,"a");
 
-				desenha_Circulo(arqSvg, lista);		
+				desenha_Circulo(arqSvg, r, x, y, fill, border);		
 			
 				fclose(arqSvg);
 							
@@ -117,11 +111,11 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 				fscanf(arq, "%d %lf %lf %lf %lf %s %s\n", &id, &w, &h, &x, &y, fill, border);
 				
 				/*Adiciona um retangulo a lista */
-				cria_Retangulo(lista, id, x, y, w, h, fill, border); 
+				// cria_Retangulo(lista, id, x, y, w, h, fill, border); 
 
 				arqSvg = fopen(outSvg, "a+"); 
 
-				desenha_Retangulo(arqSvg, lista); 	
+				desenha_Retangulo(arqSvg, w, h, x, y, fill, border); 	
 				
 				fclose(arqSvg);
 						
@@ -131,6 +125,9 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 			{
 				fscanf(arq, "%d %lf %lf %lf %lf %s", &id, &x1, &y1, &x2, &y2, &color);
 
+				arqSvg = fopen(outSvg, "a+"); 
+
+				desenha_Linha(arqSvg, x1, x2, y1, y2, color);
 
 				fclose(arqSvg);
 			}
@@ -140,11 +137,11 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 			{
 				fscanf(arq, "%d %lf %lf %s %s\n", &id, &x, &y, fill, border);
 				
-				cria_Texto(lista, id, x, y, fill, border);		
+				// cria_Texto(lista, id, x, y, fill, border);		
 				
 				arqSvg = fopen(outSvg, "a+");
 		
-				desenha_Texto(arqSvg, lista, arq);				
+				desenha_Texto(arqSvg, x, y, fill, border);				
 				
 				fclose(arqSvg);
 				
@@ -152,25 +149,17 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 
 			
 			
-		}
-
-		exibir_Lista(lista);
+		}		
 	}
 
-	if(x == 1){
-		printf("LISTA VAZIA!");
-	}else if(x == 0){
-		printf("A LISTA NÃO ESTÁ VAZIA");
-	}
-
-    arqSvg = fopen(outSvg,"a");
+	arqSvg = fopen(outSvg,"a");
 	fprintf(arqSvg, "</svg>");
 
 
-	libera_lista(li);
+	// libera_lista(li);
 	fclose(arqSvg);
 	fclose(arq);
-    free(lista);
+    //free(lista);
 	// free(DirGeo);
 	// free(outSvg);
 
