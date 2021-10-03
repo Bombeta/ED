@@ -2,7 +2,7 @@
 #define STRING_H
 #endif
 
-char *aloca_tamanho(int len);
+char *aloca_tamanho(int len, char* str);
 char *arruma_path(char *str);
 char *criaString(char *dir, char *nome, char *ext);
 char *concatena(char *str, char *str2);

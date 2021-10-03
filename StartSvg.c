@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "StartSvg.h"
-#include "lista.h"
+// #include "lista.h"
 
 
 void cria_SVG(FILE* arqSvg)
@@ -26,21 +26,21 @@ void desenha_Retangulo(FILE* arqSvg, double w, double h, double x, double y, cha
 
 void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, char* color)
 {
-	fprintf(arqSvg, "<d L \"%.2f\" \"%.2f\" \"%.2f\" \"%.2f\" stroke=\"%s\" stroke-width=\"3px\"/>", x1, y1, x2, y2, color);
+	fprintf(arqSvg, "<line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"%s\" stroke-width=\"3px\"/>", x1, y1, x2, y2, color);
 	fprintf(arqSvg, "\n");
 }
 
 void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border)
 {
-	int t;
-	char txto;
+	// int t;
+	// char txto;
 	fprintf(arqSvg, "<text x=\"%.2f\" y=\"%.2f\" font-family=\"Times New Roman\" font-size=\"50px\" fill=\"%s\" stroke=\"%s\" >", x, y, fill, border);	
 
-	while((txto=fgetc(arq))!= '\n')
-	{
-		printf("%c",txto);
-		fprintf(arq, "%c", txto);
-	}
+	// while((txto=fgetc(arq))!= '\n')
+	// {
+	// 	printf("%c",txto);
+	// 	fprintf(arq, "%c", txto);
+	// }
 
 	fprintf(arqSvg, "</text>");					
 	fprintf(arqSvg, "\n");

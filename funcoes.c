@@ -5,13 +5,10 @@
 
 
 /*Aloca o tamanho */
-char *aloca_tamanho(int len)
+char *aloca_tamanho(int len, char *str)
 {
-	char *str;
-	str =(char *) malloc((len + 1) * sizeof(char));
-	int tamanho = strlen(str);
-	printf("%d", tamanho);
-
+	// char *str;
+	str =(char *) malloc(sizeof(char)*(len)+5);
 	return str;
 }
 
@@ -22,7 +19,7 @@ char *arruma_path(char *str)
 	char *aux; 
 	if(ultimo != '/')
 	{
-		aux = (char*) malloc(sizeof(char) *strlen(str)+2);
+		aux = (char*) malloc(sizeof(char) *strlen(str)+5);
 		strcpy(aux, str);
 		strcat(aux, "/");
 		free(str);
@@ -33,7 +30,7 @@ char *arruma_path(char *str)
 	
 char *criaString(char *dir, char *nome, char *ext)
 {	
-	char *aux = malloc(sizeof(char)* strlen(dir) + 1);
+	char *aux = malloc(sizeof(char)* strlen(dir) + 5);
 	strcpy(aux, dir);
 	aux = concatena(aux, nome);
 	aux = concatena(aux, ext);
@@ -61,7 +58,7 @@ char *tiraGeo(char *str)
 	char c;
 
 	l = strlen(str);
-	aux = (char *) malloc(sizeof(char)* strlen(str)+1);
+	aux = (char *) malloc(sizeof(char)* strlen(str)+5);
 	strcpy(aux, str);
 
 
@@ -78,6 +75,7 @@ char *tiraGeo(char *str)
 char* recebeEntrada(int argc,char *argv[],char *DirIn)
 {
    int i = 1;
+   char* str;
 
 	printf("entrou aqui\n");
     
@@ -89,7 +87,7 @@ char* recebeEntrada(int argc,char *argv[],char *DirIn)
 
 			int l = 0; /* l eh o comprimento */ 
 			l = strlen(argv[i+1]);
-			DirIn = aloca_tamanho(l);
+			DirIn = aloca_tamanho(l, str);
 			strcpy(DirIn,argv[i+1]);
             printf("DirIn: %s", DirIn);
 			DirIn = arruma_path(DirIn);	
@@ -132,6 +130,7 @@ char* recebeEntrada(int argc,char *argv[],char *DirIn)
 // }
 char* recebeGeo(int argc,char *argv[],char *arqGeo){
     int i = 1;
+	char* str;
 
     while(i<argc)
 	{
@@ -139,7 +138,7 @@ char* recebeGeo(int argc,char *argv[],char *arqGeo){
 		{
 			int l = 0;
 			l =strlen(argv[i+1]);
-			arqGeo = aloca_tamanho(l);
+			arqGeo = aloca_tamanho(l, str);
 			strcpy(arqGeo, argv[i+1]);
 			
 			printf("\n ARQGEO: %s\n", arqGeo);
@@ -152,13 +151,14 @@ char* recebeGeo(int argc,char *argv[],char *arqGeo){
 }
 char* recebeCons(int argc,char *argv[],char *arqCons){
     int i = 1;
+	char* str;
 
     while(i<argc){
          if(strcmp("-q", argv[i]) == 0)
 		{
 			int l;
 			l = strlen(argv[i+1]);
-			arqCons = aloca_tamanho(l);
+			arqCons = aloca_tamanho(l, str);
 			strcpy(arqCons,argv[i+1]);
 			
 			
@@ -170,13 +170,14 @@ char* recebeCons(int argc,char *argv[],char *arqCons){
 }
 char* recebeDiretorioSaida(int argc, char *argv[],char *DirOut){
     int i = 1;
+	char* str;
 
     while(i<argc){
         if(strcmp("-o", argv[i]) == 0)
 		{	
 			int l = 0;
 			l =strlen(argv[i+1]);
-			DirOut = aloca_tamanho(l);
+			DirOut = aloca_tamanho(l, str);
 			strcpy(DirOut, argv[i+1]);
 			DirOut = arruma_path(DirOut);
 			

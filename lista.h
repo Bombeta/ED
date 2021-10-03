@@ -48,14 +48,5 @@
 
 // }LIST;
 
-typedef struct element* Lista;
-
-void inicia_Lista(LIST* l);
-
-void exibir_Lista(LIST* l);
-
-void remove_Lista(LIST* l, int id);
-
-void remove_Lista_2(LIST* l, int id, int xd); 
 
 #endif 

@@ -3,10 +3,10 @@
 #include <math.h>
 #include <string.h>
 #include "StartSvg.h"
-#include "ret.h"
-#include "circulo.h"
-#include "lista.h"
-#include "texto.h"
+//#include "ret.h"
+//#include "circulo.h"
+//#include "lista.h"
+//#include "texto.h"
 #include "funcoes.h"
 /*#include "parametros.h"*/
 
@@ -32,6 +32,8 @@ int main(int argc, char const *argv[])
 	char fig;
 	char cons[5];			/* tamanho do comando o? --- delf */ 
 	int l;
+
+	char* str;			/*string aux para alocação na função aloca_tamanho */
 
 	int c;		/* retorno de strcmp para string de .qry */
 	char lixo;
@@ -66,8 +68,8 @@ int main(int argc, char const *argv[])
 
 	DirIn = recebeEntrada(argc,argv, DirIn);
 	printf("SAIDA: %s\n", DirIn);
-	DirTwo = recebeEntrada(argc, argv, DirTwo);
-	printf("SAIDA-2: %s\n",DirTwo);
+	// DirTwo = recebeEntrada(argc, argv, DirTwo);
+	// printf("SAIDA-2: %s\n",DirTwo);
 	arqGeo = recebeGeo(argc, argv, arqGeo);
 	printf("SAIDA-3: %s\n",arqGeo);
 	arqCons = recebeCons(argc, argv, arqCons);
@@ -75,6 +77,8 @@ int main(int argc, char const *argv[])
 	DirOut = recebeDiretorioSaida(argc, argv, DirOut);
 	printf("SAIDA: 5: %s\n", DirOut);
 
+
+	/*Econtrar o erro valgrind*/
 	semGeo = tiraGeo(arqGeo);
 	nomeSvg = concatena(semGeo, ".svg");
 	nomeTxt = concatena(semGeo, ".txt");
@@ -87,12 +91,13 @@ int main(int argc, char const *argv[])
 		DirGeo = concatena(DirIn, arqGeo); 
 	}
 	if(DirIn == NULL) {
-		DirGeo = aloca_tamanho(strlen(arqGeo)+2);
+		int l = 0;
+		l = strlen(arqGeo);
+		char* str;
+		DirGeo = aloca_tamanho(l, str);
 		strcpy(DirGeo,arqGeo);
 
-		strncat(dirGeo,DirGeo,strlen(DirGeo)); 
-
-				
+		strncat(dirGeo,DirGeo,strlen(DirGeo)); 				
 	}
 	
 
@@ -101,39 +106,56 @@ int main(int argc, char const *argv[])
 		free(arqCons);	
 	}
 
-	if(arqCons != NULL){
+	/* Verificar oque é isso */
 
-		if(DirTwo != NULL){
+	// if(arqCons != NULL){
 
-			DirQry = concatena(DirTwo, arqCons); 
+	// 	if(DirTwo != NULL){
+
+	// 		DirQry = concatena(DirTwo, arqCons); 
 		
 
-		}else {
-			DirQry = aloca_tamanho(strlen(arqCons));
-			strcpy(DirQry,arqCons);
+	// 	}else {
+	// 		DirQry = aloca_tamanho(strlen(arqCons));
+	// 		strcpy(DirQry,arqCons);
 			
-		}
+	// 	}
 
-	}
+	// }
 
 
 
 	/*criando as saidas dos arquivos Txt e svg */
 	if(DirOut != NULL)
 	{	
-		l = strlen(DirOut);
-		l = l + strlen(nomeSvg);
-		outSvg = aloca_tamanho(l);
-		l = strlen(DirOut) + strlen(nomeTxt);
-		outTxt = aloca_tamanho(l);
+	
+		int l1 = 0;
+		int l2 = 0;
+		int l3 = 0;
+
+		l1 = strlen(DirOut) + 2;
+		printf("\nl de DirOut: %d\n", l1);
+
+		l2 = strlen(nomeSvg) + 2;
+		printf("\nl de nome Svg: %d\n", l2);
+
+		l3 = l1 + l2;
+		printf("\nl DirOut + nome Svg: %d\n", l3);
+
+		outSvg = aloca_tamanho(l3, str);
+		
+		l = l + strlen(nomeTxt);		
+		outTxt = aloca_tamanho(l, str);
+			
 		outSvg = concatena(DirOut, nomeSvg);		
-		outTxt = concatena(DirOut, nomeTxt);		
+		outTxt = concatena(DirOut, nomeTxt);
+				
 	}
 
-	// arq = abreFileGeo(arq,DirGeo);
+	arq = abreFileGeo(arq,DirGeo);
 	// arqSvg = abreFileSvg(arqSvg,outSvg);
 
-	readFile(arq, DirGeo, arqSvg, outSvg);
+	readFile(arq, DirGeo, arqSvg);
 
 	/*arq = fopen(DirGeo, "r");*/
 	

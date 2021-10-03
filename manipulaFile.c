@@ -5,18 +5,18 @@
 #include "StartSvg.h"
 #include "lista.h"
 
-// FILE* abreFileGeo(FILE *arq, char *DirGeo){
+FILE* abreFileGeo(FILE *arq, char *DirGeo){
 
-//     arq = fopen(DirGeo, "r");
+    arq = fopen(DirGeo, "r");
 
-//     if(arq == NULL)
-//     {
-//         printf("Arquivo GEO não foi aberto!\n");
-// 		exit(0);
-//     }
+    if(arq == NULL)
+    {
+        printf("Arquivo GEO não foi aberto!\n");
+		exit(0);
+    }
 
-//     return arq;
-// }
+    return arq;
+}
 
 // FILE* abreFileSvg(FILE* arqSvg, char *outSvg){
     
@@ -37,7 +37,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 
     char nx[3] = "nx";
     int tam = 1000;	
-    char fig;
+    char fig[5];
 
     int id;
     int xd;
@@ -57,7 +57,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 	// void* linhas_teste;
 
 
-	arqSvg = fopen(outSvg, "w");
+	arqSvg = fopen("saida.svg", "w");
 
     if(arqSvg == NULL)
 	{
@@ -76,28 +76,17 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
     }else
 	{	
 
-		// fgets(nx,3,arq);
-
-		// if(strncmp(nx,"nx",2) == 0)
-		// {
-		// 	fscanf(arq,"%d", &tam);
-		// 	printf("O tamanho do vetor eh: %d\n",tam);
-
-		// }	
-
-		while((fscanf(arq,"%c", &fig))!=EOF)
+		while((fscanf(arq,"%s", &fig))!=EOF)
 		{	
 
-			printf("\n%c\n", fig);
-
-			if(fig=='c')
+			if(strcmp(fig,"c") == 0)
 			{	
 				fscanf(arq, "%d %lf %lf %lf %s %s\n", &id, &r, &x, &y, fill, border);
 				
 				/*Adiciona um circulo a lista */
 				// cria_Circulo(lista, id, x, y, r, fill, border);
 
-				arqSvg = fopen(outSvg,"a");
+				arqSvg = fopen("saida.svg","a+");
 
 				desenha_Circulo(arqSvg, r, x, y, fill, border);		
 			
@@ -106,14 +95,14 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 			}
 
 			
-			if(fig=='r')
+			if(strcmp(fig,"r") == 0)
 			{
 				fscanf(arq, "%d %lf %lf %lf %lf %s %s\n", &id, &w, &h, &x, &y, fill, border);
 				
 				/*Adiciona um retangulo a lista */
 				// cria_Retangulo(lista, id, x, y, w, h, fill, border); 
 
-				arqSvg = fopen(outSvg, "a+"); 
+				arqSvg = fopen("saida.svg", "a+"); 
 
 				desenha_Retangulo(arqSvg, w, h, x, y, fill, border); 	
 				
@@ -121,11 +110,11 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 						
 			}
 
-			if(fig=='l')
+			if(strcmp(fig,"l") == 0)
 			{
-				fscanf(arq, "%d %lf %lf %lf %lf %s", &id, &x1, &y1, &x2, &y2, &color);
+				fscanf(arq, "%d %lf %lf %lf %lf %s\n", &id, &x1, &y1, &x2, &y2, &color);
 
-				arqSvg = fopen(outSvg, "a+"); 
+				arqSvg = fopen("saida.svg", "a+"); 
 
 				desenha_Linha(arqSvg, x1, x2, y1, y2, color);
 
@@ -133,13 +122,13 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg, char *outSvg){
 			}
 			
 			/*Veriricar Valgrind linha 314*/
-			if(fig=='t')
+			if(strcmp(fig,"t") == 0)
 			{
 				fscanf(arq, "%d %lf %lf %s %s\n", &id, &x, &y, fill, border);
 				
 				// cria_Texto(lista, id, x, y, fill, border);		
 				
-				arqSvg = fopen(outSvg, "a+");
+				arqSvg = fopen("saida.svg", "a+");
 		
 				desenha_Texto(arqSvg, x, y, fill, border);				
 				
