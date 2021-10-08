@@ -1,96 +1,80 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// // #include "lista.h"
-// // #include "ret.h" 
-// // #include "circulo.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "lista.h"
+// #include "ret.h" 
+// #include "circulo.h"
 
-// typedef struct element Element;
+typedef struct node{
+    Info info;
+    struct node* next;
+    struct node* previous;
+}node;
 
-// struct element{
-// 	struct element *prev
-// 	struct Figuras dados; /*void??*/
-// 	struct element *next;
-// }
+typedef struct list{
+	Node *head;
+    Node *tail;
+    int size;
+}Lista;
 
-// /*Aloca lista e retorna ela vazia */
-// Lista* createLista(){
-// 	Lista* li = (Lista*) malloc(sizeof(Lista));
-// 	if(li != NULL){
-// 		*li = NULL;
-// 	}
+/*Aloca lista e retorna ela vazia */
+List createLista(){
+	Lista* l = (Lista*) malloc(sizeof(Lista));
+    if(l != NULL){
+        printf("Lista criada com sucesso");
+    }
+	l->head = NULL;
+	l->tail = NULL;
+	l->size = 10;
 
-// 	return li;
-// }
+	return l;
+}
 
-// int length(Lista* li){
-// 	if(li == NULL){
-// 		printf("Lista vazia!");
-// 		return 0;
-// 	}
-// 	int cont = 0;
-// 	Elem* no = *li;
-// 	while(no != NULL){
-// 		cont++;
-// 		no = no->next;
-// 	}
+int length(List l){    
+	if(l == NULL){
+		printf("Lista não inicializada vazia!");
+		return 0;
+	}
+    Lista* li = (Lista*) l;
+	return li->size;
+}
 
-// 	return cont
-// }
+Node insert(List l, Info info){
 
-// void insertFirst(Lista* li, int p){
+	if(l == NULL || info == NULL){
+		printf("A lista não foi alocada.");
+		return 0;
+	}
 
-// 	if(li == NULL){
-// 		printf("A lista não foi alocada.");
-// 		return 0;
-// 	}
+    Lista* li = (Lista*) l;
 
-// 	/*Alocando novo elemento para lista */
-// 	Elem* no = (Elem*) malloc(sizeof(Elem));
-// 	if(no == NULL){
-// 		printf("no não foi alocado!");
-// 		return 0;
-// 	}
+    node* NODE = (node*) malloc(sizeof(node));
+    NODE->info = info;
 
-// 	/*fazer o cast aqui?? */
-// 	no->dados = al;
-// 	no->next = (*li);
-// 	no->prev = NULL;
+	/*Alocando novo elemento para lista */
+	Lista* no = (Lista*) malloc(sizeof(Lista));
+	if(no == NULL){
+		printf("no não foi alocado!");
+		return 0;
+	}
 
-// 	// para lista não vazia: apontar para elemento anterior
-// 	if(*li != NULL){
-// 		(*li)->prev = no;
-// 	}
-// 	*li = no;
+    //lista vazia
+    if(li->head == NULL){
+        li->head = NODE;
+        NODE->previous = NULL;
+    }else{
+        NODE->previous = li->tail;
+        NODE->previous->next = NODE;
+    }
 
-	
-// }
+    li->tail = NODE;
+    NODE->next = NULL;
 
-// void remove(Lista* li, int p){
+    li->size++;
 
-// }
+    return NODE;
 
-// Lista* getList(Lista* li, int p){
-
-// }
-
-// Lista* insertBefore(Lista* li, int p){
-
-// }
-
-// Lista* insertAfter(Lista* li, int p){
-
-// }
-
-// Lista* getFirst(Lista* li){
-
-// }
-
-// Lista* getNext(Lista* li){
-
-// }
-
-
+}
 // void releaseList(Lista* li){
 // 	/*Verifica se a lista não está vazia*/
 // 	if(li != NULL){
