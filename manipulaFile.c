@@ -143,7 +143,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg){
 
 				arqSvg = fopen("saida.svg", "a+"); 
 
-				desenha_Linha(arqSvg, x1, x2, y1, y2, color);
+				desenha_Linha(arqSvg, x1, y1, x2, y2, color);
 
 				fclose(arqSvg);
 			}
