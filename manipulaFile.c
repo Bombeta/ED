@@ -58,7 +58,7 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg){
 	char fill[100];
 	char border[100];
 	char color[100];
-	char txto;
+	char texto[100];
 
 	int tamanho = 0;
 
@@ -152,10 +152,11 @@ void readFile(FILE *arq, char *DirGeo, FILE*arqSvg){
 			if(strcmp(fig, "t") == 0)
 			{
 				fscanf(arq, "%d %lf %lf %s %s\n", &id, &x, &y, fill, border);
-				
+				fgets(texto,100,arq);
+
 				arqSvg = fopen("saida.svg", "a+");
 		
-				desenha_Texto(arqSvg, x, y, fill, border);
+				desenha_Texto(arqSvg, x, y, fill, border, texto);
 
 				// /*Adiciona um texto a lista */
 				// Texto T = cria_Texto(lista, id, x, y, fill, border);

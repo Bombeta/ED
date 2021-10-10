@@ -12,7 +12,7 @@ void desenha_Retangulo(FILE* arqSvg, double w, double h, double x, double y, cha
 
 void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, char* color);
 
-void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border);
+void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border, char*texto);
 
 // void mudar_cor(LIST* l, int id, char *fill, char *border);
 

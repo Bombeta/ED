@@ -30,17 +30,11 @@ void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, cha
 	fprintf(arqSvg, "\n");
 }
 
-void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border)
+void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border, char*texto)
 {
-	// int t;
-	// char txto;
+	
 	fprintf(arqSvg, "<text x=\"%.2f\" y=\"%.2f\" font-family=\"Times New Roman\" font-size=\"50px\" fill=\"%s\" stroke=\"%s\" >", x, y, fill, border);	
-
-	// while((txto=fgetc(arq))!= '\n')
-	// {
-	// 	printf("%c",txto);
-	// 	fprintf(arq, "%c", txto);
-	// }
+	fprintf(arqSvg,texto);
 
 	fprintf(arqSvg, "</text>");					
 	fprintf(arqSvg, "\n");
