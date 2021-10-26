@@ -65,25 +65,24 @@ int main(int argc, char const *argv[])
 
 
 	DirIn = recebeEntrada(argc,argv, DirIn);
-	printf("SAIDA: %s\n", DirIn);
+	// printf("SAIDA: %s\n", DirIn);
 	// DirTwo = recebeEntrada(argc, argv, DirTwo);
 	// printf("SAIDA-2: %s\n",DirTwo);
 	arqGeo = recebeGeo(argc, argv, arqGeo);
-	printf("SAIDA-3: %s\n",arqGeo);
+	// printf("SAIDA-3: %s\n",arqGeo);
 	arqCons = recebeCons(argc, argv, arqCons);
-	printf("SAIDA-4: %s\n", arqCons);
+	// printf("SAIDA-4: %s\n", arqCons);
 	DirOut = recebeDiretorioSaida(argc, argv, DirOut);
-	printf("SAIDA: 5: %s\n", DirOut);
+	// printf("SAIDA: 5: %s\n", DirOut);
 
 	// semGeo = tiraGeo(arqGeo);
 	// nomeSvg = concatena(semGeo, ".svg");
 	// nomeTxt = concatena(semGeo, ".txt");
 
-	printf("\nteste\n");
 	/*Tirando o .geo */
-	printf("\nArqGeo: %s\n", arqGeo);
+	// printf("\nArqGeo: %s\n", arqGeo);
 	semGeo = tiraGeo(arqGeo);
-	printf("\nSem Geo: %s\n", semGeo);
+	// printf("\nSem Geo: %s\n", semGeo);
 
 	char string[100];
 	
@@ -94,10 +93,10 @@ int main(int argc, char const *argv[])
 
 	int l_svg = 0;
 	l_svg = strlen(semGeo) + 5;
-	printf("\nTamanho semgEO %d\n", l_svg);
+	// printf("\nTamanho semgEO %d\n", l_svg);
 	nomeSvg = aloca_tamanho(l_svg, nomeSvg);
 	nomeSvg = concatena(semGeo, ".svg");
-	printf("nomeSvg: %s\n", nomeSvg);
+	// printf("nomeSvg: %s\n", nomeSvg);
 	// nomeTxt = concatena(semGeo, ".txt");
 
 	// while(i < argc)
@@ -198,15 +197,28 @@ int main(int argc, char const *argv[])
 	if(DirIn != NULL){
 
 		DirGeo = concatena(DirIn, arqGeo);
-		printf("DirGeo: %s\n", DirGeo);
+		// printf("DirGeo: %s\n", DirGeo);
 	}
 	if(DirIn == NULL) {
+		/* Para arquivo Geo */
 		int l = 0;
 		l = strlen(arqGeo);
 		DirGeo = aloca_tamanho(l, DirGeo);
 		strcpy(DirGeo,arqGeo);
 
-		strncat(dirGeo,DirGeo,strlen(DirGeo)); 	
+		/* coloca o "./" caso n tenha o nome do arquivo de entrada */
+		strncat(dirGeo,DirGeo,strlen(DirGeo)); 
+
+		if(arqCons != NULL){
+			int l = 0;
+			l = strlen(arqCons);
+			DirQry = aloca_tamanho(l, DirQry);
+			strcpy(DirQry,arqCons);
+
+			/* coloca o "./" caso n tenha o nome do arquivo de entrada */
+
+			strncat(dirGeo,DirQry,strlen(DirQry));
+		}
 				
 	}
 	
@@ -247,13 +259,13 @@ int main(int argc, char const *argv[])
 		int l3 = 0;
 
 		l1 = strlen(DirOut) + 2;
-		printf("\nl de DirOut: %d\n", l1);
+		// printf("\nl de DirOut: %d\n", l1);
 
 		l2 = strlen(nomeSvg) + 2;
-		printf("\nl de nome Svg: %d\n", l2);
+		// printf("\nl de nome Svg: %d\n", l2);
 
 		l3 = l1 + l2;
-		printf("\nl DirOut + nome Svg: %d\n", l3);
+		// printf("\nl DirOut + nome Svg: %d\n", l3);
 
 		aloca_tamanho(l3, outSvg);
 		
@@ -266,11 +278,12 @@ int main(int argc, char const *argv[])
 	}
 
 	arq = abreFileGeo(arq,DirGeo);
+	//qry = abreFileGeo(qry,DirQry);
 	// arqSvg = abreFileSvg(arqSvg,outSvg);
 
 	//printf("arqSvg = %s", arqSvg);
 
-	readFile(arq, DirGeo, arqSvg);
+	readFile(arq, qry, DirGeo, DirQry, arqSvg);
 
 	/*arq = fopen(DirGeo, "r");*/
 	

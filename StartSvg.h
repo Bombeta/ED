@@ -1,6 +1,6 @@
 #ifndef H_START_SVG 
 #define H_START_SVG
-#include "lista.h"
+//#include "lista.h"
 
 
 /*Inicializa o SVG */
@@ -12,7 +12,15 @@ void desenha_Retangulo(FILE* arqSvg, double w, double h, double x, double y, cha
 
 void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, char* color);
 
-void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border, char*texto);
+void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border, char* texto);
+
+void copiaTxt(FILE* saidaTxt, int j, int k);
+
+void escreveFigura(FILE* saidaTxt, int id, char* texto);
+
+void escreveInterno(FILE* saidaTxt, char* texto);
+
+void desenhaInterno(FILE* arqSvg, double x, double y, char* cor);
 
 // void mudar_cor(LIST* l, int id, char *fill, char *border);
 

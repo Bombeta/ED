@@ -6,27 +6,30 @@ typedef void *circulo;
 
 circulo cria_Circulo(int id, double x, double y, double r, char *fill, char *border);
 
-int getId(void* circulo);
+int getCircleId(void* circulo);
 
-double getX(void* circulo);
+double getXCircle(void* circulo);
 
-double getY(void* circulo);
+double getYCircle(void* circulo);
 
-double getR(void* circulo);
+double getRCircle(void* circulo);
 
-char* getFill(void* circulo);
+char* getFillCircle(void* circulo);
 
-char* getBorder(void* circulo);
+char* getBorderCircle(void* circulo);
 
-void setId(int id, void* circulo);
+void setIdCircle(int id, void* circulo);
 
-void setX(double x, void* circulo);
+void setXCircle(double x, void* circulo);
 
-void setY(double x, void* circulo);
+void setYCircle(double x, void* circulo);
 
-void setR(double r, void* circulo);
+void setRCircle(double r, void* circulo);
 
 // void getFIll(char* fill, void* cirulo);
 
+bool internoCirculo(circulo c, double x, double y);
+
+void printCircle(circulo c);
 
 #endif

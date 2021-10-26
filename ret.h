@@ -1,36 +1,36 @@
-// #ifndef _H_RET
-// #define _H_RET
+#ifndef _H_RET
+#define _H_RET
 // #include "lista.h"
 
-// typedef void retangulo;
+typedef void *retangulo;
 
-// int getId(void* retangulo);
+int getRectId(void* retangulo);
 
-// double getWidth(void* retangulo);
+double getWidthRect(void* retangulo);
 
-// double getHeight(void* retangulo);
+double getHeightRect(void* retangulo);
 
-// double getX(void* retangulo);
+double getXRect(void* retangulo);
 
-// double getY(void* retangulo);
+double getYRect(void* retangulo);
 
-// char* getFill(void* retangulo);
+char* getFillRect(void* retangulo);
 
-// char* getBorder(void* retangulo);
+char* getBorderRect(void* retangulo);
 
-// void setId(int id, void* retangulo);
+void setIdRect(int id, void* retangulo);
 
-// void setWidth(double w, void* retangulo);
+void setWidthRect(double w, void* retangulo);
 
-// void setHeigth(double h, void* retangulo);
+void setHeigthRect(double h, void* retangulo);
 
-// void setX(double x, void* retangulo);
+void setXRect(double x, void* retangulo);
 
-// void setY(double y, void* retangulo);
+void setYRect(double y, void* retangulo);
 
-// void setFill(char* fill, void* retangulo);
+void setFillRect(char* fill, void* retangulo);
 
-// void setBorder(char* border, void* retangulo);
+void setBorderRect(char* border, void* retangulo);
 
 
-// #endif
+#endif

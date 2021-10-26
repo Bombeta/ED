@@ -12,16 +12,18 @@ typedef struct node{
 }node;
 
 typedef struct list{
-	node *head;
-    node *tail;
+	Node *head;
+    Node *tail;
     int size;
 }Lista;
 
+
+/*Funciona */
 /*Aloca lista e retorna ela vazia */
 List createLista(){
 	Lista* l = (Lista*) malloc(sizeof(Lista));
     if(l != NULL){
-        printf("Lista criada com sucesso");
+        printf("Lista criada com sucesso\n");
     }
 	l->head = NULL;
 	l->tail = NULL;
@@ -30,6 +32,7 @@ List createLista(){
 	return l;
 }
 
+/*Funciona */
 int length(List l){    
 	if(l == NULL){
 		printf("Lista não inicializada vazia!");
@@ -39,6 +42,7 @@ int length(List l){
 	return li->size;
 }
 
+/* Funciona */
 Node insert(List l, Info info){
 
 	if(l == NULL || info == NULL){
@@ -72,9 +76,183 @@ Node insert(List l, Info info){
 
     li->size++;
 
+    /*retorno  posic */
     return NODE;
 
 }
+
+// void remove(List l, node Posic){
+
+// }
+
+
+Info get(List l, void* Posic){
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return 0;
+    }
+
+    if(Posic == NULL){
+        printf("Erro: Posic não existe\n");
+    }
+
+    node *NODE = (node*) Posic;
+    return NODE->info;
+}
+
+// Node InsertBefore(List l, node Posic){
+
+// }
+
+// Node InsertAfter(List l, node Posic){
+
+// }
+
+
+Node getFirst(List l){
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+
+    return li->head;
+
+}
+
+Node getNext(List l){
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    // node *NODE = li->next;
+
+    /*verifica se o node é o último elemento da lista */
+    // if(NODE == NULL){
+    //     return NULL;
+    // }
+
+    // return NODE;
+}
+
+Node getLast(List l){
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    return li->tail;
+
+}
+
+Node getPrevious(List l, void* Posic){
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node *NODE = (node*) Posic;
+
+    /*Verifica se o node é o primeiro elemento da lista */
+    if(NODE->previous == NULL){
+        return NULL;
+    }   
+    return NODE->previous;
+}
+
+Node searchListCircle(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+
+    
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        if(getCircleId(no->info) == id){
+            printf("CIRCULO ID = %d\n", id);
+            return no->info;
+        }
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+Node searchListRect(List l, int id){
+
+    printf("entra aqui quadrado\n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+    
+    while(no!=NULL){
+        
+        printf("RETANGULO ID = %d\n", id);
+        if(getRectId(no->info) == id){
+            return no->info;
+        }
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+
+
+
 // void releaseList(Lista* li){
 // 	/*Verifica se a lista não está vazia*/
 // 	if(li != NULL){

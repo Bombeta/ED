@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "circulo.h"
+
 
 //* TESTES FUNCIONANDO *//
 
@@ -17,67 +19,67 @@ typedef struct Circulo{
 
 }circulo_t;
 
-int getId(void* circulo){
+int getCircleId(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->id;
 }
 
-double getX(void* circulo){
+double getXCircle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->x;
 }
 
-double getY(void* circulo){
+double getYCircle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->y;
 }
 
-double getR(void* circulo){
+double getRCircle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->r;
 }
 
-char* getFill(void* circulo){
+char* getFillCircle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->fill;
 }
 
-char* getBorder(void* circulo){
+char* getBorderCircle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->border;
 }
 
-void setId(int id, void* circulo){
+void setIdCircle(int id, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	this->id = id;
 }
 
-void setX(double x, void* circulo){
+void setXCircle(double x, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	this->x = x;
 }
 
-void setY(double y, void* circulo){
+void setYCircle(double y, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	this->y = y;
 }
 
-void setR(double r, void* circulo){
+void setRCircle(double r, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	this->r = r;
 }
 
-void setFill(char* fill, void* circulo){
+void setFillCircle(char* fill, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	//Função para limpar string em C */
@@ -85,13 +87,15 @@ void setFill(char* fill, void* circulo){
 	strcpy(this->fill, fill);
 }
 
-void setBorder(char* border, void* circulo){
+void setBorderCircle(char* border, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	//Função para limpar string em C */
 	bzero(this->border, 100);
 	strcpy(this->border, border);
 }
+
+
 
 circulo cria_Circulo(int id, double x, double y, double r, char *fill, char *border)
 {
@@ -105,5 +109,44 @@ circulo cria_Circulo(int id, double x, double y, double r, char *fill, char *bor
 	strcpy(circulo->border, border);
 
 	return circulo;
+
+}
+
+
+void printCircle(circulo c){
+	circulo_t* this;
+	this = (circulo_t*) c;
+	printf("PRINTA CIRCULO\n");
+	printf("%d\n", this->id);
+	printf("%lf\n", this->x);
+	printf("%lf\n", this->y);
+	printf("%lf\n", this->r);
+	printf("\n");
+}
+
+bool internoCirculo(circulo c, double x, double y){
+
+	/** 
+		Calcular a distância entre o ponto P(x,y) e a circunferência dada pela eq da da cinrcunferência
+
+		Equação reduzida da circunferência 
+		(X - Xc)² + (Y - Yc)² = R²
+	**/
+	circulo_t* this;
+	this = (circulo_t*) c;
+
+	float d;
+
+	d = (x - (pow(this->x,2)) * y - (pow(this->y,2)) );
+
+
+	if(sqrt(d)<this->r){
+		printf("Ponto é interno a circunferencia!");
+		return true;
+	}else if(sqrt(d)>this->r){
+		printf("Ponto é externo a circunferência!");
+		return false;
+	}
+
 
 }
