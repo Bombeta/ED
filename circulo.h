@@ -4,7 +4,7 @@
 
 typedef void *circulo;
 
-circulo cria_Circulo(int id, double x, double y, double r, char *fill, char *border);
+circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, char tipo);
 
 int getCircleId(void* circulo);
 
@@ -17,6 +17,8 @@ double getRCircle(void* circulo);
 char* getFillCircle(void* circulo);
 
 char* getBorderCircle(void* circulo);
+
+char getTipoCircle(void* circulo);
 
 void setIdCircle(int id, void* circulo);
 

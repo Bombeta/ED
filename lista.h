@@ -18,6 +18,9 @@ Node getPrevious(List l, void* Posic);
 Node searchListCircle(List l, int id);
 Node searchListRect(List l, int id);
 
+Node drawListFigure(List l);
+//Node drawListRect(List l);
+
 
 
 #endif 

@@ -15,6 +15,7 @@ typedef struct Retangulo{
 	double y;
 	char fill[100];
 	char border[100];
+	char tipo;
     
 }retangulo_t;
 
@@ -58,6 +59,13 @@ char* getBorderRect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
 	return this->border;
+}
+
+
+char* getTipoRect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->tipo;
 }
 
 void setIdRect(int id, void* retangulo){
@@ -104,7 +112,7 @@ void setBorderRect(char* border, void* retangulo){
 
 
 
-retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border)
+retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border, char tipo)
 {
 	retangulo_t* retangulo = malloc(sizeof(retangulo_t));
 
@@ -117,6 +125,41 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 	strcpy(retangulo->fill, fill);
 	strcpy(retangulo->border, border);
 
+	retangulo->tipo = tipo;
+	
+
 	return retangulo;
 
+}
+
+
+void drawRect(retangulo r){
+	// circulo_t* this;
+	// this = (circulo_t*) c;
+	printf("PRINTA RETANGULO\n");
+	
+	double w = getWidthRect(r);
+	double h = getHeightRect(r);
+	double x = getXRect(r);
+	double y = getYRect(r); 
+	
+	char fill[100];
+	char border[100];
+
+	printf("X = %lf\n", x);
+	printf("Y = %lf\n", y);
+	printf("w = %lf\n", w);
+	printf("H = %lf\n", h);
+	// printf("R = %lf\n", r);
+
+	strcpy(fill, getFillRect(r));
+	strcpy(border, getBorderRect(r));
+
+	printf("FILL: %s", fill);
+	printf("BORDER: %s", border);
+
+	desenha_Retangulo("saidaQry.svg", w, h, x, y, fill, border);
+	
+	printf("\n");
+	
 }

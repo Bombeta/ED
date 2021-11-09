@@ -86,9 +86,9 @@ int main(int argc, char const *argv[])
 
 	char string[100];
 	
-	strcpy(string,semGeo);
-	for (i=0; string[i] != '\0'; i++)
-		printf ("Caractere %d: %c\n", i, string[i]);
+	// strcpy(string,semGeo);
+	// for (i=0; string[i] != '\0'; i++)
+	// 	printf ("Caractere %d: %c\n", i, string[i]);
    
 
 	int l_svg = 0;

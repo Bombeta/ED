@@ -14,16 +14,23 @@ void cria_SVG(FILE* arqSvg)
 	fclose(arqSvg);
 }	
 
-void desenha_Circulo(FILE* arqSvg, double r,double x, double y, char* fill, char* border)
-{
+void desenha_Circulo(char* nomeSaida, double r,double x, double y, char* fill, char* border)
+{	
+	FILE* arqSvg = fopen(nomeSaida, "a+");
+	
 	fprintf(arqSvg, "<circle cx=\"%.2f\" cy=\"%.2f\" r=\"%.2f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1px\" opacity=\"0.5\" />", x, y, r, fill, border);
 	fprintf(arqSvg, "\n");
-	}
+	fclose(arqSvg);
+}
 
-void desenha_Retangulo(FILE* arqSvg, double w, double h, double x, double y, char* fill, char* border)
-{
+
+void desenha_Retangulo(char* nomeSaida, double w, double h, double x, double y, char* fill, char* border)
+{	
+	FILE* arqSvg = fopen(nomeSaida, "a+");
+
 	fprintf(arqSvg, "<rect x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" height=\"%.2f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"1px\" opacity=\"0.5\"/>", x, y, w, h, fill, border);
 	fprintf(arqSvg, "\n");	
+	fclose(arqSvg);
 }
 
 void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, char* color)
@@ -32,15 +39,16 @@ void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, cha
 	fprintf(arqSvg, "\n");
 }
 
-void desenha_Texto(FILE* arqSvg, double x, double y, char* fill, char* border, char*texto)
+void desenha_Texto(char* nomeSaida, double x, double y, char* fill, char* border, char*texto)
 {
-	// int t;
-	// char txto;
+	FILE* arqSvg = fopen(nomeSaida, "a+");
+
 	fprintf(arqSvg,"<text x=\"%.2f\" y=\"%.2f\" font-family=\"Times New Roman\" font-size=\"50px\" fill=\"%s\" stroke=\"%s\">", x, y, fill, border);	
 	fprintf(arqSvg, texto);
 
 	fprintf(arqSvg, "</text>");					
-	fprintf(arqSvg, "\n");
+	fprintf(arqSvg, "\n");	
+	fclose(arqSvg);
 		
 }
 

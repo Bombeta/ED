@@ -1,8 +1,6 @@
-<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000">
-<circle cx="50.00" cy="30.00" r="50.00" fill="grey" stroke="magenta" stroke-width="3px"/>
-<rect x="100.00" y="30.00" width="121.00" height="46.00" fill="cyan" stroke="yellow" stroke-width="3px"/>
-<circle cx="45.00" cy="15.00" r="12.00" fill="grey" stroke="magenta" stroke-width="3px"/>
-<rect x="90.00" y="40.00" width="10.00" height="12.00" fill="cyan" stroke="yellow" stroke-width="3px"/>
-<circle cx="10.00" cy="13.00" r="20.00" fill="grey" stroke="magenta" stroke-width="3px"/>
-<line x1="20.00" y1="240.00" x2="120.00" y2="120.00" stroke="black" stroke-width="3px"/>
-<text x="15.00" y="90.00" font-family="Times New Roman" font-size="50px" fill="red" stroke="blue" ></text>
+<svg>
+<circle cx="10.00" cy="10.00" r="13.00" fill="#e94dfa" stroke="#5efa4d" stroke-width="1px" opacity="0.5" />
+<circle cx="26.00" cy="10.00" r="13.00" fill="#e94dfa" stroke="#5efa4d" stroke-width="1px" opacity="0.5" />
+<circle cx="18.00" cy="18.00" r="13.00" fill="#e94dfa" stroke="#5efa4d" stroke-width="1px" opacity="0.5" />
+<rect x="15.00" y="7.00" width="10.00" height="20.00" fill="#e94dfa" stroke="#5efa4d" stroke-width="1px" opacity="0.5"/>
+</svg>

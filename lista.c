@@ -27,7 +27,7 @@ List createLista(){
     }
 	l->head = NULL;
 	l->tail = NULL;
-	l->size = 10;
+	l->size = 0;
 
 	return l;
 }
@@ -56,11 +56,11 @@ Node insert(List l, Info info){
     NODE->info = info;
 
 	/*Alocando novo elemento para lista */
-	Lista* no = (Lista*) malloc(sizeof(Lista));
-	if(no == NULL){
-		printf("no não foi alocado!");
-		return 0;
-	}
+	// Lista* no = (Lista*) malloc(sizeof(Lista));
+	// if(no == NULL){
+	// 	printf("no não foi alocado!");
+	// 	return 0;
+	// }
 
     //lista vazia
     if(li->head == NULL){
@@ -188,7 +188,7 @@ Node getPrevious(List l, void* Posic){
     return NODE->previous;
 }
 
-Node searchListCircle(List l, int id){
+Node searchList(List l, int id){
 
     printf("\nSearch List circulo: \n");
 
@@ -212,6 +212,13 @@ Node searchListCircle(List l, int id){
         // printf("%p\n", no);
         if(getCircleId(no->info) == id){
             printf("CIRCULO ID = %d\n", id);
+            //printCircle(no-);
+            
+            return no->info;
+        }else if(getRectId(no->info) == id){
+            printf("RETANGULO ID = %d\n", id);
+            //printRect(no->info);
+
             return no->info;
         }
         no = no->next;
@@ -220,9 +227,72 @@ Node searchListCircle(List l, int id){
       
 }
 
-Node searchListRect(List l, int id){
+// Node searchListRect(List l, int id){
 
-    printf("entra aqui quadrado\n");
+//     printf("entra aqui quadrado\n");
+
+//     if(l == NULL){
+//         printf("Erro: Lista não existe\n");
+//         return NULL;
+//     }
+
+//     Lista* li = (Lista*) l;
+//     if(li->size == 0){
+//         printf("Erro: a lista está vazia\n");
+//         return NULL;
+//     }
+
+//     node* no;
+//     no = li->head;
+    
+//     while(no!=NULL){
+        
+//         printf("RETANGULO ID = %d\n", id);
+//         if(getRectId(no->info) == id){
+//             return no->info;
+//         }
+//         no = no->next;
+//     }
+//     return NULL;
+      
+// }
+
+
+// Node searchListText(List l, int id){
+
+//     printf("entra aqui texto\n");
+
+//     if(l == NULL){
+//         printf("Erro: Lista não existe\n");
+//         return NULL;
+//     }
+
+//     Lista* li = (Lista*) l;
+//     if(li->size == 0){
+//         printf("Erro: a lista está vazia\n");
+//         return NULL;
+//     }
+
+//     node* no;
+//     no = li->head;
+    
+//     while(no!=NULL){
+        
+//         printf("TEXTO = %d\n", id);
+//         if(getRectId(no->info) == id){
+//             return no->info;
+//         }
+//         no = no->next;
+//     }
+//     return NULL;
+      
+// }
+
+//Comandos do QRY
+
+Node drawListFigure(List l){
+
+    printf("\nSearch List circulo: \n");
 
     if(l == NULL){
         printf("Erro: Lista não existe\n");
@@ -237,18 +307,54 @@ Node searchListRect(List l, int id){
 
     node* no;
     no = li->head;
+
+    char tipo;
+    
     
     while(no!=NULL){
-        
-        printf("RETANGULO ID = %d\n", id);
-        if(getRectId(no->info) == id){
-            return no->info;
+        //strcpy(tipo,no->tipo);
+      
+        if(getTipoCircle(no->info) == 'c'){
+            drawCircle(no->info);
+        }else if(getTipoRect(no->info) == 'r'){
+            drawRect(no->info);
         }
+             
         no = no->next;
     }
     return NULL;
       
 }
+
+/*Node drawListRect(List l){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+
+    
+    
+    while(no!=NULL){
+        drawRect(no->info);
+        no = no->next;
+    }
+    return NULL;
+      
+}*/
+
+
 
 
 
