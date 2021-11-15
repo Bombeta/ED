@@ -14,7 +14,7 @@ void cria_SVG(FILE* arqSvg)
 	fclose(arqSvg);
 }	
 
-void desenha_Circulo(char* nomeSaida, double r,double x, double y, char* fill, char* border)
+void desenha_Circulo(char* nomeSaida, double r, double x, double y, char* fill, char* border)
 {	
 	FILE* arqSvg = fopen(nomeSaida, "a+");
 	
@@ -33,10 +33,12 @@ void desenha_Retangulo(char* nomeSaida, double w, double h, double x, double y, 
 	fclose(arqSvg);
 }
 
-void desenha_Linha(FILE* arqSvg, double x1, double y1, double x2, double y2, char* color)
-{
+void desenha_Linha(char* nomeSaida, double x1, double y1, double x2, double y2, char* color)
+{	
+	FILE* arqSvg = fopen(nomeSaida, "a+");
 	fprintf(arqSvg, "<line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" stroke=\"%s\" stroke-width=\"1px\"/>", x1, y1, x2, y2, color);
 	fprintf(arqSvg, "\n");
+	fclose(arqSvg);
 }
 
 void desenha_Texto(char* nomeSaida, double x, double y, char* fill, char* border, char*texto)
@@ -77,107 +79,4 @@ void escreveCoordenada(FILE* saidaTxt, float x, float y){
 	fprintf(saidaTxt,"%.2lf %.2lf", x, y);
 	fprintf(saidaTxt,"\n");
 }
-
-// /*Está funcionando */
-// void mudar_cor(LIST* l, int id, char *fill, char *border)
-// {
-
-// 	int i;
-// 	int k;
-
-// 	/*Procura id no circulo */
-// 	for(i=0; i < l->nroC; i++)
-// 	{
-// 		if(id == l->C[i].id)
-// 		{
-// 			strcpy(l->C[i].fill,fill);
-// 			strcpy(l->C[i].border,border);
-// 		}
-// 	}
-
-// 	/*Procura id no retangulo */
-// 	for(i=0;i<l->nroR;i++)
-// 	{
-// 		if(id == l->R[i].id)
-// 		{
-// 			strcpy(l->R[i].fill,fill);
-// 			strcpy(l->R[i].border,border);
-// 		}
-// 	}
-
-// 	/*Procura id no texto */
-// 	for(i=0;i<l->nroT;i++)
-// 	{
-// 		if(id == l->T[i].id)
-// 		{
-// 			strcpy(l->T[i].fill,fill);
-// 			strcpy(l->T[i].border,border);
-// 		}
-// 	}
-// }
-
-// /*Está funcionando */
-// void mudar_cor_2(LIST* l, int id, int xd, char *fill, char *border)
-// {
-// 	int i;
-// 	int k;
-
-// 	/*Laço para percorrer todos os ids */
-// 	for(k = id; k <= xd; k++)
-// 	{
-// 		/*Procura id no circulo */
-// 		for(i=0;i<l->nroC;i++)
-// 		{
-// 			if(k == l->C[i].id)
-// 			{
-// 				strcpy(l->C[i].fill,fill);
-// 				strcpy(l->C[i].border,border);
-// 			}
-// 		}
-
-// 		/*Procura id no retangulo */
-// 		for(i=0;i<l->nroR;i++)
-// 		{
-// 			if(k == l->R[i].id)
-// 			{
-// 				strcpy(l->R[i].fill,fill);
-// 				strcpy(l->R[i].border,border);
-// 			}
-// 		}
-
-// 		/*Procura id no texto */
-// 		for(i=0;i<l->nroT;i++)
-// 		{
-// 			if(k == l->T[i].id)
-// 			{
-// 				strcpy(l->T[i].fill,fill);
-// 				strcpy(l->T[i].border,border);
-// 			}
-// 		}
-// 	}
-
-// }
-
-
-// void linhaCheia(FILE* arqSvg, double rectX, double rectY, double width, double height)
-// {
-// 	fprintf(arqSvg, "<rect x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" height=\"%.2f\" fill=\"none\" stroke=\"green\" stroke-width=\"1px\" stroke-dasharray = \"5\"/>", 
-// 		rectX,
-// 		rectY,
-// 		width,
-// 		height);
-
-// 	fprintf(arqSvg, "\n");
-// }
-
-// void linhaTracejada(FILE* arqSvg, double rectX, double rectY, double width, double height)
-// {
-// 	fprintf(arqSvg, "<rect x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" height=\"%.2f\" fill=\"none\" stroke=\"\" stroke-width=\"1px\" stroke-dasharray = \"5\"/>", 
-// 		rectX,
-// 		rectY,
-// 		width,
-// 		height);
-
-// 	fprintf(arqSvg, "\n");
-// }
 

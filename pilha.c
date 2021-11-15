@@ -17,7 +17,7 @@ typedef struct stack{
 Pilha createPilha(){
     Stack* p = (Stack*) malloc(sizeof(Stack));
     if(p != NULL){
-        printf("Pilha criada com sucesso!");
+        //printf("Pilha criada com sucesso!");
     }
 
     p->topo = NULL;

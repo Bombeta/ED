@@ -17,6 +17,7 @@ typedef struct Texto{
     char texto[100];
 	char fill[100];
 	char border[100];
+	char tipo[12];
 
 }text_t;
 
@@ -54,6 +55,12 @@ char* getBorderText(void* text){
 	text_t* this;
 	this = (text_t*) text;
 	return this->border;
+}
+
+char* getTipoText(void* text){
+	text_t* this;
+	this = (text_t*) text;
+	return this->tipo;
 }
 
 void setIdText(int id, void* text){
@@ -100,25 +107,27 @@ void setBorderText(char* border, void* text){
 
 
 
-text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto)
+text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto, char* tipo)
 {
 	text_t* text = malloc(sizeof(text_t));
 
 	text->id = id;
 	text->x = x;
 	text->y = y;
+	//text->tipo = texto;
 	strcpy(text->texto,texto);
 	strcpy(text->fill, fill);
 	strcpy(text->border, border);
+	strcpy(text->tipo, tipo);
 
 	return text;
 
 }
 
 
-void print_Texto(text c){
+void print_Texto(text t){
 	text_t* this;
-	this = (text_t*) c;
+	this = (text_t*) t;
 	printf("PRINTA TEXTO\n");
 	printf("%d\n", this->id);
 	printf("%lf\n", this->x);

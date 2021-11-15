@@ -18,7 +18,7 @@ typedef struct queue{
 Fila *createFila(){
     Queue* q = (Queue*) malloc(sizeof(Queue));
     if(q != NULL){
-        printf("Fila criada com sucesso!");
+        //printf("Fila criada com sucesso!");
     }
 
     q->start = NULL;

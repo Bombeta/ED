@@ -4,7 +4,7 @@
 
 typedef void *text;
 
-text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto);
+text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto, char* tipo);
 
 int getTexttId(void* text);
 
@@ -15,6 +15,8 @@ double getYText(void* text);
 char* getFillText(void* text);
 
 char* getBorderText(void* text);
+
+char* getTipoText(void* text);
 
 void setIdText(int id, void* text);
 

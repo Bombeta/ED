@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lista.h"
+
 // #include "ret.h" 
 // #include "circulo.h"
 
@@ -190,7 +191,7 @@ Node getPrevious(List l, void* Posic){
 
 Node searchList(List l, int id){
 
-    printf("\nSearch List circulo: \n");
+    //printf("\nSearch List circulo: \n");
 
     if(l == NULL){
         printf("Erro: Lista não existe\n");
@@ -210,17 +211,61 @@ Node searchList(List l, int id){
     
     while(no!=NULL){
         // printf("%p\n", no);
-        if(getCircleId(no->info) == id){
-            printf("CIRCULO ID = %d\n", id);
-            //printCircle(no-);
-            
-            return no->info;
-        }else if(getRectId(no->info) == id){
-            printf("RETANGULO ID = %d\n", id);
-            //printRect(no->info);
-
-            return no->info;
+        // CIRCULO NÃO INICIALIZADO //
+        if(strlen(getTipoCircle(no->info))==1){
+  
+            if(getCircleId(no->info) == id){
+                //printf("\n** ID GET TIPO %s \n", getTipoCircle(no->info));
+                if(strcmp(getTipoCircle(no->info), "c") == 0){
+                    printf("\nCIRCULO ID = %d\n", id);
+                    //printCircle(no-);                
+                    return no->info;
+                }
+        
+            }
         }
+        if(strlen(getTipoRect(no->info))==1){
+                   
+            if(getRectId(no->info) == id){
+                //printf("RETANGULO ID = %d\n", id);
+                //printRect(no->info);
+                if(strcmp(getTipoRect(no->info), "retangulo") == 0){
+                    printf("RETANGULO ID = %d\n", id);
+                    //printCircle(no-);                
+                    return no->info;
+                }
+            }
+        }
+
+        //textto ERRO NO TEXTO - VERIFICAR
+        /*if(strlen(getTipoText(no->info))==6){
+            if(getTextId(no->info) == id){
+                //printf("RETANGULO ID = %d\n", id);
+                //printRect(no->info);                
+                if(strcmp(getTipoText(no->info), "texto") == 0){
+                    printf("TEXTO ID = %d\n", id);
+                    //printCircle(no-);                
+                    return no->info;
+                }
+            }
+        }*/
+
+
+        //linha
+        if(strlen(getTipoLinha(no->info))==6){
+
+            if(getIdLinha(no->info) == id){
+                //printf("RETANGULO ID = %d\n", id);
+                //printRect(no->info);
+                if(strcmp(getTipoLinha(no->info), "linha") == 0){
+                    printf("LINHA ID = %d\n", id);
+                    //printCircle(no-);                
+                    return no->info;
+                }
+            }
+
+        }
+
         no = no->next;
     }
     return NULL;
@@ -292,7 +337,7 @@ Node searchList(List l, int id){
 
 Node drawListFigure(List l){
 
-    printf("\nSearch List circulo: \n");
+    //printf("\nSearch List circulo: \n");
 
     if(l == NULL){
         printf("Erro: Lista não existe\n");
@@ -318,6 +363,8 @@ Node drawListFigure(List l){
             drawCircle(no->info);
         }else if(getTipoRect(no->info) == 'r'){
             drawRect(no->info);
+        }else if(getTipoLinha(no->info) == 'l'){
+            drawLinha(no->info);
         }
              
         no = no->next;

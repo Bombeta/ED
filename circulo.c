@@ -15,9 +15,8 @@ typedef struct Circulo{
 	double x, y, r;
 	char fill[100];
 	char border[100];
-	char tipo;
-
-
+	char tipo[12];
+	
 }circulo_t;
 
 int getCircleId(void* circulo){
@@ -104,7 +103,7 @@ void setBorderCircle(char* border, void* circulo){
 
 
 
-circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, char tipo)
+circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, char* tipo)
 {
 	circulo_t* circulo = malloc(sizeof(circulo_t));
 
@@ -114,7 +113,7 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r =r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
-	circulo->tipo = tipo;
+	strcpy(circulo->tipo,tipo);
 	
 
 	return circulo;
@@ -125,20 +124,21 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 void printCircle(circulo c){
 	circulo_t* this;
 	this = (circulo_t*) c;
-	printf("PRINTA CIRCULO\n");
+	//printf("PRINTA CIRCULO\n");
 	printf("%d\n", this->id);
 	printf("%lf\n", this->x);
 	printf("%lf\n", this->y);
 	printf("%lf\n", this->r);
 	printf("%s\n", this->fill);
-	printf("\n");
+	//printf("\n");
 	
 }
 
 void drawCircle(circulo c){
 	// circulo_t* this;
 	// this = (circulo_t*) c;
-	printf("PRINTA CIRCULO\n");
+
+	//printf("PRINTA CIRCULO\n");
 	
 	
 	double x = getXCircle(c);
@@ -147,15 +147,15 @@ void drawCircle(circulo c){
 	char fill[100];
 	char border[100];
 
-	printf("X = %lf\n", x);
-	printf("Y = %lf\n", y);
-	printf("R = %lf\n", r);
+	// printf("X = %lf\n", x);
+	// printf("Y = %lf\n", y);
+	// printf("R = %lf\n", r);
 
 	strcpy(fill, getFillCircle(c));
 	strcpy(border, getBorderCircle(c));
 
-	printf("FILL: %s", fill);
-	printf("BORDER: %s", border);
+	// printf("FILL: %s", fill);
+	// printf("BORDER: %s", border);
 
 	desenha_Circulo("saidaQry.svg", r, x, y, fill, border);
 	
@@ -163,29 +163,3 @@ void drawCircle(circulo c){
 	
 }
 
-bool internoCirculo(circulo c, double x, double y){
-
-	/** 
-		Calcular a distância entre o ponto P(x,y) e a circunferência dada pela eq da da cinrcunferência
-
-		Equação reduzida da circunferência 
-		(X - Xc)² + (Y - Yc)² = R²
-	**/
-	circulo_t* this;
-	this = (circulo_t*) c;
-
-	float d;
-
-	d = (x - (pow(this->x,2)) * y - (pow(this->y,2)) );
-
-
-	if(sqrt(d)<this->r){
-		printf("Ponto é interno a circunferencia!");
-		return true;
-	}else if(sqrt(d)>this->r){
-		printf("Ponto é externo a circunferência!");
-		return false;
-	}
-
-
-}

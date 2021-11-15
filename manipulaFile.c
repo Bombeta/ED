@@ -10,6 +10,9 @@
 #include "texto.h"
 #include "pilha.h"
 #include "fila.h"
+#include "qry.h"
+#include "linha.h"
+
 
 FILE* abreFileGeo(FILE *arq, char *DirGeo){
 
@@ -43,7 +46,7 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 	int qtd_linha = 0;
 	int qtd_texto = 0;
 
-	int linha = 0;
+	//int linha = 0;
 
 	double r, x, y, w, h, x1, y1, x2, y2;
 	double dx, dy, prop;
@@ -53,13 +56,12 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 	char texto[100];
 	char cor1[100];
 	char cor2[100];
-	char tipo;
+	char tipo[12];
+	char tipo1;
+	char tipo2;
 
 	int sizeList = 0;
 	int tamanho = 0;
-
-	bool interno;
-	bool soprepoem;
 
 	Pilha vetPilha[10];
 	Fila vetFila[10];
@@ -92,8 +94,8 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 	for(i=0;i<10;i++){
 		Pilha p = createPilha();
 		vetPilha[i] = p;
-		tamanho = lengthP(vetPilha[i]);
-		printf("tamanho da pilha: %d\n", tamanho);
+		//tamanho = lengthP(vetPilha[i]);
+		//printf("tamanho da pilha: %d\n", tamanho);
 	}
 
 	printf("\n");
@@ -102,7 +104,7 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 		Fila f = createFila();
 		vetFila[i] = f;
 		//tamanho = lengthF(vetFila);
-		printf("tamanho da fila: %d\n", tamanho);
+		//printf("tamanho da fila: %d\n", tamanho);
 	}
 	
 	
@@ -136,11 +138,13 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 
 				desenha_Circulo("saida.svg", r, x, y, fill, border);		
 			
-				//fclose(arqSvg);
-				tipo = 'c';
+				strcpy(tipo,"circulo");
 
 				/*Adiciona um circulo a lista */
 				circulo C = cria_Circulo(id, r, x, y, fill, border, tipo);
+
+
+				//printf("GET TIPO INICIO: %c", getTipoCircle(C));
 
 				insert(l, C);
 
@@ -161,10 +165,9 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 				//arqSvg = fopen("saida.svg", "a+"); 
 
 				desenha_Retangulo("saida.svg", w, h, x, y, fill, border); 	
-				
-				//fclose(arqSvg);
-				tipo = 'r';
 
+				strcpy(tipo,"retangulo");
+				
 				/*Adiciona um retangulo a lista */
 				retangulo R = cria_Retangulo(id, w, h, x, y, fill, border, tipo);
 				
@@ -181,11 +184,19 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 				fflush(stdin);
 				fscanf(arq, "%d %lf %lf %lf %lf %s\n", &id, &x1, &y1, &x2, &y2, &color);
 
-				arqSvg = fopen("saida.svg", "a+"); 
+				//arqSvg = fopen("saida.svg", "a+"); 
 
-				desenha_Linha(arqSvg, x1, y1, x2, y2, color);
+				desenha_Linha("saida.svg", x1, y1, x2, y2, color);
 
-				fclose(arqSvg);
+				strcpy(tipo,"linha");
+
+				linha L = cria_Linha(id, x1, y1, x2, y2, color, tipo);
+
+				print_Linha(L);
+
+				insert(l, L);
+
+				//fclose(arqSvg);
 			}
 			
 			/*Testar erro aqui */
@@ -202,8 +213,10 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 		
 				desenha_Texto("saida.svg", x, y, fill, border, texto);
 
+				strcpy(tipo,"texto");
+
 				// /*Adiciona um texto a lista */
-				text T = cria_Texto(id, x, y, fill, border, texto);
+				text T = cria_Texto(id, x, y, fill, border, texto, tipo);
 
 				insert(l, T);
 				
@@ -224,12 +237,23 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 	fprintf(arqSvg, "</svg>");
 	
 	/*comandos qry */
-	qry = fopen("/home/bombeta/Área de Trabalho/Pasta teste/pilha-teste.qry", "r");
+
+	/* fazer em função seperada */
+	qry = fopen("/home/bombeta/Área de Trabalho/Pasta teste/pil-dup-30p.qry", "r");
 	// if(qry != NULL){
 	// 	saidaQry = fopen("saidaQry.svg", "a");
 	// 	cria_SVG(saidaQry);
 	// }
 	
+	/*Nó de registradores */
+
+	Node reg[10];
+
+	for(i=0;i<10;i++){
+		reg[i] = NULL;
+	}
+
+
 	saidaQry = fopen("saidaQry.svg", "w");
 
     if(saidaQry == NULL)
@@ -250,69 +274,21 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 		while((fscanf(qry,"%s", &fig))!=EOF)
 		{	
 
-			// printf("\n%c\n", fig);
 
-			// Cheguei a conclusão que n erro do valgrind é a parte q ele tenta achar a figura com ID 4 mas n acha pois é um retangulo ae crasha
+			
+			// Ver pq o cria Linha não funciona 149
 			if(strcmp(fig,"o?") == 0)
 			{	
 				printf("Entrou comando o?\n");
 				//printf("ENTREI\n");
 				fscanf(qry, "%d %d %d %s %s\n", &j, &k, &id, &cor1, &cor2);
-				copiaTxt(saidaTxt,j,k);
+				//copiaTxt(saidaTxt,j,k);
 
 				saidaQry = fopen("saidaQry.svg", "a+");
 
+				sobrepoem(j, k, l, id, cor1, cor2, saidaTxt);
 
-				/* Está funcionando */ 
-				/* Achou um circulo */
-				void* figura1_Circ = searchList(l, j);
-				escreveFigura(saidaTxt,j,"circulo");
-				//printCircle(figura1_Circ);
-				x1 = getXCircle(figura1_Circ);
-				y1 = getYCircle(figura1_Circ);
-				printf("Circulo 1 X = %.2lf\n", x1);
-				printf("CIrculo 1 Y = %.2lf\n", y1);
-
-				
-
-				if(figura1_Circ == NULL){
-
-					void* figura1_Ret = searchList(l, j);
-					escreveFigura(saidaTxt,j,"retangulo");
-					
-				}
-
-				void* figura2_Circ = searchList(l, k);
-				escreveFigura(saidaTxt,k,"circulo");
-				x2 = getXCircle(figura2_Circ);
-				y2 = getYCircle(figura2_Circ);
-				printf("Circulo 2 X = %.2lf\n", x2);
-				printf("CIrculo 2 Y = %.2lf\n", y2);
-				
-
-				if(figura2_Circ == NULL){
-					void* figura2_Ret = searchList(l, k);
-					escreveFigura(saidaTxt,k,"retangulo");
-					
-				}
-
-				// *Comparação entre as figuras *//
-				// Compara dois circulos
-				if(figura1_Circ != NULL && figura2_Circ != NULL){
-					//soprepoem = CompareTwoCircle();
-
-					//desenha_Linha();
-
-					// if(soprepoem == true){
-
-					// }else{
-
-					// }
-				}
-				
-
-				fprintf(saidaTxt, "\n");
-				fclose(saidaQry);
+				//fclose(saidaQry);
 			}
 
 			
@@ -323,35 +299,11 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 
 				fscanf(qry,"%d %lf %lf", &j, &x, &y);
 
-				copiaTxt(saidaTxt,j,k);
+				printf("X: %lf", x);
+				printf("Y: %lf", y);
+				// valores corretos até aqui
 
-				/* Está funcionando */
-				/*Procura na lista de circulo */
-				void* figura1 = searchList(l, j);
-				escreveFigura(saidaTxt,j,"circulo");
-				interno = internoCirculo(figura1, x, y);
-
-				// Só para lembrar n tem arqSvg, aqui é arqQry
-				//arqSvg = fopen("saida.svg", "a+");
-
-				if(interno == true){
-					escreveInterno(saidaTxt,"interno");
-					desenhaInterno(arqSvg,x,y,"blue");
-				}else if(interno == false){
-					escreveInterno(saidaTxt,"externo");
-					desenhaInterno(arqSvg,x,y,"magenta");
-				}
-
-
-				/*Procura na lista de retangulo */
-				if(figura1 == NULL){
-					void* figura2 = searchList(l , k);
-					escreveFigura(saidaTxt,k,"retangulo");
-				}
-
-				//fclose(arqSvg);
-
-			
+				interno(j, x , y ,l, saidaTxt);			
 			}
 			
 
@@ -360,69 +312,10 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 			{	
 				fscanf(qry, "%d %s %s", &j, &border, &fill);
 
-				fprintf(saidaTxt, "pnt %d %s %s", j, &border, &fill);
-				fprintf(saidaTxt,"\n");
-				
-				/* Está funcionando */
-				/*Procura na lista de circulo */
-				void* figura1 = searchList(l, j);
-				
-				if(figura1 != NULL){
-
-					// x = getXCircle(figura1);
-					// y = getYCircle(figura1);
-					// r = getRCircle(figura1);
-					setBorderCircle(fill, figura1);
-					setFillCircle(border, figura1);
-					//char* saidaQry = malloc(sizeof(char)*13);
-					//desenha_Circulo("saidaQry.svg", r, x, y, fill, border);
-					fprintf(saidaTxt, "%lf %lf", x, y);
-					fprintf(saidaTxt,"\n");
-				}
-			
-				/*Procura na lista de retangulo */
-				void* figura2 = searchList(l, j);
-
-				if(figura1 == NULL && figura2 != NULL){
-					
-					// x = getXRect(figura2);
-					// y = getYRect(figura2);
-					// w = getWidthRect(figura2);
-					// h = getHeightRect(figura2);
-
-					// printf("Comando pnt: \n");
-					// printf("x: %.2lf\n", x);
-					// printf("y: %.2lf\n", y);
-					// printf("w: %.2lf\n", w);
-					// printf("h: %.2lf\n", h);
-
-					setBorderRect(fill, figura2);
-					setFillRect(border, figura2);
-					//desenha_Retangulo("saidaQry.svg", w, h, x, y, fill, border);
-					fprintf(saidaTxt, "%lf %lf", x, y);
-					fprintf(saidaTxt,"\n");
-
-				}
-
-				/*Procura um texto na lista */
-
-				/* RODAR E VER SAIDA TXT NÃO FUNCIONA */
-				if(figura1 == NULL && figura2 == NULL){
-					void* texto1 = searchList(l, j);
-					
-					x = getXText(texto1);
-					y = getYText(texto1);
-					strcpy(texto, getText(texto1));
-					//texto = getText(texto1);
-
-					desenha_Texto("saidaQry.svg", x, y, fill, border, texto);
-					fprintf(saidaTxt, "saida texto %lf %lf", x, y);
-					fprintf(saidaTxt,"\n");
-				}
-
+				mudar_cor(j, border, fill, l, saidaTxt);
 			}
 			
-			drawListFigure(l);
+			
 			//drawListRect(l);
 			
 
@@ -493,9 +386,9 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 				if(figura1 == NULL && figura2 == NULL){
 					void* texto1 = searchList(l, j);
 					
-					x = getXText(texto1);
-					y = getYText(texto1);
-					strcpy(texto, getText(texto1));
+					// x = getXText(texto1);
+					// y = getYText(texto1);
+					// strcpy(texto, getText(texto1));
 					//texto = getText(texto1);
 					
 				}
@@ -503,8 +396,8 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 				
 			}
 			
-			int tamanhoP = lengthP(vetPilha[pd]);
-			printf("Tamanho pilha empilhada %d\n", tamanhoP);
+			//int tamanhoP = lengthP(vetPilha[pd]);
+			//printf("Tamanho pilha empilhada %d\n", tamanhoP);
 			
 
 			/* Não entendi */
@@ -516,8 +409,8 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 
 			}
 
-			int tamanhoPop = lengthP(vetPilha[pd]);
-			printf("Tamanho final da pilha : %d\n", tamanhoPop);
+			//int tamanhoPop = lengthP(vetPilha[pd]);
+			//printf("Tamanho final da pilha : %d\n", tamanhoPop);
 
 
 			/*TESTAR AS FILAS */
@@ -532,10 +425,9 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 				
 			// }
 
-			// if(strcmp(fig, "ii") == 0)
-			// {
+			if(strcmp(fig, "ii") == 0){
 
-			// }
+			}
 
 			// if(strcmp(fig, "if") == 0)
 			// {
@@ -572,7 +464,10 @@ void readFile(FILE *arq, FILE *qry, char *DirGeo, char *DirQry, FILE*arqSvg){
 
 
 
-		}	
+		}
+		//desenha_Linha(saidaQry,x1,y1,x2,y2, "black");
+		printf("passou direto");
+		drawListFigure(l);
 		saidaQry = fopen("saidaQry.svg", "a+");
 		fprintf(saidaQry, "</svg>");
 		fclose(saidaQry);

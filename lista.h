@@ -10,13 +10,14 @@ List createLista();
 int length(List l);
 Node insert(List l, Info info);
 Info get(List l, void* Posic);
-// Node searchList(List l, int id);
+Node searchList(List l, int id);
 Node getFirst(List l);
 Node getNext(List l);
 Node getLast(List l);
 Node getPrevious(List l, void* Posic);
-Node searchListCircle(List l, int id);
-Node searchListRect(List l, int id);
+// Node searchListCircle(List l, int id);
+// Node searchListRect(List l, int id);
+// Node searchListLinha(List l, int id);
 
 Node drawListFigure(List l);
 //Node drawListRect(List l);
