@@ -6,13 +6,13 @@
 /*Inicializa o SVG */
 void cria_SVG(FILE* arqSvg);	
 
-void desenha_Circulo(char* nomeSaida, double x, double y, double r, char* fill, char* border);
+void desenha_Circulo(char* svg, double x, double y, double r, char* fill, char* border);
 
-void desenha_Retangulo(char* nomeSaida, double w, double h, double x, double y, char* fill, char* border); 
+void desenha_Retangulo(char* svg, double w, double h, double x, double y, char* fill, char* border); 
 
-void desenha_Linha(char* arqSvg, double x1, double y1, double x2, double y2, char* color);
+void desenha_Linha(char* svg, double x1, double y1, double x2, double y2, char* color);
 
-void desenha_Texto(char* nomeSaida, double x, double y, char* fill, char* border, char* texto);
+void desenha_Texto(char* svg, double x, double y, char* fill, char* border, char* texto);
 
 void copiaTxt(FILE* saidaTxt, int j, int k);
 

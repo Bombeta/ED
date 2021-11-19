@@ -10,5 +10,7 @@ Pilha createPilha();
 int lengthP(Pilha p);
 NodeP push(Pilha p, InfoP info);
 void pop(Pilha p);
+void setTipo(Pilha p, char tipo);
+char getTipo(Pilha p);
 
 #endif

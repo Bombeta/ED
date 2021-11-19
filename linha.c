@@ -13,7 +13,7 @@ typedef struct Linha{
     double x2;
     double y2;
     char color[100];
-	char tipo[12];
+	//char tipo[12];
 
 }linha_t;
 
@@ -54,11 +54,11 @@ char* getColorLinha(void* linha){
 	return this->color;
 }
 
-char getTipoLinha(void* linha){
-	linha_t* this;
-	this = (linha_t*) linha;
-	return this->tipo;
-}
+// char getTipoLinha(void* linha){
+// 	linha_t* this;
+// 	this = (linha_t*) linha;
+// 	return this->tipo;
+// }
 
 void setIdLinha(int id, void* linha){
     linha_t* this;
@@ -97,16 +97,16 @@ void setColorLinha(char* color, void* linha){
 	strcpy(this->color, color);
 }
 
-void setTipoLinha(char* tipo, void* linha){
-	linha_t* this;
-	this = (linha_t*) linha;
-	//bzero(this->color, 100);
-	strcpy(this->tipo, tipo);
-}
+// void setTipoLinha(char* tipo, void* linha){
+// 	linha_t* this;
+// 	this = (linha_t*) linha;
+// 	//bzero(this->color, 100);
+// 	strcpy(this->tipo, tipo);
+// }
 
 
 
-linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color, char* tipo){
+linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color){
 	
 	linha_t* linha = malloc(sizeof(linha_t));
 
@@ -118,7 +118,7 @@ linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color
     linha->x2 = x2;
     linha->y2 = y2;
 	
-	strcpy(linha->tipo, tipo);	
+	//strcpy(linha->tipo, tipo);	
     
     strcpy(linha->color,color);
 	
@@ -140,13 +140,13 @@ void print_Linha(linha l){
     printf("%lf\n", this->x2);
 	printf("%lf\n", this->y2);
 	printf("%s\n", this->color);
-	printf("%s\n", this->tipo);
+	//printf("%s\n", this->tipo);
 	printf("\n");
 	
 }
 
 
-void drawLinha(linha l){
+void drawLine(linha l, char* svgQry){
 		
 	
 	double x1 = getX1Linha(l);
@@ -166,7 +166,7 @@ void drawLinha(linha l){
 	// printf("FILL: %s", fill);
 	// printf("BORDER: %s", border);
 
-	desenha_Linha("saidaQry.svg", x1, y1, x2, y2, color);
+	desenha_Linha(svgQry, x1, y1, x2, y2, color);
 	
 	//printf("\n");
 	

@@ -12,6 +12,8 @@ typedef struct nodePilha{
 typedef struct stack{
 	NodeP *topo;
     int size;
+    char tipo;
+    //void *figura;
 }Stack;
 
 Pilha createPilha(){
@@ -33,6 +35,25 @@ int lengthP(Pilha p){
     Stack* s = (Stack*) p;
 	return s->size;
 }
+
+void setTipo(Pilha p, char tipo){
+    if(p == NULL){
+		printf("Lista não inicializada vazia!");
+		return 0;
+	}
+    Stack* s = (Stack*) p;
+    s->tipo = tipo;
+}
+
+char getTipo(Pilha p){
+    if(p == NULL){
+		printf("Lista não inicializada vazia!");
+		return 0;
+	}
+    Stack* s = (Stack*) p;
+    return s->tipo;
+}
+
 
 int empty(Pilha p){
     Stack* s = (Stack*) p;
@@ -56,6 +77,8 @@ NodeP push(Pilha p, InfoP info){
     n->next = s->topo;
     s->topo = n;
     s->size++;
+
+    printf("INSERIDO\n");
 
     return p;
 }

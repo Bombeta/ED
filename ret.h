@@ -4,7 +4,7 @@
 
 typedef void *retangulo;
 
-retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border, char tipo[]);
+retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border);
 
 int getRectId(void* retangulo);
 
@@ -36,7 +36,7 @@ void setFillRect(char* fill, void* retangulo);
 
 void setBorderRect(char* border, void* retangulo);
 
-void drawRect(retangulo r);
+void drawRect(retangulo r, char* svgQry);
 
 
 #endif

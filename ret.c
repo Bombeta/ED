@@ -112,7 +112,7 @@ void setBorderRect(char* border, void* retangulo){
 
 
 
-retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border, char tipo[])
+retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *fill, char *border)
 {
 	retangulo_t* retangulo = malloc(sizeof(retangulo_t));
 
@@ -124,7 +124,7 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 	
 	strcpy(retangulo->fill, fill);
 	strcpy(retangulo->border, border);
-	strcpy(retangulo->tipo, tipo);
+	//strcpy(retangulo->tipo, tipo);
 
 	
 
@@ -133,7 +133,7 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 }
 
 
-void drawRect(retangulo r){
+void drawRect(retangulo r, char* svgQry){
 	// circulo_t* this;
 	// this = (circulo_t*) c;
 
@@ -159,7 +159,8 @@ void drawRect(retangulo r){
 	// printf("FILL: %s", fill);
 	// printf("BORDER: %s", border);
 
-	desenha_Retangulo("saidaQry.svg", w, h, x, y, fill, border);
+
+	desenha_Retangulo(svgQry , w, h, x, y, fill, border);
 	
 	printf("\n");
 	

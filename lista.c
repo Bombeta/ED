@@ -8,6 +8,7 @@
 
 typedef struct node{
     Info info;
+    char tipo;
     struct node* next;
     struct node* previous;
 }node;
@@ -189,7 +190,7 @@ Node getPrevious(List l, void* Posic){
     return NODE->previous;
 }
 
-Node searchList(List l, int id){
+/*Node searchList(List l, int id){
 
     //printf("\nSearch List circulo: \n");
 
@@ -212,7 +213,7 @@ Node searchList(List l, int id){
     while(no!=NULL){
         // printf("%p\n", no);
         // CIRCULO NÃO INICIALIZADO //
-        if(strlen(getTipoCircle(no->info))==1){
+        if(strlen(getTipoCircle(no->info))==7){
   
             if(getCircleId(no->info) == id){
                 //printf("\n** ID GET TIPO %s \n", getTipoCircle(no->info));
@@ -224,7 +225,7 @@ Node searchList(List l, int id){
         
             }
         }
-        if(strlen(getTipoRect(no->info))==1){
+        if(strlen(getTipoRect(no->info))==9){
                    
             if(getRectId(no->info) == id){
                 //printf("RETANGULO ID = %d\n", id);
@@ -238,7 +239,8 @@ Node searchList(List l, int id){
         }
 
         //textto ERRO NO TEXTO - VERIFICAR
-        /*if(strlen(getTipoText(no->info))==6){
+        /*if(strlen(getTipoText(no->info))==9){
+
             if(getTextId(no->info) == id){
                 //printf("RETANGULO ID = %d\n", id);
                 //printRect(no->info);                
@@ -248,7 +250,7 @@ Node searchList(List l, int id){
                     return no->info;
                 }
             }
-        }*/
+        }
 
 
         //linha
@@ -266,6 +268,133 @@ Node searchList(List l, int id){
 
         }
 
+        no = no->next;
+    }
+    return NULL;
+      
+}*/
+
+
+Node searchListCircle(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+
+    
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        if(getCircleId(no->info) == id){
+            printf("CIRCULO ID = %d\n", id);
+            printCircle(no->info);
+            
+            return no->info;
+        }
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+Node searchListRect(List l, int id){
+
+    printf("entra aqui quadrado\n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+    
+    while(no!=NULL){
+        
+        printf("RETANGULO ID = %d\n", id);
+        if(getRectId(no->info) == id){
+            return no->info;
+        }
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+Node searchListLinha(List l, int id){
+
+    printf("entra aqui texto\n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+    
+    while(no!=NULL){
+        
+        printf("TEXTO = %d\n", id);
+        if(getIdLinha(no->info) == id){
+            return no->info;
+        }
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+
+
+Node searchListText(List l, int id){
+
+    printf("entra aqui texto\n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+    
+    while(no!=NULL){
+        
+        printf("TEXTO = %d\n", id);
+        if(getTextId(no->info) == id){
+            return no->info;
+        }
         no = no->next;
     }
     return NULL;
@@ -335,7 +464,7 @@ Node searchList(List l, int id){
 
 //Comandos do QRY
 
-Node drawListFigure(List l){
+Node drawListCircle(List l, char* svgQry){
 
     //printf("\nSearch List circulo: \n");
 
@@ -358,22 +487,15 @@ Node drawListFigure(List l){
     
     while(no!=NULL){
         //strcpy(tipo,no->tipo);
-      
-        if(getTipoCircle(no->info) == 'c'){
-            drawCircle(no->info);
-        }else if(getTipoRect(no->info) == 'r'){
-            drawRect(no->info);
-        }else if(getTipoLinha(no->info) == 'l'){
-            drawLinha(no->info);
-        }
-             
+        drawCircle(no->info, svgQry);
+                    
         no = no->next;
     }
     return NULL;
       
 }
 
-/*Node drawListRect(List l){
+Node drawListRect(List l, char* svgQry){
 
     printf("\nSearch List circulo: \n");
 
@@ -394,14 +516,219 @@ Node drawListFigure(List l){
     
     
     while(no!=NULL){
-        drawRect(no->info);
+        drawRect(no->info, svgQry);
         no = no->next;
     }
     return NULL;
       
-}*/
+}
+
+Node drawListText(List l, char* svgQry){
+
+    //printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+
+    char tipo;
+    
+    
+    while(no!=NULL){
+        //strcpy(tipo,no->tipo);
+        drawText(no->info, svgQry);                    
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+Node drawListLine(List l, char* svgQry){
+
+    //printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    no = li->head;
+
+    char tipo;
+    
+    
+    while(no!=NULL){
+        //strcpy(tipo,no->tipo);
+        drawLine(no->info, svgQry);                    
+        no = no->next;
+    }
+    return NULL;
+      
+}
+
+void removeListaCircle(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    node* prev = NULL;
+    no = li->head;
+
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        prev = no;
+        no = no->next;
+        printf("TEXTO = %d\n", id);
+        if(getCircleId(no->info) == id){
+            prev->next = no->next;
+            free(no);
+            printf("ID REMOVIDO: %d", id);
+            return 1;
+        }
+        no = no->next;
+    }
+    return NULL;
+}
 
 
+void removeListaRect(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    node* prev = NULL;
+    no = li->head;
+
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        prev = no;
+        no = no->next;
+        printf("TEXTO = %d\n", id);
+        if(getRectId(no->info) == id){
+            prev->next = no->next;
+            free(no);
+            printf("ID REMOVIDO: %d", id);
+            return 1;
+        }
+        no = no->next;
+    }
+    return NULL;
+}
+
+
+void removeListaLinha(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    node* prev = NULL;
+    no = li->head;
+
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        prev = no;
+        no = no->next;
+        printf("TEXTO = %d\n", id);
+        if(getIdLinha(no->info) == id){
+            prev->next = no->next;
+            free(no);
+            printf("ID REMOVIDO: %d", id);
+            return 1;
+        }
+        no = no->next;
+    }
+    return NULL;
+}
+
+
+void removeListaText(List l, int id){
+
+    printf("\nSearch List circulo: \n");
+
+    if(l == NULL){
+        printf("Erro: Lista não existe\n");
+        return NULL;
+    }
+
+    Lista* li = (Lista*) l;
+    if(li->size == 0){
+        printf("Erro: a lista está vazia\n");
+        return NULL;
+    }
+
+    node* no;
+    node* prev = NULL;
+    no = li->head;
+
+    
+    while(no!=NULL){
+        // printf("%p\n", no);
+        prev = no;
+        no = no->next;
+        printf("TEXTO = %d\n", id);
+        if(getTextId(no->info) == id){
+            prev->next = no->next;
+            free(no);
+            printf("ID REMOVIDO: %d", id);
+            return 1;
+        }
+        no = no->next;
+    }
+    return NULL;
+}
 
 
 

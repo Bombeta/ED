@@ -107,7 +107,7 @@ void setBorderText(char* border, void* text){
 
 
 
-text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto, char* tipo)
+text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto)
 {
 	text_t* text = malloc(sizeof(text_t));
 
@@ -118,7 +118,7 @@ text cria_Texto(int id, double x, double y, char *fill, char *border, char* text
 	strcpy(text->texto,texto);
 	strcpy(text->fill, fill);
 	strcpy(text->border, border);
-	strcpy(text->tipo, tipo);
+	//strcpy(text->tipo, tipo);
 
 	return text;
 
@@ -133,6 +133,41 @@ void print_Texto(text t){
 	printf("%lf\n", this->x);
 	printf("%lf\n", this->y);
 	printf("%s\n", this->texto);
+	printf("\n");
+	
+}
+
+
+
+void drawText(text t, char* svgQry){
+	// circulo_t* this;
+	// this = (circulo_t*) c;
+
+	//printf("PRINTA CIRCULO\n");
+	
+	
+	
+	double x = getXText(t);
+	double y = getYText(t); 
+	//double r = getRText(r);
+	char fill[100];
+	char border[100];
+	char txt[100];
+
+	// printf("X = %lf\n", x);
+	// printf("Y = %lf\n", y);
+	// printf("R = %lf\n", r);
+
+	strcpy(fill, getFillText(t));
+	strcpy(border, getBorderText(t));
+	strcpy(txt, getText(t));
+
+	// printf("FILL: %s", fill);
+	// printf("BORDER: %s", border);
+
+
+	desenha_Circulo(svgQry, x, y, fill, border, txt);
+	
 	printf("\n");
 	
 }

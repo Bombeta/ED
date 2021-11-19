@@ -4,7 +4,7 @@
 
 typedef void *text;
 
-text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto, char* tipo);
+text cria_Texto(int id, double x, double y, char *fill, char *border, char* texto);
 
 int getTexttId(void* text);
 
@@ -29,6 +29,8 @@ void setFillText(char* fill, void* text);
 void setBorderText(char* border, void* text);
 
 void print_Texto(text c);
+
+void drawText(text t, char* svgQry);
 
 
 #endif

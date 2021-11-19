@@ -15,7 +15,7 @@ typedef struct Circulo{
 	double x, y, r;
 	char fill[100];
 	char border[100];
-	char tipo[12];
+	//char tipo[12];
 	
 }circulo_t;
 
@@ -55,11 +55,11 @@ char* getBorderCircle(void* circulo){
 	return this->border;
 }
 
-char getTipoCircle(void* circulo){
-	circulo_t* this;
-	this = (circulo_t*) circulo;
-	return this->tipo;
-}
+// char* getTipoCircle(void* circulo){
+// 	circulo_t* this;
+// 	this = (circulo_t*) circulo;
+// 	return this->tipo;
+// }
 
 void setIdCircle(int id, void* circulo){
 	circulo_t* this;
@@ -103,7 +103,7 @@ void setBorderCircle(char* border, void* circulo){
 
 
 
-circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, char* tipo)
+circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border)
 {
 	circulo_t* circulo = malloc(sizeof(circulo_t));
 
@@ -113,7 +113,7 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r =r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
-	strcpy(circulo->tipo,tipo);
+	//strcpy(circulo->tipo, tipo);
 	
 
 	return circulo;
@@ -134,7 +134,7 @@ void printCircle(circulo c){
 	
 }
 
-void drawCircle(circulo c){
+void drawCircle(circulo c, char* svgQry){
 	// circulo_t* this;
 	// this = (circulo_t*) c;
 
@@ -157,7 +157,7 @@ void drawCircle(circulo c){
 	// printf("FILL: %s", fill);
 	// printf("BORDER: %s", border);
 
-	desenha_Circulo("saidaQry.svg", r, x, y, fill, border);
+	desenha_Circulo(svgQry, r, x, y, fill, border);
 	
 	printf("\n");
 	

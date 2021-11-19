@@ -3,7 +3,7 @@
 
 typedef void *linha;
 
-linha cria_Linha(int id, double x1, double y1, double x2, double y2, char* color, char* tipo);
+linha cria_Linha(int id, double x1, double y1, double x2, double y2, char* color);
 
 int getIdLinha(void* linha);
 
@@ -31,7 +31,7 @@ void setY2Linha(double y2, void* linha);
 
 void setColorLinha(char* color, void* linha);
 
-void drawLinha(linha l);
+void drawLine(linha l, char* svgQry);
 
 //void print_Linha(linha l);
 
