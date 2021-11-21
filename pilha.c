@@ -10,7 +10,7 @@ typedef struct nodePilha{
 }NodePilha;
 
 typedef struct stack{
-	NodeP *topo;
+	NodePilha *topo;
     int size;
     char tipo;
     //void *figura;
@@ -60,6 +60,26 @@ int empty(Pilha p){
     return s->size == 0;
 }
 
+InfoP getInfo(Pilha p){
+
+    if(p == NULL){
+        printf("ERRO");
+        return 0;
+    }
+
+
+
+    Stack* s = (Stack*) p;
+
+    // // NodePilha* n;
+    // if(n->info == NULL){
+    //     printf("NULL\n");
+    //     return 0;
+    // }
+
+    return s->topo->info;
+}
+
 NodeP push(Pilha p, InfoP info){
     if(p == NULL){
         printf("Erro na criação da lista.\n");
@@ -78,13 +98,15 @@ NodeP push(Pilha p, InfoP info){
     s->topo = n;
     s->size++;
 
+    
+
     printf("INSERIDO\n");
 
     return p;
 }
 
 
-void pop(Pilha p){
+NodeP pop(Pilha p){
     if(!empty(p)){
         Stack* s = (Stack*) p;  
         NodePilha* n = s->topo;

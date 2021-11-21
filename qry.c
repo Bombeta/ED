@@ -502,7 +502,7 @@ void push_Pilha(int pd, int i, Pilha *vetPilha, List listaCircle, List listaRect
     }
     // /// RETANGULO
     
-
+    // VER PQ NÃ FUNCIONA 
     // if(fig1 == NULL){
     //     fig2 = searchListRect(listaRect, i);
         
@@ -523,6 +523,7 @@ void push_Pilha(int pd, int i, Pilha *vetPilha, List listaCircle, List listaRect
     //     push(vetPilha[pd], R);
     //     setTipo(vetPilha[pd],'r'); 
     // }
+
     ///// LINHA
     if(fig1 == NULL && fig2 == NULL){
         
@@ -584,6 +585,7 @@ void pop_Pilha(int pd, int i, double dx, double dy, double prop, char* qryTxt, P
     char fill[100];
     char border[100];
     char color[100];
+    char texto[100];
 
     // double newX;
     // double newY;
@@ -593,119 +595,123 @@ void pop_Pilha(int pd, int i, double dx, double dy, double prop, char* qryTxt, P
 
     char newFill[100];
     char newBorder[100];
+    char tipo;
+
+    void* figura = getInfo(vetPilha[pd]);
+
+    tipo = getTipo(vetPilha[pd]);
 
     FILE* saidaTxt;
 
     saidaTxt = fopen(qryTxt, "a+");   
    
+    //printf("TIPO POP: %c", tipo);
 
     dx = dx + x;
     dy = dy + y;
     
-    pop(vetPilha[pd]); 
+    //pop(vetPilha[pd]); 
 
     //Procura na lista de circulo 
-    void* fig1 = searchListCircle(listaCircle, i);
-    void* fig2 = NULL;
-    void* fig3 = NULL;
-
-    // if(fig1 != NULL){
+    if(tipo == 'c'){
                 
-    //     id = getCircleId(listaCircle);	
-    //     x = getXCircle(listaCircle);					
-    //     y = getYCircle(listaCircle);
-    //     r = getRCircle(listaCircle);
+        id = getCircleId(figura);	
+        x = getXCircle(figura);					
+        y = getYCircle(figura);
+        r = getRCircle(figura);
 
-    //     strcpy(fill, getFillCircle(listaCircle));
-    //     strcpy(border, getFillCircle(listaCircle));
+        strcpy(fill, getFillCircle(figura));
+        strcpy(border, getFillCircle(figura));
         
         
 
-    //     newR = r * prop;
+        newR = r * prop;
 
-    //     strcpy(newFill, fill);
-    //     strcpy(newBorder, border);
+        strcpy(newFill, fill);
+        strcpy(newBorder, border);
 
-    //     x e y transladados???
+       // x e y transladados???
 
-    //     circulo C = cria_Circulo(i, newR, dx, dy, newFill, newBorder);
+        circulo C = cria_Circulo(i, newR, dx, dy, newFill, newBorder);
 
         
-    //     fprintf(saidaTxt,"%d %lf %lf %s %s %s", id, x, y, fill, border);
+        fprintf(saidaTxt,"%d %lf %lf %s %s %s", id, x, y, fill, border);
 
-    // }
+    }
     // /// RETANGULO
-    // if(fig1 == NULL){
+    if(tipo == 'r'){
         
-    //     fig2 = searchListRect(listaRect, i);
+        id = getRectId(figura);	
+        x = getXRect(figura);					
+        y = getYRect(figura);
+        h = getHeightRect(figura);
+        w = getWidthRect(figura);
+
+        strcpy(fill, getFillRect(figura));
+        strcpy(border, getBorderRect(figura));
         
-    //     id = getRectId(fig2);	
-    //     x = getXRect(fig2);					
-    //     y = getYRect(fig2);
-    //     h = getHeightRect(fig2);
-    //     w = getWidthRect(fig2);
+        pop(vetPilha[pd]); 
 
-    //     strcpy(fill, getFillRect(fig2));
-    //     strcpy(border, getBorderRect(fig2));
-        
-    //     pop(p); 
+        newH = h * prop;
+        newW = w * prop;
 
-    //     newH = h * prop;
-    //     newW = w * prop;
+        strcpy(newFill, fill);
+        strcpy(newBorder, border);
 
-    //     strcpy(newFill, fill);
-    //     strcpy(newBorder, border);
+        retangulo R = cria_Retangulo(i, newW, newH, dx, dy, newFill, newBorder);
 
-    //     retangulo R = cria_Retangulo(i, newW, newH, dx, dy, newFill, newBorder);
+        fprintf(saidaTxt,"%d %lf %lf %lf %lf %s %s %s", id, w, h, x, y, fill, border);
 
-    //     fprintf(saidaTxt,"%d %lf %lf %lf %lf %s %s %s", id, w, h, x, y, fill, border);
-
-    // }
+    }
     // /// LINHA
-    // if(fig1 == NULL && fig2 == NULL){
-        
-    //     fig3 = searchListLinha(listaLinha, i);
-
-    //     id = getIdLinha(fig3);
-    //     x1 = getX1Linha(fig3);
-    //     x2 = getX2Linha(fig3);
-    //     y1= getY1Linha(fig3);
-    //     y2 = getY2Linha(fig3);
-
-    //     x2 = x2 * prop;
-    //     y2 = y2 * prop;
-        
-    //     strcpy(color, getColorLinha(fig3));
-
-    //     pop(vetPilha[pd]); 
-
-    //     linha L = cria_Linha(i, dx, dy, x2, y2, color);
-
-    //     printf("REMOVEU\n");
-
-    //     fprintf(saidaTxt,"%d %lf %lf %lf %lf %s %s %s", id, x1, y1, x2, y2, color);
-        
-    // }
-
-    ///// TEXTO PROPORÇÃO ????
-    // if(fig1 == NULL && figura1_Ret == NULL && figura1_Linha == NULL){
-        
-    //     void* figura1_Text = searchListText(listaText, i)
-
-    //     id = getTextId(figura1_Text);
-    //     x = getXText(figura1_Text);
-    //     y = getYText(figura1_Text);
-
-    //     strcpy(fill, getFillText(figura1_Text));
-    //     strcpy(border, getBorderText(figura1_Text));
-    //     strcpy(texto, getText(figura1_Text));
+    if(tipo == 'l'){
         
 
+        // printf("TIPO POP: %c\n", tipo);
 
-    //     //text T = cria_Texto(id, x, y, fill, border, texto, tipo);
+        id = getIdLinha(figura);
+        // printf("ID: %d", id);        
+        x1 = getX1Linha(figura);
+        // printf("X1: %lf", x1);
+        x2 = getX2Linha(figura);
+        // printf("X2: %lf", x2);
+        y1= getY1Linha(figura);
+        // printf("Y1: %lf", y1);
+        y2 = getY2Linha(figura);
+        // printf("Y2: %lf", y2);
 
-    //     pop(vetPilha[pd], T);
-    // }
+        x2 = x2 * prop;
+        y2 = y2 * prop;
+        
+        strcpy(color, getColorLinha(figura));
+
+        pop(vetPilha[pd]); 
+
+        linha L = cria_Linha(i, dx, dy, x2, y2, color);
+
+        printf("REMOVEU\n");
+
+        fprintf(saidaTxt,"%d %lf %lf %lf %lf %s\n", id, x1, y1, x2, y2, color);
+        
+    }
+
+    /// TEXTO PROPORÇÃO ????
+    if(tipo == 't'){
+        
+        id = getTextId(figura);
+        x = getXText(figura);
+        y = getYText(figura);
+
+        strcpy(fill, getFillText(figura));
+        strcpy(border, getBorderText(figura));
+        strcpy(texto, getText(figura));
+        
+        pop(vetPilha[pd]);
+
+        //text T = cria_Texto(id, x, y, fill, border, texto, tipo);
+
+        
+    }
    
 
 }

@@ -257,11 +257,26 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, List listaCircle, Lis
 			{
 				fscanf(arqQry, "%d %d %lf %lf %lf", &pd, &i, &dx, &dy, &prop);
 
+				// int id;
+				// double x1;
+				// double x2;
+				// double y1;
+				// double y2;
 				
-				printf("TIPO: %c\n", getTipo(vetPilha[pd]));
-				pop(vetPilha[pd]);
+				// // printf("TIPO: %c\n", getTipo(vetPilha[pd]));
+				// // pop(vetPilha[pd]);
+				// id = getIdLinha(vetPilha[pd]);
+				// printf("ID: %d\n", id);        
+				// x1 = getX1Linha(vetPilha[pd]);
+				// printf("X1: %lf\n", x1);
+				// x2 = getX2Linha(vetPilha[pd]);
+				// printf("X2: %lf\n", x2);
+				// y1= getY1Linha(vetPilha[pd]);
+				// printf("Y1: %lf\n", y1);
+				// y2 = getY2Linha(vetPilha[pd]);
+				// printf("Y2: %lf\n", y2);
 
-				//pop_Pilha(pd, i, dx, dy, prop, txtQry, vetPilha, listaCircle, listaRect, listaLinha, listaText);
+				pop_Pilha(pd, i, dx, dy, prop, txtQry, vetPilha, listaCircle, listaRect, listaLinha, listaText);
 
 				int tamanhoP = lengthP(vetPilha[pd]);
 				printf("Tamanho pilha empilhada %d\n", tamanhoP);
