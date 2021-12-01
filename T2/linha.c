@@ -13,6 +13,8 @@ typedef struct Linha{
     double x2;
     double y2;
     char color[100];
+	double p1;
+	double p2;
 	//char tipo[12];
 
 }linha_t;
@@ -53,6 +55,19 @@ char* getColorLinha(void* linha){
 	this = (linha_t*) linha;
 	return this->color;
 }
+
+double getP1Linha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->p1;
+}
+
+double getP2Linha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->p2;
+}
+
 
 void setIdLinha(int id, void* linha){
     linha_t* this;

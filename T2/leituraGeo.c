@@ -12,13 +12,22 @@
 #include "kd-tree.h"
 
 
+
 void readFileGeo(FILE *arqGeo, char *svg){
 
     char fig[5];
 
 	int id;
 
-	double r, x, y, w, h, x1, y1, x2, y2;
+	double r;
+	double x;
+	double y;
+	double w;
+	double h;
+	double x1;
+	double y1;
+	double x2;
+	double y2;
 	double dx, dy, prop;
 	char fill[100];
 	char border[100];
@@ -26,9 +35,11 @@ void readFileGeo(FILE *arqGeo, char *svg){
 	char texto[100];
 	char cor1[100];
 	char cor2[100];
-	
+		
+	printf("TESTe\n");
+
 	Kd k = createKdTree();
-	
+	//KdTree tree = createKdTree();
 
 	FILE* arqSvg = NULL;
 	FILE *arq;
@@ -71,6 +82,11 @@ void readFileGeo(FILE *arqGeo, char *svg){
 			
 				/*Adiciona um circulo a lista */
 				circulo C = cria_Circulo(id, r, x, y, fill, border);
+
+				//w = getXCircle(C);
+				//printf("\n W = %lf\n", w);
+				//printCircle(C);
+
 				insert(k, x , y, 'c', C);
 
 			}
@@ -86,6 +102,8 @@ void readFileGeo(FILE *arqGeo, char *svg){
 				/*Adiciona um retangulo a lista */
 				retangulo R = cria_Retangulo(id, w, h, x, y, fill, border);
 				
+				printRect(R);
+
 				insert(k, x, y, 'r', R);			
 						
 			}
@@ -99,7 +117,7 @@ void readFileGeo(FILE *arqGeo, char *svg){
 
 				linha L = cria_Linha(id, x1, y1, x2, y2, color);
 				
-				insert(k, x, y, 'l', L);
+				insert(k, x1, y1, 'l', L);
 
 			}
 			
@@ -120,6 +138,12 @@ void readFileGeo(FILE *arqGeo, char *svg){
 			}		
 		}		
 	}
+
+	printf("FIM");
+
+
+	printKdtreebyRoot(k);
+
 
 	arqSvg = fopen(svg,"a+");	
 	fprintf(arqSvg, "</svg>");

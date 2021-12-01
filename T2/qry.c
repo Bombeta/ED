@@ -8,3 +8,15 @@
 #include "circulo.h"
 #include "ret.h"
 #include "texto.h"
+
+// Energy para todas as figuras
+// energyFigure(Kd k, double v){
+
+//     Kd *pilha;
+//     int t;
+
+   
+
+// }
+
+

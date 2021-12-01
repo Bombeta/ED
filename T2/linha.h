@@ -19,6 +19,10 @@ char* getColorLinha(void* linha);
 
 char getTipoLinha(void* linha);
 
+double getP1Linha(void* linha);
+
+double getP2Linha(void* linha);
+
 void setIdLinha(int id, void* linha);
 
 void setX1Linha(double x1, void* linha);

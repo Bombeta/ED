@@ -22,6 +22,8 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry){
 	int n;
     int id;
 
+	char c;
+
 
 	double r, x, y, w, h, x1, y1, x2, y2;
 	double v;			//energia
@@ -62,14 +64,35 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry){
 			
 			if(strcmp(fig,"ef") == 0)
 			{	
-				fscanf(arqQry, "%s %lf", &id, &v);
-				//energyFigure();				
-			}
 
+
+				// do{
+				// 	c = fgetc(arqQry);
+
+
+				// }while(c != '\n' || c == '*');
+
+				// if(c == '*'){
+
+				// }else{
+				// 	fscanf()
+				// }
+				//fscanf(arqQry, "%s %lf", &id, &v);
+
+				//fscanf(arqQry, "%c %lf", &c, &v);
+				//energyFigure(k,v);
+					
+			}
+			
+			//Imprime árvore
+
+
+
+			
 			
 			if(strcmp(fig,"sf") == 0)
 			{	
-				fscanf(arqQry,"%lf %lf %lf %lf", &x, &y, &w, &h);
+				//fscanf(arqQry,"%lf %lf %lf %lf", &x, &y, &w, &h);
 				//selectFigure();
 			}			
 

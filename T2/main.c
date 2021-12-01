@@ -64,6 +64,7 @@ int main(int argc, char *argv[]) {
        exit(0);
     }
 
+    //Kd k = createKdTree();
     
     readFileGeo(arqGeo, svgGeo);
 

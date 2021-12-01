@@ -20,6 +20,10 @@ char* getBorderCircle(void* circulo);
 
 char* getTipoCircle(void* circulo);
 
+double getP1Circle(void* circulo);
+
+double getP2Circle(void* circulo);
+
 void setIdCircle(int id, void* circulo);
 
 void setXCircle(double x, void* circulo);
@@ -29,6 +33,8 @@ void setYCircle(double x, void* circulo);
 void setRCircle(double r, void* circulo);
 
 void drawCircle(circulo c, char* svgQry);
+
+void printCircle(void* circulo);
 
 
 #endif

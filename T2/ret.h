@@ -22,6 +22,14 @@ char* getBorderRect(void* retangulo);
 
 char* getTipoRect(void* circulo);
 
+double getP1Rect(void* retangulo);
+
+double getP2Rect(void* retangulo);
+
+double getP3Rect(void* retangulo);
+
+double getPRect(void* retangulo);
+
 void setIdRect(int id, void* retangulo);
 
 void setWidthRect(double w, void* retangulo);

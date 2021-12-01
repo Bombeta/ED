@@ -1,7 +1,7 @@
 #ifndef _H_LEITURAGEO
 #define _H_LEITURAGEO
 
-typedef void* List;
+typedef void* Kd;
 
 void readFileGeo(FILE *arqGeo, char *svg);
 

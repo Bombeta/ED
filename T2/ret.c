@@ -16,8 +16,28 @@ typedef struct Retangulo{
 	char fill[100];
 	char border[100];
 	char tipo[12];
+	double p1;
+	double p2;
+	double p3;
+	double p4;
     
 }retangulo_t;
+
+
+void printRect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	
+	printf("ID = %d\n", this->id);
+	printf("%lf\n", this->x);
+	printf("%.2lf\n", this->y);
+	printf("%.2lf\n", this->w);
+	printf("%.2lf\n", this->h);
+	printf("%s\n", this->fill);
+	printf("%s\n", this->border);
+	printf("\n*********\n");
+
+}
 
 int getRectId(void* retangulo){
 	retangulo_t* this;
@@ -60,6 +80,31 @@ char* getBorderRect(void* retangulo){
 	this = (retangulo_t*) retangulo;
 	return this->border;
 }
+
+double getP1Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->p1;
+}
+
+double getP2Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->p2;
+}
+
+double getP3Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->p3;
+}
+
+double getP4Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->p4;
+}
+
 
 
 char* getTipoRect(void* retangulo){

@@ -18,6 +18,7 @@ typedef struct Texto{
 	char fill[100];
 	char border[100];
 	char tipo[12];
+	double p1;
 
 }text_t;
 
@@ -62,6 +63,13 @@ char* getTipoText(void* text){
 	this = (text_t*) text;
 	return this->tipo;
 }
+
+double getP1Text(void* text){
+	text_t* this;
+	this = (text_t*) text;
+	return this->p1;
+}
+
 
 void setIdText(int id, void* text){
 	text_t* this;

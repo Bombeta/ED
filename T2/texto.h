@@ -18,6 +18,8 @@ char* getBorderText(void* text);
 
 char* getTipoText(void* text);
 
+double getP1Text(void* text);
+
 void setIdText(int id, void* text);
 
 void setXText(double x, void* text);
