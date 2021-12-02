@@ -3,6 +3,6 @@
 
 typedef void* Kd;
 
-void readFileQry(FILE* arqQry, char* svgQry, char* txtQry);
+void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k);
 
 #endif

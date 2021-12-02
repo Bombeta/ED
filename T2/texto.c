@@ -128,6 +128,8 @@ text cria_Texto(int id, double x, double y, char *fill, char *border, char* text
 	strcpy(text->border, border);
 	//strcpy(text->tipo, tipo);
 
+	text->p1 = 0.0;
+
 	return text;
 
 }

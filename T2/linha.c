@@ -118,6 +118,9 @@ linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color
 	linha->y1 = y1;
     linha->x2 = x2;
     linha->y2 = y2;
+
+	linha->p1 = 0.0;
+	linha->p2 = 0.0;
 	
 	//strcpy(linha->tipo, tipo);	
     

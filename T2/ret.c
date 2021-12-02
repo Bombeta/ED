@@ -173,6 +173,11 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 	strcpy(retangulo->border, border);
 	//strcpy(retangulo->tipo, tipo);
 
+	retangulo->p1 = 0.0;
+	retangulo->p2 = 0.0;
+	retangulo->p3 = 0.0;
+	retangulo->p4 = 0.0;
+
 	
 
 	return retangulo;

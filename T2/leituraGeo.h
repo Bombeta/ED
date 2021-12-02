@@ -3,7 +3,7 @@
 
 typedef void* Kd;
 
-void readFileGeo(FILE *arqGeo, char *svg);
+void readFileGeo(FILE *arqGeo, char *svg, Kd k);
 
 
 #endif

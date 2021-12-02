@@ -64,9 +64,9 @@ int main(int argc, char *argv[]) {
        exit(0);
     }
 
-    //Kd k = createKdTree();
+    Kd k = createKdTree();
     
-    readFileGeo(arqGeo, svgGeo);
+    readFileGeo(arqGeo, svgGeo, k);
 
     // Verificar se arquivo .qry foi informado e fazer as devidas operações
     if (startQry != NULL) {
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
         svgQry = nomeSvg(destQry, svgQry);
         txtQry = nomeTxt(destQry, txtQry);
 
-        readFileQry(arqQry, svgQry, txtQry);
+        readFileQry(arqQry, svgQry, txtQry, k);
 
        
         fclose(arqQry);

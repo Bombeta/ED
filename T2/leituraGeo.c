@@ -13,7 +13,7 @@
 
 
 
-void readFileGeo(FILE *arqGeo, char *svg){
+void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 
     char fig[5];
 
@@ -38,9 +38,8 @@ void readFileGeo(FILE *arqGeo, char *svg){
 		
 	printf("TESTe\n");
 
-	Kd k = createKdTree();
-	//KdTree tree = createKdTree();
-
+	//Kd k = createKdTree();
+	
 	FILE* arqSvg = NULL;
 	FILE *arq;
 
@@ -87,7 +86,7 @@ void readFileGeo(FILE *arqGeo, char *svg){
 				//printf("\n W = %lf\n", w);
 				//printCircle(C);
 
-				insert(k, x , y, 'c', C);
+				insert(k, x , y, 'c', id, C);
 
 			}
 
@@ -104,7 +103,7 @@ void readFileGeo(FILE *arqGeo, char *svg){
 				
 				printRect(R);
 
-				insert(k, x, y, 'r', R);			
+				insert(k, x, y, 'r', id, R);			
 						
 			}
 
@@ -117,7 +116,7 @@ void readFileGeo(FILE *arqGeo, char *svg){
 
 				linha L = cria_Linha(id, x1, y1, x2, y2, color);
 				
-				insert(k, x1, y1, 'l', L);
+				insert(k, x1, y1, 'l', id, L);
 
 			}
 			
@@ -132,7 +131,7 @@ void readFileGeo(FILE *arqGeo, char *svg){
 
 				text T = cria_Texto(id, x, y, fill, border, texto);
 
-				insert(k, x, y, 't', T);
+				insert(k, x, y, 't', id, T);
 
 				
 			}		

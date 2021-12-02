@@ -26,8 +26,6 @@ void printCircle(void* circulo){
 	this = (circulo_t*) circulo;
 	
 }
-
-
 int getCircleId(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
@@ -75,6 +73,13 @@ double getP2Circle(void* circulo){
 	this = (circulo_t*) circulo;
 	return this->p2;
 }
+
+double getP3Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->p3;
+}
+
 
 
 void setIdCircle(int id, void* circulo){
@@ -129,6 +134,9 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r = r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
+	circulo->p1 = 0.0;
+	circulo->p2 = 0.0;
+	circulo->p3 = 0.0;
 	//strcpy(circulo->tipo, tipo);
 	
 

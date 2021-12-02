@@ -24,6 +24,8 @@ double getP1Circle(void* circulo);
 
 double getP2Circle(void* circulo);
 
+double getP3Circle(void* circulo);
+
 void setIdCircle(int id, void* circulo);
 
 void setXCircle(double x, void* circulo);

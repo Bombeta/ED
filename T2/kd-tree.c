@@ -10,26 +10,15 @@ enum figuras{c = 1, r = 2, l = 3, t = 4};
 
 typedef struct node{
     double x;
-    double y;
-    double r;
-    double w;
-    double h;
-    double p1;
-    double p2;
-    double p3;
-    double p4;
-    double x2;
-    double y2;
-    char fill[100];
-    char border[100];
-
+    double y;    
+    int id;
     int tipo;
     InfoK info;
     struct node *left;
     struct node *right;
     struct node *father;
     //int depht;
-}Nodekd;
+}nodeKd;
 
 typedef struct Tree{
     Nodekd *first;
@@ -114,16 +103,16 @@ int length(Kd tree){
 
 // eh_igual(A,B): |A - B| < epilson
 
-void insert(Kd k, double x, double y, char tipo, InfoK info){
+void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 
     int depth = 1;
     
-    int id;
+    //int id;
 
     double z;
 
     KdTree* K = (KdTree*) k;
-    Nodekd* novo = (Nodekd*) malloc(sizeof(Nodekd));
+    nodeKd* novo = (nodeKd*) malloc(sizeof(nodeKd));
 
     // circulo_t * test = (circulo_t*) info;
     // printf("Circulo T->x: %lf", test->x);
@@ -148,6 +137,7 @@ void insert(Kd k, double x, double y, char tipo, InfoK info){
 
     novo->x = x;
     novo->y = y;
+    novo->id = id;
 
     novo->info = info;
 
@@ -174,7 +164,7 @@ void insert(Kd k, double x, double y, char tipo, InfoK info){
         K->first = novo;
 
     }else{
-        Nodekd* no = K->first;
+        nodeKd* no = K->first;
         while(no != NULL){
             if(depth){
                 if(depth % 2 != 0){ // valores ímpares para x 
@@ -226,19 +216,64 @@ void insert(Kd k, double x, double y, char tipo, InfoK info){
 }
 
 int getTipo(Kd k){
-
-    Nodekd* K = (Nodekd*) k;
-    //printf("%d\n", K);
+    nodeKd* K = (nodeKd*) k;
+    printf("K do getTipo: %d", K->tipo);
     return K->tipo;
 }
 
-
+int getId(Kd k){
+    nodeKd* K = (nodeKd*) k;
+    return K->id;
+}
 
 void printKdtreebyRoot(Kd k){
     KdTree* K = (KdTree*) k;
     printKdTree(K->first);
 }
 
+Nodekd searchKdTreebyRoot(Kd k, int id){
+    KdTree* K = (KdTree*) k;
+    return searchKdTree(K->first, id);
+}
+
+
+Nodekd searchKdTree(Kd k , int id){
+    
+    int tipo;
+
+    double Z;
+    
+    nodeKd* no = (nodeKd*) k;
+
+    //tipo = getTipo(no);
+  
+    
+    
+
+    if(no != NULL){
+
+        tipo = getId(no);
+        printf("ID do node: %d", tipo);
+        Z = getXCircle(no->info);
+
+        if(id == getId(no)){
+            
+           printf("\n!!!!!!!!! X: %lf !!!!!!!!!!\n", Z);
+           return (no->info);          
+
+        }
+
+        printf("KKKKKKKKKKK");
+        searchKdTree(no->left, id);            
+        searchKdTree(no->right, id);
+        
+        
+    }else{
+        return NULL;
+    }
+
+    
+}
 
 void printKdTree(Kd k){
 
@@ -256,22 +291,22 @@ void printKdTree(Kd k){
     char color[100];
 
     // KdTree* K = (KdTree*) k;
-    Nodekd* nodeK = (Nodekd*) k;
+    nodeKd* no = (nodeKd*) k;
 
     printf("Entrou aqui\n");
 
     //x = 9999999.00;
 
-    if(nodeK != NULL){
-        tipo = getTipo(nodeK);
+    if(no != NULL){
+        tipo = getTipo(no);
         printf("Tipo da figura: %d\n", tipo);
         if(tipo == 1 ){
-            id = getCircleId(nodeK->info);
-            x = getXCircle(nodeK->info);
-            y = getYCircle(nodeK->info);
-            r = getRCircle(nodeK->info);
-            strcpy(fill, getFillCircle(nodeK->info));
-            strcpy(border, getBorderCircle(nodeK->info));
+            id = getCircleId(no->info);
+            x = getXCircle(no->info);
+            y = getYCircle(no->info);
+            r = getRCircle(no->info);
+            strcpy(fill, getFillCircle(no->info));
+            strcpy(border, getBorderCircle(no->info));
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -284,13 +319,13 @@ void printKdTree(Kd k){
         }
 
         if(tipo == 2){
-            id = getRectId(nodeK->info);
-            x = getXRect(nodeK->info);
-            y = getYRect(nodeK->info);
-            w = getWidthRect(nodeK->info);
-            h = getHeightRect(nodeK->info);
-            // strcpy(fill, getFillCircle(nodeK->info));
-            // strcpy(border, getBorderCircle(nodeK->info));
+            id = getRectId(no->info);
+            x = getXRect(no->info);
+            y = getYRect(no->info);
+            w = getWidthRect(no->info);
+            h = getHeightRect(no->info);
+            // strcpy(fill, getFillCircle(no->info));
+            // strcpy(border, getBorderCircle(no->info));
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -303,11 +338,11 @@ void printKdTree(Kd k){
 
         if(tipo == 3){
 
-            id = getIdLinha(nodeK->info);
-            x = getX1Linha(nodeK->info);
-            y = getY1Linha(nodeK->info);
-            x2 = getX2Linha(nodeK->info);
-            y2 = getY2Linha(nodeK->info);
+            id = getIdLinha(no->info);
+            x = getX1Linha(no->info);
+            y = getY1Linha(no->info);
+            x2 = getX2Linha(no->info);
+            y2 = getY2Linha(no->info);
             
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -322,8 +357,8 @@ void printKdTree(Kd k){
             printf("teste 4\n");
         }
         
-        printKdTree(nodeK->left);
-        printKdTree(nodeK->right);
+        printKdTree(no->left);
+        printKdTree(no->right);
        
     }
 

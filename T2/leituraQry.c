@@ -12,7 +12,7 @@
 #include "leituraQry.h"
 //#include "kd-tree.h"
 
-void readFileQry(FILE* arqQry, char* svgQry, char* txtQry){
+void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
     /*COMANDOS QRY */
 
@@ -125,8 +125,9 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry){
 
 			if(strcmp(fig, "q?") == 0)
 			{
-				fscanf(arqQry,"%d", id);
-				//reportFigure();			
+				fscanf(arqQry,"%d", &id);
+				printf("até aqui\n");
+				reportFigure(k, id, txtQry);			
 
 			}
 
@@ -148,9 +149,10 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry){
 		// drawListRect(listaRect, svgQry);
 		// drawListText(listaText, svgQry);
 		// drawListLine(listaLinha, svgQry);
-		saidaQry = fopen(svgQry, "a+");
-		fprintf(saidaQry, "</svg>");
-		fclose(saidaQry);
+		//saidaQry = fopen(svgQry, "a+");
+		//fprintf(saidaQry, "</svg>");
+		//fclose(saidaQry);
+		//fclose(saidaTxt);
 	}
 
 }
