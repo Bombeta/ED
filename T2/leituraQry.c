@@ -22,9 +22,8 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 	int n;
     int id;
 
-	char c;
-
-
+	char ID[5];
+	
 	double r, x, y, w, h, x1, y1, x2, y2;
 	double v;			//energia
 	char fill[100];
@@ -65,30 +64,29 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			if(strcmp(fig,"ef") == 0)
 			{	
 
+				fscanf(arqQry, "%s", &ID);
 
-				// do{
-				// 	c = fgetc(arqQry);
+				if( strcmp(ID,"*") != 0 ){
 
+					// caso seja um ID inteiro
+					int id_ = (char) ID;
 
-				// }while(c != '\n' || c == '*');
+					fscanf(arqQry, "%lf", &v);
 
-				// if(c == '*'){
+					energyFigure(k, id_, v);
+				}else{
+					// caso seja um *
 
-				// }else{
-				// 	fscanf()
-				// }
-				//fscanf(arqQry, "%s %lf", &id, &v);
+					id = 0;
+					
+					energyFigure(k, id, v);
+				}
 
-				//fscanf(arqQry, "%c %lf", &c, &v);
-				//energyFigure(k,v);
+				
+			
 					
 			}
-			
-			//Imprime árvore
-
-
-
-			
+					
 			
 			if(strcmp(fig,"sf") == 0)
 			{	
@@ -126,7 +124,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			if(strcmp(fig, "q?") == 0)
 			{
 				fscanf(arqQry,"%d", &id);
-				printf("até aqui\n");
+				//printf("até aqui\n");
 				reportFigure(k, id, txtQry);			
 
 			}

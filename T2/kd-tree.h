@@ -8,12 +8,15 @@ typedef void* Nodekd;
 
 Kd createKdTree();
 int length(Kd tree);
-int getTipo(Kd k);
+//int getTipo(Kd k);
 //Nodekd getRoot(Kd k);
 void printKdtreebyRoot(Kd k);
 void insert(Kd k, double x, double y, char tipo, int id, InfoK info);
 Nodekd searchKdTree(Kd k, int id);
 void printKdTree(Kd root);
 Nodekd searchKdTreebyRoot(Kd k, int id);
+
+Nodekd getType(Kd k, int id);
+int searchTypeKdtree(Kd k, int id);
 
 #endif

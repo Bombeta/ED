@@ -18,6 +18,7 @@ typedef struct Circulo{
 	double p1;
 	double p2;	
 	double p3;
+	//char tipo;
 		
 }circulo_t;
 
@@ -122,6 +123,26 @@ void setBorderCircle(char* border, void* circulo){
 	strcpy(this->border, border);
 }
 
+void setP1Circle(double p1, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->p1 = p1;
+}
+
+
+void setP2Circle(double p2, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->p2 = p2;
+}
+
+
+void setP3Circle(double p3, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->p3 = p3;
+}
+
 
 
 circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border)
@@ -134,10 +155,10 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r = r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
-	circulo->p1 = 0.0;
-	circulo->p2 = 0.0;
-	circulo->p3 = 0.0;
-	//strcpy(circulo->tipo, tipo);
+	//circulo->p1 = 0.0;
+	//circulo->p2 = 0.0;
+	//circulo->p3 = 0.0;
+	//circulo->tipo = tipo;
 	
 
 	return circulo;

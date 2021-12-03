@@ -3,9 +3,9 @@
 
 
 typedef void* Kd;
-typedef void* InfoK;
+//typedef void* InfoK;
 
-
+void energyFigure(Kd k,int id, double v);
 void reportFigure(Kd k,int id, char* qryTxt);
 
 #endif

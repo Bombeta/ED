@@ -231,39 +231,55 @@ void printKdtreebyRoot(Kd k){
     printKdTree(K->first);
 }
 
+Nodekd getType(Kd k, int id){
+    KdTree* K = (KdTree*) k;
+    return searchTypeKdtree(K->first, id);
+}
+
+
+int searchTypeKdtree(Kd k, int id){
+    
+    int tipo;
+
+    nodeKd* no = (nodeKd*) k;
+
+    if(no!= NULL){
+        
+        if(id == getId(no)){
+            tipo = getTipo(no);
+            return tipo;
+        }
+    }
+
+}
+
 Nodekd searchKdTreebyRoot(Kd k, int id){
     KdTree* K = (KdTree*) k;
     return searchKdTree(K->first, id);
 }
 
-
 Nodekd searchKdTree(Kd k , int id){
     
     int tipo;
 
-    double Z;
+    //double Z;
     
     nodeKd* no = (nodeKd*) k;
 
-    //tipo = getTipo(no);
-  
-    
-    
-
     if(no != NULL){
 
-        tipo = getId(no);
-        printf("ID do node: %d", tipo);
-        Z = getXCircle(no->info);
+        //tipo = getId(no);
+        //printf("ID do node: %d", tipo);
+        //Z = getXCircle(no->info);
 
         if(id == getId(no)){
             
-           printf("\n!!!!!!!!! X: %lf !!!!!!!!!!\n", Z);
+           //printf("\n!!!!!!!!! X: %lf !!!!!!!!!!\n", Z);
            return (no->info);          
 
         }
 
-        printf("KKKKKKKKKKK");
+        //printf("KKKKKKKKKKK");
         searchKdTree(no->left, id);            
         searchKdTree(no->right, id);
         
@@ -284,6 +300,10 @@ void printKdTree(Kd k){
     double r;
     double w;
     double h;
+    double p1;
+    double p2;
+    double p3;
+    double p4;
     double x2;
     double y2;
     char fill[100];
@@ -307,14 +327,23 @@ void printKdTree(Kd k){
             r = getRCircle(no->info);
             strcpy(fill, getFillCircle(no->info));
             strcpy(border, getBorderCircle(no->info));
+            p1 = getP1Circle(no->info);
+            p2 = getP2Circle(no->info);
+            p3 = getP3Circle(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
             printf("%lf\n", y);
             printf("%lf\n", r);
+
             printf("ASSISTA JOJO\n");
             printf("%s\n", fill);
             printf("%s\n", border);
+
+            printf("%lf\n", p1);
+            printf("%lf\n", p2);
+            printf("%lf\n", p3);
+
             printf("\n*********\n");
         }
 
@@ -326,12 +355,21 @@ void printKdTree(Kd k){
             h = getHeightRect(no->info);
             // strcpy(fill, getFillCircle(no->info));
             // strcpy(border, getBorderCircle(no->info));
+            p1 = getP1Rect(no->info);
+            p2 = getP2Rect(no->info);
+            p3 = getP3Rect(no->info);
+            p4 = getP4Rect(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
             printf("%lf\n", y);
             printf("%lf\n", w);
             printf("%lf\n", h);
+
+            printf("%lf\n", p1);
+            printf("%lf\n", p2);
+            printf("%lf\n", p3);
+            printf("%lf\n", p4);
             // printf("%s\n", fill);
             // printf("%s\n", border);
         }

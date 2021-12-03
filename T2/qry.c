@@ -11,14 +11,85 @@
 #include "kd-tree.h"
 
 // Energy para todas as figuras
-// energyFigure(Kd k, double v){
+energyFigure(Kd k,int id, double v){
 
-//     Kd *pilha;
-//     int t;
+    double p1;
+    double p2;
+    double p3;
+    double p4;
+
+    int tipo;
+
+    printf("V:      %lf\n", v);
+
+    tipo = getType(k,id);
+
+    printf("getType: %d\n", tipo);
+
+    void *figura = searchKdTreebyRoot(k, id);
+
+    //setIdCircle(id, figura);
+
+    // Caso ID seja diferente de *
+    if(id != 0){
+
+
+        if(tipo == 1){
+
+            printf("\n ENTROU TIPO 1 \n");
+
+            p1 = v / 3.0;
+            p2 = v / 3.0;
+            p3 = v / 3.0;
+
+            printf("P1:     %lf", p1);
+
+            figura->p1 = p1;
+
+            setP1Circle(p1, figura);
+            // setP2Circle(p2, figura);
+            // setP3Circle(p3, figura);
+
+            // figura->p1 = v/3;
+            // figura->p2 = v/3;
+            // figura->p3 = v/3;
+        }
+
+        if(tipo == 2){
+
+            p1 = v / 4;
+            p2 = v / 4;
+            p3 = v / 4;
+            p4 = v / 4;
+
+            // figura->p1 = v/4;
+            // figura->p2 = v/4;
+            // figura->p3 = v/4;
+            // figura->p4 = v/4;
+        }
+
+        if(tipo == 3){
+
+            p1 = v / 2;
+            p2 = v / 2;
+
+            
+        }
+
+        if(tipo == 4){
+            
+            p1 = v;
+        }
+
+    }
+
+    // if(ID == 0){
+
+    // }
 
    
 
-// }
+}
 
 void reportFigure(Kd k, int id, char* qryTxt){
 
@@ -44,13 +115,13 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
     //Nodekd* nodeK = (Nodekd*) k;
 
-    void *figura = searchKdTreebyRoot(k, id);
+    tipo = getType(k,id);
 
-    //tipo = getTipo(figura);
+    void *figura = searchKdTreebyRoot(k, id);    
 
     //printf("REPORT FIGURE ID: %d", tipo);
 
-    
+    if(figura == 1){
 
         printf("REPORTA FIGURA\n");
 
@@ -73,7 +144,7 @@ void reportFigure(Kd k, int id, char* qryTxt){
         }
 
         //fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
-        
+    }  
 
     if(figura == 2){
 

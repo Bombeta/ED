@@ -34,6 +34,12 @@ void setYCircle(double x, void* circulo);
 
 void setRCircle(double r, void* circulo);
 
+void setP1Circle(double p1, void* circulo);
+
+void setP2Circle(double p2, void* circulo);
+
+void setP2Circle(double p3, void* circulo);
+
 void drawCircle(circulo c, char* svgQry);
 
 void printCircle(void* circulo);

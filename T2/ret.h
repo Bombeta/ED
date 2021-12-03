@@ -28,7 +28,7 @@ double getP2Rect(void* retangulo);
 
 double getP3Rect(void* retangulo);
 
-double getPRect(void* retangulo);
+double getP4Rect(void* retangulo);
 
 void setIdRect(int id, void* retangulo);
 
