@@ -19,6 +19,8 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 
 	int id;
 
+	double p1;
+
 	double r;
 	double x;
 	double y;
@@ -85,6 +87,9 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 				//w = getXCircle(C);
 				//printf("\n W = %lf\n", w);
 				//printCircle(C);
+				p1  = 100.0000000;
+				setP1Circle(p1, C);
+				printf("GETP1: %lf", getP1Circle(C));
 
 				insert(k, x , y, 'c', id, C);
 

@@ -145,7 +145,7 @@ void setP3Circle(double p3, void* circulo){
 
 
 
-circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border)
+circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, double p1, double p2, double p3)
 {
 	circulo_t* circulo = malloc(sizeof(circulo_t));
 
@@ -155,9 +155,9 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r = r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
-	//circulo->p1 = 0.0;
-	//circulo->p2 = 0.0;
-	//circulo->p3 = 0.0;
+	circulo->p1 = 0.0;
+	circulo->p2 = 0.0;
+	circulo->p3 = 0.0;
 	//circulo->tipo = tipo;
 	
 

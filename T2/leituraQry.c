@@ -22,8 +22,8 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 	int n;
     int id;
 
-	char ID[5];
-	
+	char ID;
+
 	double r, x, y, w, h, x1, y1, x2, y2;
 	double v;			//energia
 	char fill[100];
@@ -66,20 +66,21 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 				fscanf(arqQry, "%s", &ID);
 
-				if( strcmp(ID,"*") != 0 ){
+				if( ID == '*' ){
 
-					// caso seja um ID inteiro
-					int id_ = (char) ID;
+					// caso seja *
+					int id_ = (int) ID;
 
 					fscanf(arqQry, "%lf", &v);
 
 					energyFigure(k, id_, v);
 				}else{
-					// caso seja um *
+					// caso seja um inteiro
+					int id_ = (int) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
-					id = 0;
+					//id_ = 0;
 					
-					energyFigure(k, id, v);
+					energyFigure(k, id_, v);
 				}
 
 				

@@ -38,6 +38,9 @@ Kd createKdTree(){
     return k;
 }
 
+
+
+
 // int getID(Node n){
 //     Nodekd *no = (Nodekd*)elemento;
 //     return no->id;
@@ -226,6 +229,47 @@ int getId(Kd k){
     return K->id;
 }
 
+// void setP1ByRoot(Kd k, int id, double energy){
+//     KdTree* K = (KdTree*) k;
+//     setP1CircleKd(K->first, id, energy);
+   
+// }
+
+// void setP1CircleKd(Kd k, int id, double energy){
+    
+//     int tipo;
+
+//     nodeKd* no = (nodeKd*) k;
+
+//     if(no != NULL){
+        
+//         if(id == getId(no)){
+
+//             tipo = getTipo(no);
+
+//             if(tipo == 1){
+//                 setP1Circle(energy, no->info);
+//                 printf("SET");
+//             }
+
+//             if(tipo == 2){
+
+//             }
+
+//             if(tipo == 3){
+
+//             }
+
+//             if(tipo == 4){
+
+//             }
+
+
+//         }
+//     }
+// }
+
+
 void printKdtreebyRoot(Kd k){
     KdTree* K = (KdTree*) k;
     printKdTree(K->first);
@@ -247,6 +291,7 @@ int searchTypeKdtree(Kd k, int id){
         
         if(id == getId(no)){
             tipo = getTipo(no);
+
             return tipo;
         }
     }
@@ -261,6 +306,7 @@ Nodekd searchKdTreebyRoot(Kd k, int id){
 Nodekd searchKdTree(Kd k , int id){
     
     int tipo;
+    double p1;
 
     //double Z;
     
@@ -275,6 +321,7 @@ Nodekd searchKdTree(Kd k , int id){
         if(id == getId(no)){
             
            //printf("\n!!!!!!!!! X: %lf !!!!!!!!!!\n", Z);
+           //setP1Circle(100.00, no->info);  
            return (no->info);          
 
         }
@@ -341,8 +388,8 @@ void printKdTree(Kd k){
             printf("%s\n", border);
 
             printf("%lf\n", p1);
-            printf("%lf\n", p2);
-            printf("%lf\n", p3);
+            //printf("%lf\n", p2);
+            //printf("%lf\n", p3);
 
             printf("\n*********\n");
         }

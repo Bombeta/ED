@@ -19,4 +19,8 @@ Nodekd searchKdTreebyRoot(Kd k, int id);
 Nodekd getType(Kd k, int id);
 int searchTypeKdtree(Kd k, int id);
 
+
+//void setP1ByRoot(Kd k, int id, double energy);
+//void setP1CircleKd(Kd k, int id, double energy);
+
 #endif
