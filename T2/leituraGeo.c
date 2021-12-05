@@ -38,7 +38,7 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 	char cor1[100];
 	char cor2[100];
 		
-	printf("TESTe\n");
+	//printf("TESTe\n");
 
 	//Kd k = createKdTree();
 	
@@ -82,14 +82,14 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 				desenha_Circulo(svg, r, x, y, fill, border);		
 			
 				/*Adiciona um circulo a lista */
-				circulo C = cria_Circulo(id, r, x, y, fill, border);
+				circulo C = cria_Circulo(id, r, x, y, fill, border, 0.00 , 0.00 , 0.00);
 
 				//w = getXCircle(C);
 				//printf("\n W = %lf\n", w);
 				//printCircle(C);
-				p1  = 100.0000000;
-				setP1Circle(p1, C);
-				printf("GETP1: %lf", getP1Circle(C));
+				// p1  = 100.0000000;
+				// setP1Circle(p1, C);
+				// printf("GETP1: %lf", getP1Circle(C));
 
 				insert(k, x , y, 'c', id, C);
 
@@ -146,7 +146,7 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 	printf("FIM");
 
 
-	printKdtreebyRoot(k);
+	
 
 
 	arqSvg = fopen(svg,"a+");	

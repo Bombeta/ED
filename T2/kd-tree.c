@@ -33,59 +33,11 @@ Kd createKdTree(){
     k->last = NULL;
     k->size = 0;
 
-    printf("ÁRVORE CRIADA!\n");
+    //printf("ÁRVORE CRIADA!\n");
 
     return k;
 }
 
-
-
-
-// int getID(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->id;
-// }
-
-// double getX(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->x;
-// }
-
-// double getY(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->y;
-// }
-
-// double getH(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->h;
-// }
-
-// double getW(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->w;
-// }
-
-
-// double getX2(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->x2;
-// }
-
-// double getY2(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->y2;
-// }
-
-// char *getFill(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->fill;
-// }
-
-// char getBorder(Node n){
-//     Nodekd *no = (Nodekd*)elemento;
-//     return no->border;
-// }
 
 int length(Kd tree){
     KdTree* K = (KdTree*) tree;
@@ -144,7 +96,7 @@ void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 
     novo->info = info;
 
-    printf("LOOK THAT!\n");
+    //printf("LOOK THAT!\n");
     //z = getXRect(novo->info);
     // printf("\n********* X = %lf", getXCircle(info));
     // printf("\n ********** Z = %lf", z);
@@ -218,56 +170,70 @@ void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
    
 }
 
+// Pega o tipo pela struct
 int getTipo(Kd k){
     nodeKd* K = (nodeKd*) k;
     printf("K do getTipo: %d", K->tipo);
     return K->tipo;
 }
-
+// Pega Id pela struct
 int getId(Kd k){
     nodeKd* K = (nodeKd*) k;
     return K->id;
 }
 
-// void setP1ByRoot(Kd k, int id, double energy){
-//     KdTree* K = (KdTree*) k;
-//     setP1CircleKd(K->first, id, energy);
-   
+// int getIdInfo(Kd k){
+
 // }
 
-// void setP1CircleKd(Kd k, int id, double energy){
+void energyAllByTree(Kd k, double v){
+    KdTree* K = (KdTree*) k;
+    energyAll(K->first, v);
+}
+
+void energyAll(Kd k, double v){
     
-//     int tipo;
+    int id;
+    int tipo;
+    //double v;
+    
+    nodeKd* no = (nodeKd*) k;
+    
+    //id = getId(no);
+    
 
-//     nodeKd* no = (nodeKd*) k;
-
-//     if(no != NULL){
-        
-//         if(id == getId(no)){
-
-//             tipo = getTipo(no);
-
-//             if(tipo == 1){
-//                 setP1Circle(energy, no->info);
-//                 printf("SET");
-//             }
-
-//             if(tipo == 2){
-
-//             }
-
-//             if(tipo == 3){
-
-//             }
-
-//             if(tipo == 4){
-
-//             }
+    if(no!= NULL){
+        //id = getId(no);
+        tipo = getTipo(no);
 
 
-//         }
-//     }
-// }
+        //printf("GET ID: %d\n", id);
+        printf("GET TYPE: %d\n", tipo);
+
+        if(tipo == 1){
+            //printf("ENERGY: %lf\n", v);
+            setEnergyCircle(v, no->info);
+            printf("SUCESSO!    \n");
+
+            //v = getEner
+
+        }
+        if(tipo == 2){
+
+        }
+        if(tipo == 3){
+
+        }
+
+        if(tipo == 4){
+
+        }
+
+        energyAll(no->left, v);            
+        energyAll(no->right, v);
+
+    }
+}
 
 
 void printKdtreebyRoot(Kd k){
@@ -353,6 +319,7 @@ void printKdTree(Kd k){
     double p4;
     double x2;
     double y2;
+    double v;
     char fill[100];
     char border[100];
     char color[100];
@@ -360,7 +327,7 @@ void printKdTree(Kd k){
     // KdTree* K = (KdTree*) k;
     nodeKd* no = (nodeKd*) k;
 
-    printf("Entrou aqui\n");
+    //printf("Entrou aqui\n");
 
     //x = 9999999.00;
 
@@ -377,6 +344,7 @@ void printKdTree(Kd k){
             p1 = getP1Circle(no->info);
             p2 = getP2Circle(no->info);
             p3 = getP3Circle(no->info);
+            v = getEnergyCircle(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -388,8 +356,9 @@ void printKdTree(Kd k){
             printf("%s\n", border);
 
             printf("%lf\n", p1);
-            //printf("%lf\n", p2);
-            //printf("%lf\n", p3);
+            printf("%lf\n", p2);
+            printf("%lf\n", p3);
+            printf("%lf\n", v);
 
             printf("\n*********\n");
         }

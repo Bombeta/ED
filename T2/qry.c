@@ -99,9 +99,9 @@ void energyFigure(Kd k,int id, double v){
 
     }
 
-    // if(ID == 0){
-
-    // }
+  if(id == 0){
+      energyAllByTree(k, v);
+  }
 
    
 
@@ -139,7 +139,7 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
     if(tipo == 1){
 
-        printf("REPORTA FIGURA\n");
+        //printf("REPORTA FIGURA\n");
 
         x = getXCircle(figura);
         y = getYCircle(figura);

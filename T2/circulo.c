@@ -18,7 +18,7 @@ typedef struct Circulo{
 	double p1;
 	double p2;	
 	double p3;
-	//char tipo;
+	double energy;
 		
 }circulo_t;
 
@@ -79,6 +79,12 @@ double getP3Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	return this->p3;
+}
+
+double getEnergyCircle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->energy;
 }
 
 
@@ -143,7 +149,11 @@ void setP3Circle(double p3, void* circulo){
 	this->p3 = p3;
 }
 
-
+void setEnergyCircle(double energy, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->energy = energy;
+}
 
 circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, double p1, double p2, double p3)
 {

@@ -69,16 +69,19 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 				if( ID == '*' ){
 
 					// caso seja *
-					int id_ = (int) ID;
+					//int id_ = (int) ID;
+					printf("\n!! ASTERISCO : %c !!\n", ID);
+
+					id = 0;
 
 					fscanf(arqQry, "%lf", &v);
 
-					energyFigure(k, id_, v);
+					energyFigure(k, id, v);
 				}else{
 					// caso seja um inteiro
 					int id_ = (int) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
-					//id_ = 0;
+					printf("Nao pode entrar aquui!");
 					
 					energyFigure(k, id_, v);
 				}
@@ -143,6 +146,8 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 				
 			}
 		}
+
+		printKdtreebyRoot(k);
 		
 		// drawListCircle(listaCircle, svgQry);
 		// drawListRect(listaRect, svgQry);

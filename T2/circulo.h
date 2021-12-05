@@ -26,6 +26,8 @@ double getP2Circle(void* circulo);
 
 double getP3Circle(void* circulo);
 
+double getEnergyCircle(void* circulo);
+
 void setIdCircle(int id, void* circulo);
 
 void setXCircle(double x, void* circulo);
@@ -39,6 +41,8 @@ void setP1Circle(double p1, void* circulo);
 void setP2Circle(double p2, void* circulo);
 
 void setP2Circle(double p3, void* circulo);
+
+void setEnergyCircle(double energy, void* circulo);
 
 void drawCircle(circulo c, char* svgQry);
 
