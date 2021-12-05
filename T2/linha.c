@@ -50,6 +50,7 @@ double getY2Linha(void* linha){
 	return this->y2;
 }
 
+
 char* getColorLinha(void* linha){
     linha_t* this;
 	this = (linha_t*) linha;
@@ -66,6 +67,13 @@ double getP2Linha(void* linha){
 	linha_t* this;
 	this = (linha_t*) linha;
 	return this->p2;
+}
+
+
+double getEnergyLinha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->energy;
 }
 
 
@@ -104,6 +112,12 @@ void setColorLinha(char* color, void* linha){
 	this = (linha_t*) linha;
 	//bzero(this->color, 100);
 	strcpy(this->color, color);
+}
+
+void setEnergyLinha(double energy, void*linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	this->energy = energy;
 }
 
 

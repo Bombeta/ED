@@ -211,22 +211,17 @@ void energyAll(Kd k, double v){
         printf("GET TYPE: %d\n", tipo);
 
         if(tipo == 1){
-            //printf("ENERGY: %lf\n", v);
-            setEnergyCircle(v, no->info);
-            printf("SUCESSO!    \n");
-
-            //v = getEner
-
+            setEnergyCircle(v, no->info);            
         }
         if(tipo == 2){
-
+            setEnergyRect(v, no->info);
         }
         if(tipo == 3){
-
+            setEnergyLinha(v, no->info);
         }
 
         if(tipo == 4){
-
+            setEnergyText(v, no->info);
         }
 
         energyAll(no->left, v);            

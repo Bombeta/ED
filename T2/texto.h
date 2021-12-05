@@ -20,6 +20,8 @@ char* getTipoText(void* text);
 
 double getP1Text(void* text);
 
+double getEnergyText(void* text);
+
 void setIdText(int id, void* text);
 
 void setXText(double x, void* text);
@@ -29,6 +31,8 @@ void setYText(double y, void* text);
 void setFillText(char* fill, void* text);
 
 void setBorderText(char* border, void* text);
+
+void setEnergyText(double energy, void* text);
 
 void print_Texto(text c);
 

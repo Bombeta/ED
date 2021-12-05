@@ -70,6 +70,12 @@ double getP1Text(void* text){
 	return this->p1;
 }
 
+double getEnergyText(void* text){
+	text_t* this;
+	this = (text_t*) text;
+	return this->energy;
+}
+
 
 void setIdText(int id, void* text){
 	text_t* this;
@@ -111,6 +117,12 @@ void setBorderText(char* border, void* text){
 	//Função para limpar string em C */
 	bzero(this->border, 100);
 	strcpy(this->border, border);
+}
+
+void setEnergyText(double energy, void* text){
+	text_t* this;
+	this = (text_t*) text;
+	this->energy = energy;
 }
 
 

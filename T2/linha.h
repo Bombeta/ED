@@ -23,6 +23,8 @@ double getP1Linha(void* linha);
 
 double getP2Linha(void* linha);
 
+double getEnergyLinha(void* linha)
+
 void setIdLinha(int id, void* linha);
 
 void setX1Linha(double x1, void* linha);
@@ -34,6 +36,8 @@ void setX2Linha(double x2, void* linha);
 void setY2Linha(double y2, void* linha);
 
 void setColorLinha(char* color, void* linha);
+
+void setEnergyLinha(double energy, void*linha
 
 void drawLine(linha l, char* svgQry);
 

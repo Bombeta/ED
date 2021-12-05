@@ -40,7 +40,7 @@ void energyFigure(Kd k,int id, double v){
 
     //printf("FIGURA: %d", figura);
 
-    // Caso ID seja diferente de *
+    // Caso ID seja diferente de * comando 
     if(id != 0){
 
 
@@ -185,10 +185,43 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
     }else if(tipo == 3){
 
+        
+
     }else if(tipo == 4){
 
     }
 
+
+}
+
+void selectFigure(Kd k, double x, double y, double w, double h, List lista){
+
+    // Seleciona figuras dentro do retangulo
+    if(x != 0 && y != 00 && w != 0 && h != 0){
+
+    }
+
+
+    // Seleciona todas as figuras
+    if(x == 0 && y == 0, && w == 0, && h == 0){
+
+    }
+
+}
+
+
+void xFigure(Kd k, int id, double d){
+
+
+
+    if(id != 0){
+
+    }
+
+
+    if(id == 0){
+
+    }
 
 }
 

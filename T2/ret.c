@@ -20,6 +20,7 @@ typedef struct Retangulo{
 	double p2;
 	double p3;
 	double p4;
+	double energy;
     
 }retangulo_t;
 
@@ -105,6 +106,11 @@ double getP4Rect(void* retangulo){
 	return this->p4;
 }
 
+double getEnergyRect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->energy;
+}
 
 
 char* getTipoRect(void* retangulo){
@@ -155,6 +161,12 @@ void setBorderRect(char* border, void* retangulo){
 	this = (retangulo_t*) retangulo;
 	bzero(this->fill, 100);
 	strcpy(this->border, border);
+}
+
+void setEnergyRect(double energy, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->energy = energy;
 }
 
 
