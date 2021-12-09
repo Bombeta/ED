@@ -9,6 +9,7 @@
 #include "ret.h"
 #include "texto.h"
 #include "kd-tree.h"
+#include "lista.h"
 
 // Energy para todas as figuras
 void energyFigure(Kd k,int id, double v){
@@ -194,35 +195,70 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
 }
 
-void selectFigure(Kd k, double x, double y, double w, double h, List lista){
+// COMANDO SF 
+
+List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char* qryTxt){
+
+    double x;
+    double y;
+    double xh;
+    double yw;
+
+    double r;
+    double rt;
+    double rl;
+    double rb;
+    double rr;
+
+    double x1;
+    double y1;
+
+   
+    double x2;
+    double y2;
+
+    
+
+
 
     // Seleciona figuras dentro do retangulo
-    if(x != 0 && y != 00 && w != 0 && h != 0){
+    if(px != 0 && py != 00 && pw != 0 && ph != 0){
 
     }
 
 
     // Seleciona todas as figuras
-    if(x == 0 && y == 0, && w == 0, && h == 0){
+    if(px == 0 && py == 0 && pw == 0 && ph == 0){
+        courseKdTreeByRoot(k, l);
 
+        printf("\nSAIDA SF\n");
+        //printList(l);
+
+        return l;
     }
 
 }
 
 
-void xFigure(Kd k, int id, double d){
+// void xFigure(Kd k, int id, double d){
 
 
 
-    if(id != 0){
+//     if(id != 0){
 
-    }
+//     }
 
 
-    if(id == 0){
+//     if(id == 0){
 
-    }
+//     }
 
-}
+// }
+
+
+
+// reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, double h){
+
+// }
 
 

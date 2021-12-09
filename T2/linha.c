@@ -15,6 +15,7 @@ typedef struct Linha{
     char color[100];
 	double p1;
 	double p2;
+	double energy;
 	//char tipo[12];
 
 }linha_t;

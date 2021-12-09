@@ -34,9 +34,9 @@ void setBorderText(char* border, void* text);
 
 void setEnergyText(double energy, void* text);
 
-void print_Texto(text c);
+//void print_Texto(text c);
 
-void drawText(text t, char* svgQry);
+//void drawText(text t, char* svgQry);
 
 
 #endif

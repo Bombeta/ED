@@ -19,6 +19,7 @@ typedef struct Texto{
 	char border[100];
 	char tipo[12];
 	double p1;
+	double energy;
 
 }text_t;
 

@@ -6,6 +6,8 @@ typedef void* Kd;
 typedef void* InfoK;
 typedef void* Nodekd;
 
+typedef void* List;
+
 Kd createKdTree();
 int length(Kd tree);
 //int getTipo(Kd k);
@@ -18,6 +20,10 @@ Nodekd searchKdTreebyRoot(Kd k, int id);
 
 Nodekd getType(Kd k, int id);
 int searchTypeKdtree(Kd k, int id);
+
+
+void courseKdTreeByRoot(Kd k, List l);
+void courseKdtree(Kd k, List l);
 
 
 //void setP1ByRoot(Kd k, int id, double energy);

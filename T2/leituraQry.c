@@ -10,6 +10,7 @@
 #include "qry.h"
 #include "linha.h"
 #include "leituraQry.h"
+#include "lista.h"
 //#include "kd-tree.h"
 
 void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
@@ -38,6 +39,8 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 	
 	FILE* saidaTxt;
 	FILE* saidaQry;
+
+	List l = createLista();
 
 
 
@@ -112,18 +115,18 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 					fscanf(arqQry, "%lf", &y , &w, &h);
 
-					energyFigure(k, x, y, w, h);
+					selectFigure(k, x, y, w, h, l, txtQry);
 				}else{
 					// caso seja um i
 					double x_ = (double) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
 					printf("Nao pode entrar aquui!");
 					
-					energyFigure(k, x_, y, w, h);
+					selectFigure(k, x_, y, w, h, l, txtQry);
 				}
 
 
-				selectFigure();
+				//selectFigure();
 			}			
 
 			
@@ -154,14 +157,14 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 					fscanf(arqQry, "%lf", &v);
 
-					xFigure(k, id, d);
+					//xFigure(k, id, d);
 				}else{
 					// caso seja um inteiro
 					int id_ = (int) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
 					printf("Nao pode entrar aquui!");
 					
-					xFigure(k, id_, d);
+					//xFigure(k, id_, d);
 				}
 				//xforce();
 			}
@@ -184,7 +187,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			if(strcmp(fig, "qr") == 0)
 			{
 				fscanf(arqQry, "%lf %lf %lf %lf", &x, &y, &w, &h);
-				//reportFigureArea();		
+				//reportFigureRegion(k, id, txtQry, x, y, w, h);		
 
 			}
 

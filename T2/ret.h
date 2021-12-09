@@ -30,7 +30,7 @@ double getP3Rect(void* retangulo);
 
 double getP4Rect(void* retangulo);
 
-double getEnergyRect(void* retangulo)
+double getEnergyRect(void* retangulo);
 
 void setIdRect(int id, void* retangulo);
 
@@ -46,7 +46,7 @@ void setFillRect(char* fill, void* retangulo);
 
 void setBorderRect(char* border, void* retangulo);
 
-void setEnergyRect(double energy, void* retangulo)
+void setEnergyRect(double energy, void* retangulo);
 
 void drawRect(retangulo r, char* svgQry);
 

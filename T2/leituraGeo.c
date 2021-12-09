@@ -41,6 +41,8 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 	//printf("TESTe\n");
 
 	//Kd k = createKdTree();
+
+	List lista = createLista();
 	
 	FILE* arqSvg = NULL;
 	FILE *arq;
@@ -90,6 +92,11 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 				// p1  = 100.0000000;
 				// setP1Circle(p1, C);
 				// printf("GETP1: %lf", getP1Circle(C));
+
+				insertList(lista, C, 1);
+
+				//printList(lista);
+				//exit(0);
 
 				insert(k, x , y, 'c', id, C);
 
@@ -147,7 +154,8 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 
 
 	
-
+	printList(lista);
+	exit(0);
 
 	arqSvg = fopen(svg,"a+");	
 	fprintf(arqSvg, "</svg>");

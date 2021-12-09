@@ -5,6 +5,7 @@
 #include "ret.h"
 #include "linha.h"
 #include "texto.h"
+#include "lista.h"
 
 enum figuras{c = 1, r = 2, l = 3, t = 4};
 
@@ -230,6 +231,34 @@ void energyAll(Kd k, double v){
     }
 }
 
+void courseKdTreeByRoot(Kd k, List l){
+    KdTree* K = (KdTree*) k;
+    courseKdtree(K->first, l);
+}
+
+void courseKdtree(Kd k, List l){
+    
+    int tipo;
+
+    
+    nodeKd* no = (nodeKd*) k;
+
+    if(no!= NULL){
+
+        tipo = getTipo(no);
+
+        printf("GET ID %d", getCircleId(no->info));
+        // exit(0);
+
+        insertList(l, no->info);
+
+        // printList(l);
+        // exit(0);
+
+        searchKdTree(no->left, l);            
+        searchKdTree(no->right, l);
+    }     
+}
 
 void printKdtreebyRoot(Kd k){
     KdTree* K = (KdTree*) k;
@@ -353,7 +382,7 @@ void printKdTree(Kd k){
             printf("%lf\n", p1);
             printf("%lf\n", p2);
             printf("%lf\n", p3);
-            printf("%lf\n", v);
+            //printf("%lf\n", v);
 
             printf("\n*********\n");
         }
@@ -418,8 +447,8 @@ void printKdTree(Kd k){
 
 
 
-//https://www.geeksforgeeks.org/k-dimensional-tree/
-//https://www.youtube.com/watch?v=VmKkAQtnjsM&ab_channel=Programa%C3%A7%C3%A3oDin%C3%A2mica
-//https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
-//https://edisciplinas.usp.br/pluginfile.php/5639098/mod_resource/content/1/rec.pdf
-//https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
+// https://www.geeksforgeeks.org/k-dimensional-tree/
+// https://www.youtube.com/watch?v=VmKkAQtnjsM&ab_channel=Programa%C3%A7%C3%A3oDin%C3%A2mica
+// https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
+// https://edisciplinas.usp.br/pluginfile.php/5639098/mod_resource/content/1/rec.pdf
+// https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
