@@ -196,7 +196,10 @@ void energyAll(Kd k, double v){
     
     int id;
     int tipo;
-    //double v;
+    double v1;
+    double v2;
+    double v3;
+    double v4;
     
     nodeKd* no = (nodeKd*) k;
     
@@ -212,17 +215,32 @@ void energyAll(Kd k, double v){
         printf("GET TYPE: %d\n", tipo);
 
         if(tipo == 1){
-            setEnergyCircle(v, no->info);            
+
+            v1 = v/3;
+            v2 = v/3;
+            v3 = v/3;
+
+            //printf("\n JOLYNE CUJOH\n ");   
+
+            setV1Circle(v1, no->info);
+            setV2Circle(v2, no->info);
+            setV3Circle(v3, no->info);
+
+            //printf("V: %lf", v);
+
+            printf("\nv1: %lf\n", v1);
+
+            //setEnergyCircle(v, no->info);         
         }
         if(tipo == 2){
-            setEnergyRect(v, no->info);
+            //setEnergyRect(v, no->info);
         }
         if(tipo == 3){
-            setEnergyLinha(v, no->info);
+            //setEnergyLinha(v, no->info);
         }
 
         if(tipo == 4){
-            setEnergyText(v, no->info);
+            //setEnergyText(v, no->info);
         }
 
         energyAll(no->left, v);            
@@ -250,7 +268,7 @@ void courseKdtree(Kd k, List l){
         printf("GET ID %d", getCircleId(no->info));
         // exit(0);
 
-        insertList(l, no->info);
+        insertList(l, no->info, tipo);
 
         // printList(l);
         // exit(0);
@@ -337,13 +355,18 @@ void printKdTree(Kd k){
     double r;
     double w;
     double h;
-    double p1;
-    double p2;
-    double p3;
-    double p4;
+    double P1_X;
+    double P2_X;
+    double P3_X;
+    double P1_Y;
+    double P2_Y;
+    double P3_Y;
     double x2;
     double y2;
-    double v;
+    double v1;
+    double v2;
+    double v3;
+    double v4;
     char fill[100];
     char border[100];
     char color[100];
@@ -365,10 +388,12 @@ void printKdTree(Kd k){
             r = getRCircle(no->info);
             strcpy(fill, getFillCircle(no->info));
             strcpy(border, getBorderCircle(no->info));
-            p1 = getP1Circle(no->info);
-            p2 = getP2Circle(no->info);
-            p3 = getP3Circle(no->info);
-            v = getEnergyCircle(no->info);
+            P1_X = getP1_X_Circle(no->info);
+            P2_X = getP2_X_Circle(no->info);
+            P3_X = getP3_X_Circle(no->info);
+            v1 = getV1Circle(no->info);
+            v2 = getV2Circle(no->info);
+            v3 = getV3Circle(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -379,9 +404,12 @@ void printKdTree(Kd k){
             printf("%s\n", fill);
             printf("%s\n", border);
 
-            printf("%lf\n", p1);
-            printf("%lf\n", p2);
-            printf("%lf\n", p3);
+            printf("%lf\n", P1_X);
+            printf("%lf\n", P2_X);
+            printf("%lf\n", P3_X);
+            printf("%lf\n", v1);
+            printf("%lf\n", v2);
+            printf("%lf\n", v3);
             //printf("%lf\n", v);
 
             printf("\n*********\n");
@@ -395,10 +423,10 @@ void printKdTree(Kd k){
             h = getHeightRect(no->info);
             // strcpy(fill, getFillCircle(no->info));
             // strcpy(border, getBorderCircle(no->info));
-            p1 = getP1Rect(no->info);
-            p2 = getP2Rect(no->info);
-            p3 = getP3Rect(no->info);
-            p4 = getP4Rect(no->info);
+            // p1 = getP1Rect(no->info);
+            // p2 = getP2Rect(no->info);
+            // p3 = getP3Rect(no->info);
+            // p4 = getP4Rect(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -406,10 +434,10 @@ void printKdTree(Kd k){
             printf("%lf\n", w);
             printf("%lf\n", h);
 
-            printf("%lf\n", p1);
-            printf("%lf\n", p2);
-            printf("%lf\n", p3);
-            printf("%lf\n", p4);
+            // printf("%lf\n", p1);
+            // printf("%lf\n", p2);
+            // printf("%lf\n", p3);
+            // printf("%lf\n", p4);
             // printf("%s\n", fill);
             // printf("%s\n", border);
         }

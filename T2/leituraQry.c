@@ -198,6 +198,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			}
 		}
 
+		//printf("SUCESSO\n");
 		printKdtreebyRoot(k);
 		
 		// drawListCircle(listaCircle, svgQry);

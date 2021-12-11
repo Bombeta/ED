@@ -15,10 +15,19 @@ typedef struct Circulo{
 	double r;
 	char fill[100];
 	char border[100];
-	double p1;
-	double p2;	
-	double p3;
-	double energy;
+
+	double P1_X;
+	double P1_Y;
+
+	double P2_X;
+	double P2_Y;	
+
+	double P3_X;
+	double P3_Y;
+
+	double v1;
+	double v2;
+	double v3;
 		
 }circulo_t;
 
@@ -63,29 +72,65 @@ char* getBorderCircle(void* circulo){
 	return this->border;
 }
 
-double getP1Circle(void* circulo){
+double getP1_X_Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	return this->p1;
+	return this->P1_X;
 }
 
-double getP2Circle(void* circulo){
+double getP2_X_Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	return this->p2;
+	return this->P2_X;
 }
 
-double getP3Circle(void* circulo){
+double getP3_X_Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	return this->p3;
+	return this->P3_X;
 }
 
-double getEnergyCircle(void* circulo){
+double getP1_Y_Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	return this->energy;
+	return this->P1_Y;
 }
+
+double getP2_Y_Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->P2_Y;
+}
+
+double getP3_Y_Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->P3_Y;
+}
+
+
+
+double getV1Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	printf("\nGET V1 %.2lf\n", this->v1);
+	return this->v1;
+}
+
+
+double getV2Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->v2;
+}
+
+
+double getV3Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->v3;
+}
+
 
 
 
@@ -129,31 +174,74 @@ void setBorderCircle(char* border, void* circulo){
 	strcpy(this->border, border);
 }
 
-void setP1Circle(double p1, void* circulo){
+void setP1_X_Circle(double p1, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	this->p1 = p1;
+	this->P1_X = p1;
 }
 
 
-void setP2Circle(double p2, void* circulo){
+void setP2_X_Circle(double p2, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	this->p2 = p2;
+	this->P2_X = p2;
 }
 
 
-void setP3Circle(double p3, void* circulo){
+void setP3_X_Circle(double p3, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	this->p3 = p3;
+	this->P3_X = p3;
 }
 
-void setEnergyCircle(double energy, void* circulo){
+
+void setP1_Y_Circle(double p1, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	this->energy = energy;
+	this->P1_Y = p1;
 }
+
+
+void setP2_Y_Circle(double p2, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->P2_Y = p2;
+}
+
+
+void setP3_Y_Circle(double p3, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->P3_Y = p3;
+}
+
+void setEnergyCircle(double v, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->v1 = v;
+}
+
+void setV1Circle(double v1, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->v1 = v1;
+	//printf("SET V1	%.2lf", this->v1);
+}
+
+void setV2Circle(double v2, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->v2 = v2;
+}
+
+
+void setV3Circle(double v3, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->v3 = v3;
+}
+
+
 
 circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *border, double p1, double p2, double p3)
 {
@@ -165,9 +253,18 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->r = r;
 	strcpy(circulo->fill, fill);
 	strcpy(circulo->border, border);
-	circulo->p1 = 0.0;
-	circulo->p2 = 0.0;
-	circulo->p3 = 0.0;
+
+	circulo->P1_X = x-r;
+	circulo->P1_Y = y;
+
+	circulo->P2_X = x;
+	circulo->P2_Y = y-r;
+
+	circulo->P3_X = x + r;
+	circulo->P3_Y = y;
+
+
+
 	//circulo->tipo = tipo;
 	
 

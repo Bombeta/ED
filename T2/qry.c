@@ -11,13 +11,13 @@
 #include "kd-tree.h"
 #include "lista.h"
 
-// Energy para todas as figuras
+// COMANDO EF - falta fazer demais figuras 
 void energyFigure(Kd k,int id, double v){
 
-    double p1;
-    double p2;
-    double p3;
-    double p4;
+    double v1;
+    double v2;
+    double v3;
+    double v4;
 
     double x;
 
@@ -49,58 +49,61 @@ void energyFigure(Kd k,int id, double v){
 
             printf("\n ENTROU TIPO 1 \n");
 
-            // p1 = v / 3.0;
-            // p2 = v / 3.0;
-            // p3 = v / 3.0;
+            v1 = v / 3.0;
+            v2 = v / 3.0;
+            v3 = v / 3.0;
 
-            //printf("P1:     %lf", p1);
 
-            //figura->p1 = p1;
 
-            //setP1Circle(p1, figura);
-            // setP2Circle(p2, figura);
-            // setP3Circle(p3, figura);
+            printf("V1:     %lf", v1);
 
-            // figura->p1 = v/3;
-            // figura->p2 = v/3;
-            // figura->p3 = v/3;
+            // figura->v1 = v1;
+
+            setV1Circle(v1, figura);
+            setV2Circle(v2, figura);
+            setV3Circle(v3, figura);
+
+            // figura->v1 = v/3;
+            // figura->v2 = v/3;
+            // figura->v3 = v/3;
 
             x = getXCircle(figura);
 
             //p4 = getXCircle(figura);
 
-            printf("P4:     %lf", x);
+            printf("V4:     %lf", x);
         }
 
         if(tipo == 2){
 
-            p1 = v / 4;
-            p2 = v / 4;
-            p3 = v / 4;
-            p4 = v / 4;
+            v1 = v / 4;
+            v2 = v / 4;
+            v3 = v / 4;
+            v4 = v / 4;
 
-            // figura->p1 = v/4;
-            // figura->p2 = v/4;
-            // figura->p3 = v/4;
-            // figura->p4 = v/4;
+            // figura->v1 = v/4;
+            // figura->v2 = v/4;
+            // figura->v3 = v/4;
+            // figura->v4 = v/4;
         }
 
         if(tipo == 3){
 
-            p1 = v / 2;
-            p2 = v / 2;
+            v1 = v / 2;
+            v2 = v / 2;
 
             
         }
 
         if(tipo == 4){
             
-            p1 = v;
+            v1 = v;
         }
 
     }
 
   if(id == 0){
+      printf("\n!!DANGER !!\n");
       energyAllByTree(k, v);
   }
 
@@ -108,92 +111,7 @@ void energyFigure(Kd k,int id, double v){
 
 }
 
-void reportFigure(Kd k, int id, char* qryTxt){
 
-    int tipo;
-    // int id;
-    double x;
-    double y;
-    double r;
-    double w;
-    double h;
-    double x2;
-    double y2;
-    char fill[100];
-    char border[100];
-    double p1;
-    double p2;
-    double p3;
-    double p4;
-
-    FILE * saidaTxt;
-
-    saidaTxt = fopen(qryTxt, "a+");
-
-    //Nodekd* nodeK = (Nodekd*) k;
-
-    tipo = getType(k,id);
-
-    void *figura = searchKdTreebyRoot(k, id);    
-
-    //printf("REPORT FIGURE ID: %d", tipo);
-
-    if(tipo == 1){
-
-        //printf("REPORTA FIGURA\n");
-
-        x = getXCircle(figura);
-        y = getYCircle(figura);
-        r = getRCircle(figura);
-        strcpy(fill, getFillCircle(figura));
-        strcpy(border, getBorderCircle(figura));
-
-        p1 = getP1Circle(figura);
-        p2 = getP2Circle(figura);
-        p3 = getP3Circle(figura);
-
-        // Sem pontos de fixação
-        if(p1 == 0.0 && p2 == 0.0 && p3 == 0.0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
-        }else{           
-
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf", id, r, x, y, border, fill, p1, p2, p3);
-        }
-
-        //fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
-    }  
-
-    if(tipo == 2){
-
-        x = getXRect(figura);
-        y = getYRect(figura);
-        w = getWidthRect(figura);
-        h = getHeightRect(figura);
-        strcpy(fill, getFillRect(figura));
-        strcpy(border, getBorderRect(figura));
-
-        p1 = getP1Rect(figura);
-        p2 = getP2Rect(figura);
-        p3 = getP3Rect(figura);
-
-        // Sem pontos de fixação
-        if(p1 == 0 && p2 == 0 && p3 == 0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
-        }else{
-
-            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf", id, w, h, x, y, fill, border, p1, p2, p3);            
-        }
-
-    }else if(tipo == 3){
-
-        
-
-    }else if(tipo == 4){
-
-    }
-
-
-}
 
 // COMANDO SF 
 
@@ -238,6 +156,104 @@ List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char
     }
 
 }
+
+void reportFigure(Kd k, int id, char* qryTxt){
+
+    int tipo;
+    // int id;
+    double x;
+    double y;
+    double r;
+    double w;
+    double h;
+    double x2;
+    double y2;
+    char fill[100];
+    char border[100];
+
+    double p1_x;
+    double p1_y;
+
+    double p2_x;
+    double p2_y;
+
+    double p3_x;
+    double p3_y;
+
+    double p4_x;
+    double p4_y;
+
+    FILE * saidaTxt;
+
+    saidaTxt = fopen(qryTxt, "a+");
+
+    //Nodekd* nodeK = (Nodekd*) k;
+
+    tipo = getType(k,id);
+
+    void *figura = searchKdTreebyRoot(k, id);    
+
+    //printf("REPORT FIGURE ID: %d", tipo);
+
+    if(tipo == 1){
+
+        //printf("REPORTA FIGURA\n");
+
+        x = getXCircle(figura);
+        y = getYCircle(figura);
+        r = getRCircle(figura);
+        strcpy(fill, getFillCircle(figura));
+        strcpy(border, getBorderCircle(figura));
+
+        p1_x = getP1_X_Circle(figura);
+        p2_x = getP2_X_Circle(figura);
+        p3_x = getP3_X_Circle(figura);
+
+        // Sem pontos de fixação
+        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0){
+            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
+        }else{           
+
+            fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf", id, r, x, y, border, fill, p1_x, p2_x, p3_x);
+        }
+
+        //fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
+    }  
+
+    if(tipo == 2){
+
+        x = getXRect(figura);
+        y = getYRect(figura);
+        w = getWidthRect(figura);
+        h = getHeightRect(figura);
+        strcpy(fill, getFillRect(figura));
+        strcpy(border, getBorderRect(figura));
+
+        // p1 = getP1Rect(figura);
+        // p2 = getP2Rect(figura);
+        // p3 = getP3Rect(figura);
+
+        // // Sem pontos de fixação
+        // if(p1 == 0 && p2 == 0 && p3 == 0){
+        //     fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
+        // }else{
+
+        //     fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf", id, w, h, x, y, fill, border, p1, p2, p3);            
+        // }
+
+    }else if(tipo == 3){
+
+        
+
+    }else if(tipo == 4){
+
+    }
+
+
+}
+
+// COMANDO EP
+
 
 
 // void xFigure(Kd k, int id, double d){

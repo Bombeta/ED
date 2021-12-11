@@ -83,9 +83,9 @@ void printList(List l){
     double x;
     double y;
     double r;
-    double p1;
-    double p2;
-    double p3;
+    double p1_X;
+    double p2_X;
+    double p3_X;
     char fill[100];
     char border[100];
     double v;
@@ -112,10 +112,10 @@ void printList(List l){
             r = getRCircle(no->info);
             strcpy(fill, getFillCircle(no->info));
             strcpy(border, getBorderCircle(no->info));
-            p1 = getP1Circle(no->info);
-            p2 = getP2Circle(no->info);
-            p3 = getP3Circle(no->info);
-            v = getEnergyCircle(no->info);
+            p1_X = getP1_X_Circle(no->info);
+            p2_X = getP2_X_Circle(no->info);
+            p3_X = getP3_X_Circle(no->info);
+            v = getV1Circle(no->info);
 
             printf("%d\n", id);
             printf("%lf\n", x);
@@ -126,9 +126,9 @@ void printList(List l){
             printf("%s\n", fill);
             printf("%s\n", border);
 
-            printf("%lf\n", p1);
-            printf("%lf\n", p2);
-            printf("%lf\n", p3);
+            printf("%lf\n", p1_X);
+            printf("%lf\n", p2_X);
+            printf("%lf\n", p3_X);
             //printf("%lf\n", v);
 
         }
