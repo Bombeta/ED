@@ -22,8 +22,8 @@ Nodekd getType(Kd k, int id);
 int searchTypeKdtree(Kd k, int id);
 
 
-void courseKdTreeByRoot(Kd k, List l);
-void courseKdtree(Kd k, List l);
+void courseKdTreeByRoot(Kd k, List l, char* qryTxt);
+void courseKdtree(Kd k, List l, char* qryTxt);
 
 void drawExitbyRoot(Kd k, char* svgQry);
 void drawExit(Kd k, char* svgQry);

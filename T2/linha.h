@@ -27,6 +27,10 @@ double getP2_X(void* linha);
 
 double getP2_Y(void* linha);
 
+double getV1Linha(void* linha);
+
+double getV2Linha(void* linha);
+
 //double getEnergyLinha(void* linha);
 
 void setIdLinha(int id, void* linha);

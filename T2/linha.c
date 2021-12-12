@@ -89,6 +89,17 @@ double getP2_Y_Linha(void* linha){
 	return this->P2_Y;
 }
 
+double getV1Linha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->v1;
+}
+
+double getV2Linha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->v2;
+}
 
 // double getP2Linha(void* linha){
 // 	linha_t* this;

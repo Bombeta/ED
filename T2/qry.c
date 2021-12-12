@@ -53,51 +53,39 @@ void energyFigure(Kd k,int id, double v){
             v2 = v / 3.0;
             v3 = v / 3.0;
 
-
-
-            printf("V1:     %lf", v1);
-
-            // figura->v1 = v1;
-
             setV1Circle(v1, figura);
             setV2Circle(v2, figura);
             setV3Circle(v3, figura);
 
-            // figura->v1 = v/3;
-            // figura->v2 = v/3;
-            // figura->v3 = v/3;
-
-            x = getXCircle(figura);
-
-            //p4 = getXCircle(figura);
-
-            printf("V4:     %lf", x);
-        }
+       }
 
         if(tipo == 2){
 
-            v1 = v / 4;
-            v2 = v / 4;
-            v3 = v / 4;
-            v4 = v / 4;
+            v1 = v / 4.0;
+            v2 = v / 4.0;
+            v3 = v / 4.0;
+            v4 = v / 4.0;
 
-            // figura->v1 = v/4;
-            // figura->v2 = v/4;
-            // figura->v3 = v/4;
-            // figura->v4 = v/4;
+            setV1Rect(v1, figura);
+            setV2Rect(v2, figura);
+            setV3Rect(v3, figura);
+            setV4Rect(v4, figura);
         }
 
         if(tipo == 3){
 
-            v1 = v / 2;
-            v2 = v / 2;
+            v1 = v / 2.0;
+            v2 = v / 2.0;
 
-            
+            setV1Linha(v1, figura);
+            setV2Linha(v2, figura);            
         }
 
         if(tipo == 4){
             
             v1 = v;
+
+            setV1Text(v1, figura);
         }
 
     }
@@ -113,7 +101,7 @@ void energyFigure(Kd k,int id, double v){
 
 
 
-// COMANDO SF 
+// COMANDO SF  * FALTA VER POR REGIÃO
 
 List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char* qryTxt){
 
@@ -135,10 +123,6 @@ List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char
     double x2;
     double y2;
 
-    
-
-
-
     // Seleciona figuras dentro do retangulo
     if(px != 0 && py != 00 && pw != 0 && ph != 0){
 
@@ -147,9 +131,9 @@ List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char
 
     // Seleciona todas as figuras
     if(px == 0 && py == 0 && pw == 0 && ph == 0){
-        courseKdTreeByRoot(k, l);
+        courseKdTreeByRoot(k, l, qryTxt);
 
-        printf("\nSAIDA SF\n");
+        //printf("\nSAIDA SF\n");
         //printList(l);
 
         return l;

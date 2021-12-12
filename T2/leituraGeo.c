@@ -154,7 +154,7 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 
 
 	
-	//printList(lista);
+	printList(lista);
 	//exit(0);
 
 	arqSvg = fopen(svg,"a+");	

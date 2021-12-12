@@ -280,7 +280,9 @@ circulo cria_Circulo(int id, double r, double x, double y, char *fill, char *bor
 	circulo->P3_X = x + r;
 	circulo->P3_Y = y;
 
-
+	circulo->v1 = 0.0;
+	circulo->v2 = 0.0;
+	circulo->v3 = 0.0;
 
 	//circulo->tipo = tipo;
 	

@@ -326,7 +326,12 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 	retangulo->P3_Y = y + h;
 
 	retangulo->P4_X = x;
-	retangulo->P4_Y = y + h;	
+	retangulo->P4_Y = y + h;
+
+	retangulo->v1 = 0.0;
+	retangulo->v2 = 0.0;
+	retangulo->v3 = 0.0;
+	retangulo->v4 = 0.0;
 
 	return retangulo;
 
