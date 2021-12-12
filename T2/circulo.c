@@ -25,6 +25,9 @@ typedef struct Circulo{
 	double P3_X;
 	double P3_Y;
 
+	double P4_X;
+	double P4_Y;
+
 	double v1;
 	double v2;
 	double v3;
@@ -194,6 +197,12 @@ void setP3_X_Circle(double p3, void* circulo){
 	this->P3_X = p3;
 }
 
+void setP4_X_Circle(double p4, void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	this->P4_X = p4;
+}
+
 
 void setP1_Y_Circle(double p1, void* circulo){
 	circulo_t* this;
@@ -215,11 +224,19 @@ void setP3_Y_Circle(double p3, void* circulo){
 	this->P3_Y = p3;
 }
 
-void setEnergyCircle(double v, void* circulo){
+void setP4_Y_Circle(double p4, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	this->v1 = v;
+	this->P4_Y = p4;
 }
+
+
+
+// void setEnergyCircle(double v, void* circulo){
+// 	circulo_t* this;
+// 	this = (circulo_t*) circulo;
+// 	this->v1 = v;
+// }
 
 void setV1Circle(double v1, void* circulo){
 	circulo_t* this;

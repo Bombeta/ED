@@ -16,11 +16,23 @@ typedef struct Retangulo{
 	char fill[100];
 	char border[100];
 	char tipo[12];
-	double p1;
-	double p2;
-	double p3;
-	double p4;
-	double energy;
+
+	double P1_X;
+	double P1_Y;
+
+	double P2_X;
+	double P2_Y;
+	
+	double P3_X;
+	double P3_Y;
+
+	double P4_X;
+	double P4_Y;
+
+	double v1;
+	double v2;
+	double v3;
+	double v4;
     
 }retangulo_t;
 
@@ -82,34 +94,76 @@ char* getBorderRect(void* retangulo){
 	return this->border;
 }
 
-double getP1Rect(void* retangulo){
+double getP1_X_Rect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	return this->p1;
+	return this->P1_X;
 }
 
-double getP2Rect(void* retangulo){
+double getP1_Y_Rect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	return this->p2;
+	return this->P1_Y;
 }
 
-double getP3Rect(void* retangulo){
+double getP2_X_Rect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	return this->p3;
+	return this->P2_X;
 }
 
-double getP4Rect(void* retangulo){
+double getP2_Y_Rect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	return this->p4;
+	return this->P2_Y;
 }
 
-double getEnergyRect(void* retangulo){
+double getP3_X_Rect(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	return this->energy;
+	return this->P3_X;
+}
+
+double getP3_Y_Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->P3_Y;
+}
+
+double getP4_X_Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->P4_X;
+}
+
+double getP4_Y_Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->P4_Y;
+}
+
+double getV1Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->v1;
+}
+
+double getV2Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->v2;
+}
+
+double getV3Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->v3;
+}
+
+double getV4Rect(void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	return this->v4;
 }
 
 
@@ -149,6 +203,64 @@ void setYRect(double y, void* retangulo){
 	this->y = y;
 }
 
+
+void setP1_X_Rect(double p1, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P1_X = p1;
+}
+
+
+void setP2_X_Rect(double p2, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P2_X = p2;
+}
+
+
+void setP3_X_Rect(double p3, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P3_X = p3;
+}
+
+
+void setP4_X_Rect(double p4, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P4_X = p4;
+}
+
+
+void setP1_Y_Rect(double p1, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P1_Y = p1;
+}
+
+
+void setP2_Y_Rect(double p2, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P2_Y = p2;
+}
+
+
+void setP3_Y_Rect(double p3, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P3_Y = p3;
+}
+
+
+void setP4_Y_Rect(double p4, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->P4_Y = p4;
+}
+
+
+
 void setFillRect(char* fill, void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
@@ -163,10 +275,29 @@ void setBorderRect(char* border, void* retangulo){
 	strcpy(this->border, border);
 }
 
-void setEnergyRect(double energy, void* retangulo){
+void setV1Rect(double v1, void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;
-	this->energy = energy;
+	this->v1 = v1;
+}
+
+
+void setV2Rect(double v2, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->v2 = v2;
+}
+
+void setV3Rect(double v3, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->v3 = v3;
+}
+
+void setV4Rect(double v4, void* retangulo){
+	retangulo_t* this;
+	this = (retangulo_t*) retangulo;
+	this->v4 = v4;
 }
 
 
@@ -185,12 +316,17 @@ retangulo cria_Retangulo(int id, double w, double h, double x, double y, char *f
 	strcpy(retangulo->border, border);
 	//strcpy(retangulo->tipo, tipo);
 
-	retangulo->p1 = 0.0;
-	retangulo->p2 = 0.0;
-	retangulo->p3 = 0.0;
-	retangulo->p4 = 0.0;
+	retangulo->P1_X = x;
+	retangulo->P1_Y = y;
 
-	
+	retangulo->P2_X = x + w;
+	retangulo->P2_Y = y;
+
+	retangulo->P3_X = x + w;
+	retangulo->P3_Y = y + h;
+
+	retangulo->P4_X = x;
+	retangulo->P4_Y = y + h;	
 
 	return retangulo;
 

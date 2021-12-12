@@ -13,9 +13,15 @@ typedef struct Linha{
     double x2;
     double y2;
     char color[100];
-	double p1;
-	double p2;
-	double energy;
+	
+	double P1_X;
+	double P1_Y;
+
+	double P2_X;
+	double P2_Y;
+	
+	double v1;
+	double v2;
 	//char tipo[12];
 
 }linha_t;
@@ -58,24 +64,44 @@ char* getColorLinha(void* linha){
 	return this->color;
 }
 
-double getP1Linha(void* linha){
+double getP1_X_Linha(void* linha){
 	linha_t* this;
 	this = (linha_t*) linha;
-	return this->p1;
+	return this->P1_X;
 }
 
-double getP2Linha(void* linha){
+double getP1_Y_Linha(void* linha){
 	linha_t* this;
 	this = (linha_t*) linha;
-	return this->p2;
+	return this->P1_Y;
 }
 
-
-double getEnergyLinha(void* linha){
+double getP2_X_Linha(void* linha){
 	linha_t* this;
 	this = (linha_t*) linha;
-	return this->energy;
+	return this->P2_X;
 }
+
+
+double getP2_Y_Linha(void* linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	return this->P2_Y;
+}
+
+
+// double getP2Linha(void* linha){
+// 	linha_t* this;
+// 	this = (linha_t*) linha;
+// 	return this->p2;
+// }
+
+
+// double getEnergyLinha(void* linha){
+// 	linha_t* this;
+// 	this = (linha_t*) linha;
+// 	return this->energy;
+// }
 
 
 void setIdLinha(int id, void* linha){
@@ -115,10 +141,16 @@ void setColorLinha(char* color, void* linha){
 	strcpy(this->color, color);
 }
 
-void setEnergyLinha(double energy, void*linha){
+void setV1Linha(double v1, void*linha){
 	linha_t* this;
 	this = (linha_t*) linha;
-	this->energy = energy;
+	this->v1 = v1;
+}
+
+void setV2Linha(double v2, void*linha){
+	linha_t* this;
+	this = (linha_t*) linha;
+	this->v2 = v2;
 }
 
 
@@ -134,8 +166,11 @@ linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color
     linha->x2 = x2;
     linha->y2 = y2;
 
-	linha->p1 = 0.0;
-	linha->p2 = 0.0;
+	linha->P1_X = x1;
+	linha->P1_Y = y1;
+
+	linha->P2_X = x2;
+	linha->P2_Y = y2;
 	
 	//strcpy(linha->tipo, tipo);	
     

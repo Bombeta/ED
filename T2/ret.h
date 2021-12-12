@@ -22,15 +22,37 @@ char* getBorderRect(void* retangulo);
 
 char* getTipoRect(void* circulo);
 
-double getP1Rect(void* retangulo);
+// double getP1Rect(void* retangulo);
 
-double getP2Rect(void* retangulo);
+// double getP2Rect(void* retangulo);
 
-double getP3Rect(void* retangulo);
+// double getP3Rect(void* retangulo);
 
-double getP4Rect(void* retangulo);
+// double getP4Rect(void* retangulo);
 
-double getEnergyRect(void* retangulo);
+double getP1_X_Rect(void* retangulo);
+
+double getP1_Y_Rect(void* retangulo);
+
+double getP2_X_Rect(void* retangulo);
+
+double getP2_Y_Rect(void* retangulo);
+
+double getP3_X_Rect(void* retangulo);
+
+double getP3_Y_Rect(void* retangulo);
+
+double getP4_X_Rect(void* retangulo);
+
+double getP4_Y_Rect(void* retangulo);
+
+double getV1Rect(void* retangulo);
+
+double getV2Rect(void* retangulo);
+
+double getV3Rect(void* retangulo);
+
+double getV4Rect(void* retangulo);
 
 void setIdRect(int id, void* retangulo);
 

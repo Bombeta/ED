@@ -26,13 +26,17 @@ double getP2_X_Circle(void* circulo);
 
 double getP3_X_Circle(void* circulo);
 
+double getP4_X_Circle(void* circulo);
+
 double getP1_Y_Circle(void* circulo);
 
 double getP2_Y_Circle(void* circulo);
 
 double getP3_Y_Circle(void* circulo);
 
-double getEnergyCircle(void* circulo);
+double getP4_Y_Circle(void* circulo);
+
+//double getEnergyCircle(void* circulo);
 
 double getV1Circle(void* circulo);
 

@@ -19,11 +19,15 @@ char* getColorLinha(void* linha);
 
 char getTipoLinha(void* linha);
 
-double getP1Linha(void* linha);
+double getP1_X(void* linha);
 
-double getP2Linha(void* linha);
+double getP1_Y(void* linha);
 
-double getEnergyLinha(void* linha);
+double getP2_X(void* linha);
+
+double getP2_Y(void* linha);
+
+//double getEnergyLinha(void* linha);
 
 void setIdLinha(int id, void* linha);
 
@@ -37,7 +41,11 @@ void setY2Linha(double y2, void* linha);
 
 void setColorLinha(char* color, void* linha);
 
-void setEnergyLinha(double energy, void* linha);
+//void setEnergyLinha(double energy, void* linha);
+
+void setV1Linha(double v1, void*linha);
+
+void setV1Linha(double v1, void*linha);
 
 void drawLine(linha l, char* svgQry);
 
