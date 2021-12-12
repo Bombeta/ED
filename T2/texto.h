@@ -18,9 +18,13 @@ char* getBorderText(void* text);
 
 char* getTipoText(void* text);
 
-double getP1Text(void* text);
+// double getP1Text(void* text);
 
-double getEnergyText(void* text);
+double getP1_X_Text(void* text);
+
+double getP1_X_Text(void* text);
+
+double getV1Text(void* text);
 
 void setIdText(int id, void* text);
 
@@ -32,7 +36,13 @@ void setFillText(char* fill, void* text);
 
 void setBorderText(char* border, void* text);
 
-void setEnergyText(double energy, void* text);
+void setX1Text(double x1, void* text);
+
+void setY1Text(double y1, void* text);
+
+void setV1Text(double v1, void* text);
+
+//void setEnergyText(double energy, void* text);
 
 //void print_Texto(text c);
 

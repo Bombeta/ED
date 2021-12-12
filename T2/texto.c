@@ -18,8 +18,9 @@ typedef struct Texto{
 	char fill[100];
 	char border[100];
 	char tipo[12];
-	double p1;
-	double energy;
+	double P1_X;
+	double P1_Y;
+	double v1;
 
 }text_t;
 
@@ -65,16 +66,22 @@ char* getTipoText(void* text){
 	return this->tipo;
 }
 
-double getP1Text(void* text){
+double getP1_X_Text(void* text){
 	text_t* this;
 	this = (text_t*) text;
-	return this->p1;
+	return this->P1_X;
 }
 
-double getEnergyText(void* text){
+double getP1_Y_Text(void* text){
 	text_t* this;
 	this = (text_t*) text;
-	return this->energy;
+	return this->P1_Y;
+}
+
+double getV1Text(void* text){
+	text_t* this;
+	this = (text_t*) text;
+	return this->v1;
 }
 
 
@@ -104,6 +111,8 @@ void setText(char* texto, void* text){
 	strcpy(this->texto, texto);
 }
 
+
+
 void setFillText(char* fill, void* text){
 	text_t* this;
 	this = (text_t*) text;
@@ -120,10 +129,22 @@ void setBorderText(char* border, void* text){
 	strcpy(this->border, border);
 }
 
-void setEnergyText(double energy, void* text){
+void setX1Text(double x1, void* text){
 	text_t* this;
 	this = (text_t*) text;
-	this->energy = energy;
+	this->P1_X = x1;
+}
+
+void setY1Text(double y1, void* text){
+	text_t* this;
+	this = (text_t*) text;
+	this->P1_Y = y1;
+}
+
+void setV1Text(double v1, void* text){
+	text_t* this;
+	this = (text_t*) text;
+	this->v1 = v1;
 }
 
 
@@ -141,7 +162,8 @@ text cria_Texto(int id, double x, double y, char *fill, char *border, char* text
 	strcpy(text->border, border);
 	//strcpy(text->tipo, tipo);
 
-	text->p1 = 0.0;
+	text->P1_X = x;
+	text->P1_Y = y;
 
 	return text;
 

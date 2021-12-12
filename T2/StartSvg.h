@@ -6,6 +6,8 @@
 /*Inicializa o SVG */
 void cria_SVG(FILE* arqSvg);	
 
+void cria_SVG_qry(FILE *saidaQry);
+
 void desenha_Circulo(char* svg, double x, double y, double r, char* fill, char* border);
 
 void desenha_Retangulo(char* svg, double w, double h, double x, double y, char* fill, char* border); 

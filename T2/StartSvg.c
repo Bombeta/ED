@@ -8,11 +8,17 @@
 /* Falta verificar a saida do svg que está repetindo o texto lido */
 
 void cria_SVG(FILE* arqSvg)
-{
+{	
 	fprintf(arqSvg, "<svg style='stroke-width:3px;fill-opacity:0.5'>\n<rect width='100%%' height='100%%' fill='white' fill-opacity='1.0'/>\n"); 			
 	//fprintf(arqSvg, "\n"); 
 	fclose(arqSvg);
-}	
+}
+
+void cria_SVG_qry(FILE *saidaQry){
+	fprintf(saidaQry, "<svg style='stroke-width:3px;fill-opacity:0.5'>\n<rect width='100%%' height='100%%' fill='white' fill-opacity='1.0'/>\n"); 			
+	//fprintf(arqSvg, "\n"); 
+	fclose(saidaQry);
+}
 
 void desenha_Circulo(char* svg, double r, double x, double y, char* fill, char* border)
 {	

@@ -174,7 +174,7 @@ void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 // Pega o tipo pela struct
 int getTipo(Kd k){
     nodeKd* K = (nodeKd*) k;
-    printf("K do getTipo: %d", K->tipo);
+    //printf("K do getTipo: %d", K->tipo);
     return K->tipo;
 }
 // Pega Id pela struct
@@ -469,6 +469,222 @@ void printKdTree(Kd k){
     }
 
     //printf("FIM x = %lf", x);
+}
+
+
+void drawExitbyRoot(Kd k, char* svgQry){
+    KdTree* K = (KdTree*) k;
+    drawExit(K->first, svgQry);
+}
+
+void drawExit(Kd k, char* svgQry){
+
+    nodeKd* no = (nodeKd*) k;
+
+    int tipo;
+    int id;
+    int amountPoints = 0;
+    double x;
+    double y;
+    double r;
+    double w;
+    double h;
+    double P1_X;
+    double P2_X;
+    double P3_X;
+    double P1_Y;
+    double P2_Y;
+    double P3_Y;
+    double P4_X;
+    double P4_Y;
+    double x2;
+    double y2;
+    double v1;
+    double v2;
+    double v3;
+    double v4;
+    char fill[100];
+    char border[100];
+    char color[100];
+
+    if(no!=NULL){
+        tipo = getTipo(no);
+        
+        printf("\nTIPO SAIDA QRY\n: %d", tipo);
+
+         if(tipo == 1){
+            id = getCircleId(no->info);
+            x = getXCircle(no->info);
+            y = getYCircle(no->info);
+            r = getRCircle(no->info);
+            strcpy(fill, getFillCircle(no->info));
+            strcpy(border, getBorderCircle(no->info));
+            P1_X = getP1_X_Circle(no->info);
+            P2_X = getP2_X_Circle(no->info);
+            P3_X = getP3_X_Circle(no->info);
+            P1_Y = getP1_Y_Circle(no->info);
+            P2_Y = getP2_Y_Circle(no->info);
+            P3_Y = getP3_Y_Circle(no->info);
+            v1 = getV1Circle(no->info);
+            v2 = getV2Circle(no->info);
+            v3 = getV3Circle(no->info);
+
+            desenha_Circulo(svgQry, r, x, y, fill, border);
+
+            if(v1 > 0){
+                amountPoints++;
+            }
+
+            if(v2 > 0){
+                amountPoints++;
+            }
+
+            if(v3 > 0){
+                amountPoints++;
+            }
+
+            if(amountPoints == 0){
+                desenha_Circulo(svgQry, 5.0, P1_X, P1_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Circulo(svgQry, 5.0, P2_X, P2_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Circulo(svgQry, 5.0, P3_X, P3_Y, "#d3d3d3", "#d3d3d3");
+                
+            }else if(amountPoints == 1){
+                if(v1 > 0){
+                    desenha_Circulo(svgQry, 2.0, P1_X, P1_Y, "#FF00FF", "#FF00FF");
+                }
+                if(v2 > 0){
+                    desenha_Circulo(svgQry, 2.0, P2_X, P2_Y, "#FF00FF", "#FF00FF");
+                }
+                if(v3 > 0){
+                    desenha_Circulo(svgQry, 2.0, P3_X, P3_Y, "#FF00FF", "#FF00FF");
+                }
+                
+            }else if(amountPoints == 2){
+                if(v1 > 0){
+                    desenha_Circulo(svgQry, 3.0, P1_X, P1_Y, "#008080", "#008080");
+                }
+                if(v2 > 0){
+                    desenha_Circulo(svgQry, 3.0, P2_X, P2_Y, "#008080", "#008080");
+                }
+                if(v3 > 0){
+                    desenha_Circulo(svgQry, 3.0, P3_X, P3_Y, "#008080", "#008080");
+                }
+            }else if(amountPoints == 3){
+                desenha_Circulo(svgQry, 4.0, P1_X, P1_Y, "#FF0000", "#FF0000");
+                desenha_Circulo(svgQry, 4.0, P2_X, P2_Y, "#FF0000", "#FF0000");
+                desenha_Circulo(svgQry, 4.0, P3_X, P3_Y, "#FF0000", "#FF0000");
+            }
+
+
+       
+        }
+
+        if(tipo == 2){
+            id = getRectId(no->info);
+            x = getXRect(no->info);
+            y = getYRect(no->info);
+            w = getWidthRect(no->info);
+            h = getHeightRect(no->info);
+            strcpy(fill,getFillRect(no->info));
+            strcpy(border,getBorderRect(no->info));
+
+            P1_X = getP1_X_Rect(no->info);
+            P2_X = getP2_X_Rect(no->info);
+            P3_X = getP3_X_Rect(no->info);
+            P4_X = getP4_X_Rect(no->info);
+            P1_Y = getP1_Y_Rect(no->info);
+            P2_Y = getP2_Y_Rect(no->info);
+            P3_Y = getP3_Y_Rect(no->info);
+            P4_Y = getP4_Y_Rect(no->info);
+
+
+            if(v1 > 0){
+                amountPoints++;
+            }
+
+            if(v2 > 0){
+                amountPoints++;
+            }
+
+            if(v3 > 0){
+                amountPoints++;
+            }
+
+            if(amountPoints == 0){
+                desenha_Retangulo(svgQry, 5.0, P1_X, P1_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Retangulo(svgQry, 5.0, P2_X, P2_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Retangulo(svgQry, 5.0, P3_X, P3_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Retangulo(svgQry. 5.0, P4_X, P4_y, "#d3d3d3", "#d3d3d3");            
+            }else if(amountPoints == 1){
+                if(v1 > 0){
+                    desenha_Retangulo(svgQry, 2.0, P1_X, P1_Y, "#FF00FF", "#FF00FF");
+                }
+                if(v2 > 0){
+                    desenha_Retangulo(svgQry, 2.0, P2_X, P2_Y, "#FF00FF", "#FF00FF");
+                }
+                if(v3 > 0){
+                    desenha_Retangulo(svgQry, 2.0, P3_X, P3_Y, "#FF00FF", "#FF00FF");
+                }
+                
+            }else if(amountPoints == 2){
+                if(v1 > 0){
+                    desenha_Retangulo(svgQry, 3.0, P1_X, P1_Y, "#008080", "#008080");
+                }
+                if(v2 > 0){
+                    desenha_Retangulo(svgQry, 3.0, P2_X, P2_Y, "#008080", "#008080");
+                }
+                if(v3 > 0){
+                    desenha_Retangulo(svgQry, 3.0, P3_X, P3_Y, "#008080", "#008080");
+                }
+            }else if(amountPoints == 3){
+                if(v1 > 0){
+                    desenha_Retangulo(svgQry, 4.0, P1_X, P1_Y, "#FF0000", "#FF0000");
+                }
+
+                if(v2 > 0){
+                    desenha_Retangulo(svgQry, 4.0, P2_X, P2_Y, "#FF0000", "#FF0000");
+                }
+
+                if(v3 > 0){
+                    desenha_Retangulo(svgQry, 4.0, P3_X, P3_Y, "#FF0000", "#FF0000");
+                }               
+                
+                
+            }else if(amountPoints == 4){
+                desenha_Retangulo(svgQry, 4.0, P1_X, P1_Y, "#FF0000", "#FF0000");
+                desenha_Retangulo(svgQry, 4.0, P2_X, P2_Y, "#FF0000", "#FF0000");
+                desenha_Retangulo(svgQry, 4.0, P3_X, P3_Y, "#FF0000", "#FF0000");
+            }
+
+          
+        }
+
+        // if(tipo == 3){
+
+        //     id = getIdLinha(no->info);
+        //     x = getX1Linha(no->info);
+        //     y = getY1Linha(no->info);
+        //     x2 = getX2Linha(no->info);
+        //     y2 = getY2Linha(no->info);
+            
+        //     printf("%d\n", id);
+        //     printf("%lf\n", x);
+        //     printf("%lf\n", y);
+        //     printf("%lf\n", x2);
+        //     printf("%lf\n", y2);
+
+        // }
+
+        // if(tipo == 4){
+
+        //     printf("teste 4\n");
+        // }
+        
+        drawExit(no->left, svgQry);
+        drawExit(no->right, svgQry);
+
+    }
+    
 }
 
 

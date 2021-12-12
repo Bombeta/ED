@@ -44,7 +44,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 
 
-	saidaQry = fopen(svgQry, "a");
+	saidaQry = fopen(svgQry, "w");
 
     if(saidaQry == NULL){   
         // printf("Entrou aqui");
@@ -198,17 +198,14 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			}
 		}
 
-		//printf("SUCESSO\n");
-		printKdtreebyRoot(k);
 		
-		// drawListCircle(listaCircle, svgQry);
-		// drawListRect(listaRect, svgQry);
-		// drawListText(listaText, svgQry);
-		// drawListLine(listaLinha, svgQry);
-		//saidaQry = fopen(svgQry, "a+");
-		//fprintf(saidaQry, "</svg>");
-		//fclose(saidaQry);
-		//fclose(saidaTxt);
+		printKdtreebyRoot(k);
+		drawExitbyRoot(k, svgQry);
+
+		svgQry = fopen(svgQry,"a+");	
+		fprintf(svgQry, "</svg>");
+		
+	
 	}
 
 }

@@ -25,6 +25,8 @@ int searchTypeKdtree(Kd k, int id);
 void courseKdTreeByRoot(Kd k, List l);
 void courseKdtree(Kd k, List l);
 
+void drawExitbyRoot(Kd k, char* svgQry);
+void drawExit(Kd k, char* svgQry);
 
 //void setP1ByRoot(Kd k, int id, double energy);
 //void setP1CircleKd(Kd k, int id, double energy);
