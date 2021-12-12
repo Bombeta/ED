@@ -96,7 +96,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 					
 			}
 					
-			//* Parei aqui
+			
 			if(strcmp(fig,"sf") == 0)
 			{	
 				
@@ -117,11 +117,10 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 					selectFigure(k, x, y, w, h, l, txtQry);
 				}else{
-					// caso seja um i
+					// caso seja um double
 					double x_ = (double) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
-					printf("Nao pode entrar aquui!");
-					
+						
 					selectFigure(k, x_, y, w, h, l, txtQry);
 				}
 
@@ -150,21 +149,17 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 				if( ID == '*' ){
 
 					// caso seja *
-					//int id_ = (int) ID;
-					printf("\n!! ASTERISCO : %c !!\n", ID);
-
 					id = 0;
 
 					fscanf(arqQry, "%lf", &v);
 
-					//xFigure(k, id, d);
-				}else{
-					// caso seja um inteiro
-					int id_ = (int) (ID > 47 && ID < 58) ? ID - 48 : -1;
-
-					printf("Nao pode entrar aquui!");
+					xFigure(k, id, v);
 					
-					//xFigure(k, id_, d);
+				}else{
+					// caso seja um double
+					double x_ = (double) (ID > 47 && ID < 58) ? ID - 48 : -1;
+
+					xFigure(k, x_, d);
 				}
 				//xforce();
 			}
@@ -187,7 +182,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			if(strcmp(fig, "qr") == 0)
 			{
 				fscanf(arqQry, "%lf %lf %lf %lf", &x, &y, &w, &h);
-				//reportFigureRegion(k, id, txtQry, x, y, w, h);		
+				reportFigureRegion(k, id, txtQry, x, y, w, h);		
 
 			}
 

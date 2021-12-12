@@ -924,11 +924,3 @@ void drawExit(Kd k, char* svgQry){
 }
 
 
-
-
-
-// https://www.geeksforgeeks.org/k-dimensional-tree/
-// https://www.youtube.com/watch?v=VmKkAQtnjsM&ab_channel=Programa%C3%A7%C3%A3oDin%C3%A2mica
-// https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
-// https://edisciplinas.usp.br/pluginfile.php/5639098/mod_resource/content/1/rec.pdf
-// https://www.youtube.com/watch?v=_0Yu9BSYXGY&ab_channel=Programa%C3%A7%C3%A3oDescomplicadaLinguagemC
