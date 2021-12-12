@@ -25,6 +25,9 @@ int searchTypeKdtree(Kd k, int id);
 void courseKdTreeByRoot(Kd k, List l, char* qryTxt);
 void courseKdtree(Kd k, List l, char* qryTxt);
 
+void xAllByTree(Kd k, double v);
+void xAll(Kd k, double v);
+
 void drawExitbyRoot(Kd k, char* svgQry);
 void drawExit(Kd k, char* svgQry);
 

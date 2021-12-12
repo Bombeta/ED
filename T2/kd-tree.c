@@ -252,17 +252,112 @@ void energyAll(Kd k, double v){
 
         }
         if(tipo == 3){
-            //setEnergyLinha(v, no->info);
+            
+            v1 = v / 2;
+            v2 = v / 2;
+
+            setV1Linha(v1, no->info);
+            setV2Linha(v2, no->info);
         }
 
         if(tipo == 4){
-            //setEnergyText(v, no->info);
+
+            v1 = v;
+
+            setV1Text(v1, no->info);
         }
 
         energyAll(no->left, v);            
         energyAll(no->right, v);
 
     }
+}
+
+void xAllByTree(Kd k, double v){
+    KdTree* K = (KdTree*) k;
+    xAll(K->first, v);
+}
+
+void xAll(Kd k, double v){
+
+    int id;
+    int tipo;
+    double v1;
+    double v2;
+    double v3;
+    double v4;
+    
+    nodeKd* no = (nodeKd*) k;
+    
+    //id = getId(no);
+    
+
+    if(no!= NULL){
+        //id = getId(no);
+        tipo = getTipo(no);
+
+
+        //printf("GET ID: %d\n", id);
+        //printf("GET TYPE: %d\n", tipo);
+
+        if(tipo == 1){
+
+            v1 = getV1Circle(no->info);
+            v2 = getV2Circle(no->info);
+            v3 = getV3Circle(no->info);
+
+            v1 = v1 + v;
+            v2 = v2 + v;
+            v3 = v3 + v;
+
+            setV1Circle(v1, no->info);
+            setV2Circle(v2, no->info);
+            setV3Circle(v3, no->info);
+              
+        }
+        if(tipo == 2){
+
+            v1 = getV1Rect(no->info);
+            v2 = getV2Rect(no->info);
+            v3 = getV3Rect(no->info);
+            v4 = getV4Rect(no->info);
+
+            v1 = v1 + v;
+            v2 = v2 + v;
+            v3 = v3 + v;
+            v4 = v4 + v;
+            //setEnergyRect(v, no->info);
+            setV1Rect(v1, no->info);
+            setV2Rect(v2, no->info);
+            setV3Rect(v3, no->info);
+            setV4Rect(v4, no->info);
+        }
+        if(tipo == 3){
+
+            v1 = getV1Linha(no->info);
+            v2 = getV2Linha(no->info);
+            
+            v1 = v1 + v;
+            v2 = v2 + v;
+
+            setV1Linha(v1, no->info);
+            setV2Linha(v2, no->info);
+        }
+
+        if(tipo == 4){
+
+            v1 = getV1Text( no->info);
+            
+            v1 = v1 + v;
+
+            setV1Text(v1, no->info);
+        }
+
+        xAll(no->left, v);            
+        xAll(no->right, v);
+
+    }
+
 }
 
 void courseKdTreeByRoot(Kd k, List l, char* qryTxt){

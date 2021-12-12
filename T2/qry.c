@@ -11,7 +11,7 @@
 #include "kd-tree.h"
 #include "lista.h"
 
-// COMANDO EF - falta fazer demais figuras 
+// COMANDO EF
 void energyFigure(Kd k,int id, double v){
 
     double v1;
@@ -29,7 +29,7 @@ void energyFigure(Kd k,int id, double v){
 
     tipo = getType(k,id);
 
-    printf("getType: %d\n", tipo);
+    //printf("getType: %d\n", tipo);
 
     //setP1ByRoot(k, id, v);
 
@@ -140,6 +140,7 @@ List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char
     }
 
 }
+// COMANDO Q?
 
 void reportFigure(Kd k, int id, char* qryTxt){
 
@@ -150,10 +151,14 @@ void reportFigure(Kd k, int id, char* qryTxt){
     double r;
     double w;
     double h;
+    double x1;
+    double y1;
     double x2;
     double y2;
     char fill[100];
     char border[100];
+    char texto[100];
+    char color[100];
 
     double p1_x;
     double p1_y;
@@ -166,6 +171,10 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
     double p4_x;
     double p4_y;
+
+    double v1;
+    double v2;
+    double v3;
 
     FILE * saidaTxt;
 
@@ -193,12 +202,20 @@ void reportFigure(Kd k, int id, char* qryTxt){
         p2_x = getP2_X_Circle(figura);
         p3_x = getP3_X_Circle(figura);
 
+        p1_y = getP1_Y_Circle(figura);
+        p2_y = getP2_Y_Circle(figura);
+        p3_y = getP3_Y_Circle(figura);
+
+        v1 = getV1Circle(figura);
+        v2 = getV2Circle(figura);
+        v3 = getV3Circle(figura);
+
         // Sem pontos de fixação
-        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0){
+        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0){
             fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
         }else{           
 
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf", id, r, x, y, border, fill, p1_x, p2_x, p3_x);
+            fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, r, x, y, border, fill, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, v1, v2, v3);
         }
 
         //fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
@@ -213,47 +230,143 @@ void reportFigure(Kd k, int id, char* qryTxt){
         strcpy(fill, getFillRect(figura));
         strcpy(border, getBorderRect(figura));
 
-        // p1 = getP1Rect(figura);
-        // p2 = getP2Rect(figura);
-        // p3 = getP3Rect(figura);
+        p1_x = getP1_X_Rect(figura);
+        p2_x = getP2_X_Rect(figura);
+        p3_x = getP3_X_Rect(figura);
+        p4_x = getP4_X_Rect(figura);
 
-        // // Sem pontos de fixação
-        // if(p1 == 0 && p2 == 0 && p3 == 0){
-        //     fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
-        // }else{
+        p1_y = getP1_Y_Rect(figura);
+        p2_y = getP2_Y_Rect(figura);
+        p3_y = getP3_Y_Rect(figura);
+        p4_y = getP4_Y_Rect(figura);
 
-        //     fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf", id, w, h, x, y, fill, border, p1, p2, p3);            
-        // }
+        // Sem pontos de fixação
+        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0 && p4_x == 0 && p4_y == 0){
+            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
+        }else{
+
+            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, w, h, x, y, fill, border, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, p4_x, p4_y, v1, v2, v3);            
+        }
 
     }else if(tipo == 3){
 
-        
+        x1 = getX1Linha(figura);
+        y1 = getY1Linha(figura);
+        x2 = getX2Linha(figura);
+        y2 = getY2Linha(figura);
+        strcpy(color, getColorLinha(figura));
+
+        p1_x = getP1_X_Linha(figura);
+        p2_x = getP2_X_Linha(figura);
+
+        p1_y = getP1_Y_Linha(figura);
+        p2_y = getP2_Y_Linha(figura);
+
+        if(p1_x == 0 && p2_x ==0 && p1_y == 0 && p2_y == 0){
+            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s",id, x1, y1, x2, y2, color);
+        }else{
+            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %lf %lf %lf %lf %lf %lf", id, x1, y1, x2, y2, color, p1_x, p1_y, p2_x, p2_y, v1, v2);
+        }
+
 
     }else if(tipo == 4){
+        
+        x = getXText(figura);
+        y = getYText(figura);
+        strcpy(fill,getFillText(figura));
+        strcpy(border, getBorderText(figura));
+        strcpy(texto, getText(figura));
+       
+        p1_x = getP1_X_Text(figura);
+        p1_y = getP1_Y_Text(figura);
 
+        v1 = getV1Text(figura);
+
+        if(p1_x == 0 && p1_y == 0){
+            fprintf(saidaTxt, "%d %lf %lf %s %s %s", id, x, y, fill, border, texto);
+        }else{
+            fprintf(saidaTxt, "%d %lf %lf %s %s %s %lf %lf %lf %lf", id, x, y, fill, border, texto, p1_x, p1_y, v1);
+        }
     }
 
 
 }
 
-// COMANDO EP
+// COMANDO XF
 
+void xFigure(Kd k, int id, double v){
 
+    int tipo;
 
-// void xFigure(Kd k, int id, double d){
+    double v1;
+    double v2;
+    double v3;
+    double v4;
 
+    void *figura = searchKdTreebyRoot(k, id);    
 
+    tipo = getType(k,id);
 
-//     if(id != 0){
+    if(id != 0){
 
-//     }
+        if(tipo == 1){
+            v1 = getV1Circle(figura);
+            v2 = getV2Circle(figura);
+            v3 = getV3Circle(figura);
 
+            v1 = v1 + v;
+            v2 = v2 + v;
+            v3 = v3 + v;
 
-//     if(id == 0){
+            setV1Circle(v1, figura);
+            setV2Circle(v2, figura);
+            setV3Circle(v3, figura);
+        }
 
-//     }
+        if(tipo == 2){
+            v1 = getV1Rect(figura);
+            v2 = getV2Rect(figura);
+            v3 = getV3Rect(figura);
+            v4 = getV4Rect(figura);
 
-// }
+            v1 = v1 + v;
+            v2 = v2 + v;
+            v3 = v3 + v;
+            v4 = v4 + v;
+
+            setV1Rect(v1, figura);
+            setV2Rect(v2, figura);
+            setV3Rect(v3, figura);
+            setV4Rect(v4, figura);
+
+        }
+
+        if(tipo == 3){
+            v1 = getV1Linha(figura);
+            v2 = getV2Linha(figura);
+
+            v1 = v1 + v;
+            v2 = v2 + v;
+
+            setV1Linha(v1, figura);
+            setV2Linha(v2, figura);
+           
+        }
+
+        if(tipo == 4){
+            v1 = getV1Text(figura);
+
+            v1 = v1 + v;
+
+            setV1Text(v1, figura);
+        }
+    }
+
+    if(id == 0){
+        xAllByTree(k, v);
+    }
+
+}
 
 
 
