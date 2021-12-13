@@ -169,13 +169,13 @@ linha cria_Linha(int id, double x1, double y1, double x2, double y2, char *color
 	
 	linha_t* linha = malloc(sizeof(linha_t));
 
-	
-
 	linha->id = id;
 	linha->x1 = x1;
 	linha->y1 = y1;
     linha->x2 = x2;
     linha->y2 = y2;
+
+
 
 	linha->P1_X = x1;
 	linha->P1_Y = y1;

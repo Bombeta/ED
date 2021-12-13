@@ -37,21 +37,6 @@ typedef struct Retangulo{
 }retangulo_t;
 
 
-void printRect(void* retangulo){
-	retangulo_t* this;
-	this = (retangulo_t*) retangulo;
-	
-	printf("ID = %d\n", this->id);
-	printf("%lf\n", this->x);
-	printf("%.2lf\n", this->y);
-	printf("%.2lf\n", this->w);
-	printf("%.2lf\n", this->h);
-	printf("%s\n", this->fill);
-	printf("%s\n", this->border);
-	printf("\n*********\n");
-
-}
-
 int getRectId(void* retangulo){
 	retangulo_t* this;
 	this = (retangulo_t*) retangulo;

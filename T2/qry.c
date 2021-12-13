@@ -23,8 +23,6 @@ void energyFigure(Kd k,int id, double v){
 
     int tipo;
 
-    printf("ID energy: %d", id);
-
     tipo = getType(k,id);   
 
     void *figura = searchKdTreebyRoot(k, id);    
@@ -34,8 +32,6 @@ void energyFigure(Kd k,int id, double v){
 
 
         if(tipo == 1){
-
-            //printf("\n ENTROU TIPO 1 \n");
 
             v1 = v / 3.0;
             v2 = v / 3.0;
@@ -79,7 +75,7 @@ void energyFigure(Kd k,int id, double v){
     }
 
   if(id == 0){
-      printf("\n!!DANGER !!\n");
+
       energyAllByTree(k, v);
   }
 
@@ -120,9 +116,6 @@ List selectFigure(Kd k, double px, double py, double pw, double ph, List l, char
     // Seleciona todas as figuras
     if(px == 0 && py == 0 && pw == 0 && ph == 0){
         courseKdTreeByRoot(k, l, qryTxt);
-
-        //printf("\nSAIDA SF\n");
-        //printList(l);
 
         return l;
     }
@@ -167,118 +160,116 @@ void reportFigure(Kd k, int id, char* qryTxt){
 
     saidaTxt = fopen(qryTxt, "a+");
 
-    //Nodekd* nodeK = (Nodekd*) k;
+    void *figura = searchKdTreebyRoot(k, id);  
 
-    tipo = getType(k,id);
+    if(figura != NULL){    
 
-    void *figura = searchKdTreebyRoot(k, id);    
+        tipo = getType(k,id);    
 
-    //printf("REPORT FIGURE ID: %d", tipo);
+        if(tipo == 1){
+            
+            x = getXCircle(figura);
+            y = getYCircle(figura);
+            r = getRCircle(figura);
+            strcpy(fill, getFillCircle(figura));
+            strcpy(border, getBorderCircle(figura));
 
-    if(tipo == 1){
+            p1_x = getP1_X_Circle(figura);
+            p2_x = getP2_X_Circle(figura);
+            p3_x = getP3_X_Circle(figura);
 
-        //printf("REPORTA FIGURA\n");
-        id = getCircleId(figura);
-        x = getXCircle(figura);
-        y = getYCircle(figura);
-        r = getRCircle(figura);
-        strcpy(fill, getFillCircle(figura));
-        strcpy(border, getBorderCircle(figura));
+            p1_y = getP1_Y_Circle(figura);
+            p2_y = getP2_Y_Circle(figura);
+            p3_y = getP3_Y_Circle(figura);
 
-        p1_x = getP1_X_Circle(figura);
-        p2_x = getP2_X_Circle(figura);
-        p3_x = getP3_X_Circle(figura);
+            v1 = getV1Circle(figura);
+            v2 = getV2Circle(figura);
+            v3 = getV3Circle(figura);
 
-        p1_y = getP1_Y_Circle(figura);
-        p2_y = getP2_Y_Circle(figura);
-        p3_y = getP3_Y_Circle(figura);
+            // Sem pontos de fixação
+            if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0){
+                fprintf(saidaTxt, "%d %lf %lf %lf %s %s\n", id, r, x, y, border, fill);
+            }else{
+                fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", id, r, x, y, border, fill, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, v1, v2, v3);
+            }
 
-        v1 = getV1Circle(figura);
-        v2 = getV2Circle(figura);
-        v3 = getV3Circle(figura);
-
-        // Sem pontos de fixação
-        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
-        }else{           
-
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, r, x, y, border, fill, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, v1, v2, v3);
-        }
-
-        //fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
-    }  
-
-    if(tipo == 2){
         
-        id = getRectId(figura);
-        x = getXRect(figura);
-        y = getYRect(figura);
-        w = getWidthRect(figura);
-        h = getHeightRect(figura);
-        strcpy(fill, getFillRect(figura));
-        strcpy(border, getBorderRect(figura));
+        }  
 
-        p1_x = getP1_X_Rect(figura);
-        p2_x = getP2_X_Rect(figura);
-        p3_x = getP3_X_Rect(figura);
-        p4_x = getP4_X_Rect(figura);
+        if(tipo == 2){
+            
+            //id = getRectId(figura);
+            x = getXRect(figura);
+            y = getYRect(figura);
+            w = getWidthRect(figura);
+            h = getHeightRect(figura);
+            strcpy(fill, getFillRect(figura));
+            strcpy(border, getBorderRect(figura));
 
-        p1_y = getP1_Y_Rect(figura);
-        p2_y = getP2_Y_Rect(figura);
-        p3_y = getP3_Y_Rect(figura);
-        p4_y = getP4_Y_Rect(figura);
+            p1_x = getP1_X_Rect(figura);
+            p2_x = getP2_X_Rect(figura);
+            p3_x = getP3_X_Rect(figura);
+            p4_x = getP4_X_Rect(figura);
 
-        // Sem pontos de fixação
-        if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0 && p4_x == 0 && p4_y == 0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
-        }else{
+            p1_y = getP1_Y_Rect(figura);
+            p2_y = getP2_Y_Rect(figura);
+            p3_y = getP3_Y_Rect(figura);
+            p4_y = getP4_Y_Rect(figura);
 
-            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, w, h, x, y, fill, border, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, p4_x, p4_y, v1, v2, v3);            
+            // Sem pontos de fixação
+            if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0 && p4_x == 0 && p4_y == 0){
+                fprintf(saidaTxt, "%d %lf %lf %lf %s %s\n", id, r, x, y, fill, border);
+            }else{
+
+                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", id, w, h, x, y, fill, border, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, p4_x, p4_y, v1, v2, v3);            
+            }
+
         }
+        if(tipo == 3){
 
-    }else if(tipo == 3){
+            //id = getIdLinha(figura);
+            x1 = getX1Linha(figura);
+            y1 = getY1Linha(figura);
+            x2 = getX2Linha(figura);
+            y2 = getY2Linha(figura);
+            strcpy(color, getColorLinha(figura));
 
-        id = getIdLinha(figura);
-        x1 = getX1Linha(figura);
-        y1 = getY1Linha(figura);
-        x2 = getX2Linha(figura);
-        y2 = getY2Linha(figura);
-        strcpy(color, getColorLinha(figura));
+            p1_x = getP1_X_Linha(figura);
+            p2_x = getP2_X_Linha(figura);
 
-        p1_x = getP1_X_Linha(figura);
-        p2_x = getP2_X_Linha(figura);
+            p1_y = getP1_Y_Linha(figura);
+            p2_y = getP2_Y_Linha(figura);
 
-        p1_y = getP1_Y_Linha(figura);
-        p2_y = getP2_Y_Linha(figura);
+           
 
-        if(p1_x == 0 && p2_x ==0 && p1_y == 0 && p2_y == 0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s",id, x1, y1, x2, y2, color);
-        }else{
-            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %lf %lf %lf %lf %lf %lf", id, x1, y1, x2, y2, color, p1_x, p1_y, p2_x, p2_y, v1, v2);
-        }
+            if(p1_x == 0 && p2_x == 0 && p1_y == 0 && p2_y == 0){
+                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s\n",id, x1, y1, x2, y2, color);
+            }else{
+                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %lf %lf %lf %lf %lf %lf\n", id, x1, y1, x2, y2, color, p1_x, p1_y, p2_x, p2_y, v1, v2);
+            }
 
 
-    }else if(tipo == 4){
+        }else if(tipo == 4){
+            
+            //id = getTextId(figura);
+            x = getXText(figura);
+            y = getYText(figura);
+            strcpy(fill,getFillText(figura));
+            strcpy(border, getBorderText(figura));
+            strcpy(texto, getText(figura));
         
-        id = getTextId(figura);
-        x = getXText(figura);
-        y = getYText(figura);
-        strcpy(fill,getFillText(figura));
-        strcpy(border, getBorderText(figura));
-        strcpy(texto, getText(figura));
-       
-        p1_x = getP1_X_Text(figura);
-        p1_y = getP1_Y_Text(figura);
+            p1_x = getP1_X_Text(figura);
+            p1_y = getP1_Y_Text(figura);
 
-        v1 = getV1Text(figura);
+            v1 = getV1Text(figura);
 
-        if(p1_x == 0 && p1_y == 0){
-            fprintf(saidaTxt, "%d %lf %lf %s %s %s", id, x, y, fill, border, texto);
-        }else{
-            fprintf(saidaTxt, "%d %lf %lf %s %s %s %lf %lf %lf %lf", id, x, y, fill, border, texto, p1_x, p1_y, v1);
+            if(p1_x == 0 && p1_y == 0){
+                fprintf(saidaTxt, "%d %lf %lf %s %s %s\n", id, x, y, fill, border, texto);
+            }else{
+                fprintf(saidaTxt, "%d %lf %lf %s %s %s %lf %lf %lf %lf\n", id, x, y, fill, border, texto, p1_x, p1_y, v1);
+            }
         }
     }
-
 
 }
 
@@ -294,8 +285,6 @@ void xFigure(Kd k, int id, double v){
     double v4;
 
     void *figura = searchKdTreebyRoot(k, id);    
-
-    tipo = getType(k,id);
 
     if(id != 0){
 
@@ -416,50 +405,17 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
         p3_y = getP3_Y_Circle(figura);
         p4_y = getP4_Y_Circle(figura);
 
-        int PontoInternoRet(double p1_x, double p1_y, double x, double y, double h, double w, int pointTrue){
-        if (p1_x > x && p1_y >y && p1_x < (x+w) && p1_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p1_x, p1_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p2_x, double p2_y, double x, double y, double h, double w, int pointTrue){
-        if (p2_x > x && p2_y >y && p2_x < (x+w) && p2_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p2_x, p2_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p3_x, double p3_y, double x, double y, double h, double w, int pointTrue){
-        if (p3_x > x && p3_y >y && p3_x < (x+w) && p3_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p3_x, p3_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p4_x, double p4_y, double x, double y, double h, double w, int pointTrue){
-        if (p4_x > x && p4_y >y && p4_x < (x+w) && p4_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
-
-
+        pointTrue = PontoInternoRet(p4_x, p4_y, x, y, h, w, pointTrue);
+     
         if(pointTrue == 4){
 
-            //printf("REPORTA FIGURA\n");
+            
             id = getCircleId(figura);
             x = getXCircle(figura);
             y = getYCircle(figura);
@@ -474,10 +430,10 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
 
             // Sem pontos de fixação
             if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0){
-                fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, border, fill);
+                fprintf(saidaTxt, "%d %lf %lf %lf %s %s\n", id, r, x, y, border, fill);
             }else{           
 
-                fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, r, x, y, border, fill, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, v1, v2, v3);
+                fprintf(saidaTxt, "%d %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", id, r, x, y, border, fill, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, v1, v2, v3);
             }
 
         }
@@ -497,45 +453,13 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
         p3_y = getP3_Y_Rect(figura);
         p4_y = getP4_Y_Rect(figura);
 
-        int PontoInternoRet(double p1_x, double p1_y, double x, double y, double h, double w, int pointTrue){
-        if (p1_x > x && p1_y >y && p1_x < (x+w) && p1_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p1_x, p1_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p2_x, double p2_y, double x, double y, double h, double w, int pointTrue){
-        if (p2_x > x && p2_y >y && p2_x < (x+w) && p2_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p2_x, p2_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p3_x, double p3_y, double x, double y, double h, double w, int pointTrue){
-        if (p3_x > x && p3_y >y && p3_x < (x+w) && p3_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p3_x, p3_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p4_x, double p4_y, double x, double y, double h, double w, int pointTrue){
-        if (p4_x > x && p4_y >y && p4_x < (x+w) && p4_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p4_x, p4_y, x, y, h, w, pointTrue);
 
         if(pointTrue == 4){
         
@@ -551,10 +475,10 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
 
         // Sem pontos de fixação
         if(p1_x == 0.0 && p2_x == 0.0 && p3_x == 0.0 && p1_y == 0 && p2_y == 0 && p3_y == 0 && p4_x == 0 && p4_y == 0){
-            fprintf(saidaTxt, "%d %lf %lf %lf %s %s", id, r, x, y, fill, border);
+            fprintf(saidaTxt, "%d %lf %lf %lf %s %s\n", id, r, x, y, fill, border);
         }else{
 
-            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", id, w, h, x, y, fill, border, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, p4_x, p4_y, v1, v2, v3);            
+            fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", id, w, h, x, y, fill, border, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, p4_x, p4_y, v1, v2, v3);            
         }
 
 
@@ -569,26 +493,11 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
         p1_y = getP1_Y_Linha(figura);
         p2_y = getP2_Y_Linha(figura);
 
-        int PontoInternoRet(double p1_x, double p1_y, double x, double y, double h, double w, int pointTrue){
-        if (p1_x > x && p1_y >y && p1_x < (x+w) && p1_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p1_x, p1_y, x, y, h, w, pointTrue);
 
-        int PontoInternoRet(double p2_x, double p2_y, double x, double y, double h, double w, int pointTrue){
-        if (p2_x > x && p2_y >y && p2_x < (x+w) && p2_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p2_x, p2_y, x, y, h, w, pointTrue);
 
+          
         if(pointTrue == 2){
 
             id = getIdLinha(figura);
@@ -601,9 +510,9 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
    
 
             if(p1_x == 0 && p2_x ==0 && p1_y == 0 && p2_y == 0){
-                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s",id, x1, y1, x2, y2, color);
+                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s\n",id, x1, y1, x2, y2, color);
             }else{
-                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %lf %lf %lf %lf %lf %lf", id, x1, y1, x2, y2, color, p1_x, p1_y, p2_x, p2_y, v1, v2);
+                fprintf(saidaTxt, "%d %lf %lf %lf %lf %s %lf %lf %lf %lf %lf %lf\n", id, x1, y1, x2, y2, color, p1_x, p1_y, p2_x, p2_y, v1, v2);
             }
         }
 
@@ -614,15 +523,7 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
         p1_x = getP1_X_Text(figura);
         p1_y = getP1_Y_Text(figura);
 
-        int PontoInternoRet(double p1_x, double p1_y, double x, double y, double h, double w, int pointTrue){
-        if (p1_x > x && p1_y >y && p1_x < (x+w) && p1_y < (y+h)){
-                pointTrue++;
-                return pointTrue;
-            }
-            else{
-                return pointTrue;
-            }
-        }
+        pointTrue = PontoInternoRet(p1_x, p1_y, x, y, h, w, pointTrue); 
 
         if(pointTrue == 1){
             id = getTextId(figura);
@@ -637,15 +538,27 @@ void reportFigureRegion(Kd k,int id,char* txtQry, double x, double y, double w, 
             v1 = getV1Text(figura);
 
             if(p1_x == 0 && p1_y == 0){
-                fprintf(saidaTxt, "%d %lf %lf %s %s %s", id, x, y, fill, border, texto);
+                fprintf(saidaTxt, "%d %lf %lf %s %s %s\n", id, x, y, fill, border, texto);
             }else{
-                fprintf(saidaTxt, "%d %lf %lf %s %s %s %lf %lf %lf %lf", id, x, y, fill, border, texto, p1_x, p1_y, v1);
+                fprintf(saidaTxt, "%d %lf %lf %s %s %s %lf %lf %lf %lf\n", id, x, y, fill, border, texto, p1_x, p1_y, v1);
         }
         }
         
        
     }
 
+}
+
+
+
+int PontoInternoRet(double p1_x, double p1_y, double x, double y, double h, double w, int pointTrue){
+if (p1_x > x && p1_y >y && p1_x < (x+w) && p1_y < (y+h)){
+        pointTrue++;
+        return pointTrue;
+    }
+    else{
+        return pointTrue;
+    }
 }
 
 

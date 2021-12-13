@@ -34,8 +34,7 @@ Kd createKdTree(){
     k->last = NULL;
     k->size = 0;
 
-    //printf("ÁRVORE CRIADA!\n");
-
+    
     return k;
 }
 
@@ -46,32 +45,15 @@ int length(Kd tree){
 }
 
 
-// Nodekd getRoot(Kd k){
-   
-// }
-
-//Ver ENUM;
-
-// COMPARAÇÃO ENTRE FLOAT
-
-//(a-b) < epilson 
-// epilson = 0.0000000001;
-
-// eh_igual(A,B): |A - B| < epilson
 
 void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 
     int depth = 1;
     
-    //int id;
-
     double z;
 
     KdTree* K = (KdTree*) k;
     nodeKd* novo = (nodeKd*) malloc(sizeof(nodeKd));
-
-    // circulo_t * test = (circulo_t*) info;
-    // printf("Circulo T->x: %lf", test->x);
 
     switch(tipo){
         case 'c':
@@ -97,26 +79,12 @@ void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 
     novo->info = info;
 
-    //printf("LOOK THAT!\n");
-    //z = getXRect(novo->info);
-    // printf("\n********* X = %lf", getXCircle(info));
-    // printf("\n ********** Z = %lf", z);
-
     novo->tipo = tipo;
 
-    //t = getXCircle(novo->info);
-
-    printf("\n*****INSERT*****\n");
-    //printf("\nX = %lf\n", t);
-    
-    // switch(tipo){
-    //     if()
-    // }
+   
 
     if(K->first == NULL){
         novo->father == NULL;
-        // novo->right = NULL;
-        // novo->left = NULL;
         K->first = novo;
 
     }else{
@@ -174,7 +142,6 @@ void insert(Kd k, double x, double y, char tipo, int id, InfoK info){
 // Pega o tipo pela struct
 int getTipo(Kd k){
     nodeKd* K = (nodeKd*) k;
-    //printf("K do getTipo: %d", K->tipo);
     return K->tipo;
 }
 // Pega Id pela struct
@@ -182,10 +149,6 @@ int getId(Kd k){
     nodeKd* K = (nodeKd*) k;
     return K->id;
 }
-
-// int getIdInfo(Kd k){
-
-// }
 
 void energyAllByTree(Kd k, double v){
     KdTree* K = (KdTree*) k;
@@ -203,34 +166,19 @@ void energyAll(Kd k, double v){
     
     nodeKd* no = (nodeKd*) k;
     
-    //id = getId(no);
-    
-
     if(no!= NULL){
-        //id = getId(no);
+       
         tipo = getTipo(no);
-
-
-        //printf("GET ID: %d\n", id);
-        printf("GET TYPE: %d\n", tipo);
-
+        
         if(tipo == 1){
 
             v1 = v/3;
             v2 = v/3;
             v3 = v/3;
 
-            //printf("\n JOLYNE CUJOH\n ");   
-
             setV1Circle(v1, no->info);
             setV2Circle(v2, no->info);
-            setV3Circle(v3, no->info);
-
-            //printf("V: %lf", v);
-
-            printf("\nv1: %lf\n", v1);
-
-            //setEnergyCircle(v, no->info);         
+            setV3Circle(v3, no->info);                 
         }
         if(tipo == 2){
 
@@ -239,16 +187,11 @@ void energyAll(Kd k, double v){
             v3 = v / 4;
             v4 = v / 4;
 
-            //setEnergyRect(v, no->info);
+            
             setV1Rect(v1, no->info);
             setV2Rect(v2, no->info);
             setV3Rect(v3, no->info);
             setV4Rect(v4, no->info);
-
-            printf("V1: %lf", v1);
-            printf("V2: %lf", v2);
-            printf("V3: %lf", v3);
-            printf("V4: %lf", v4);
 
         }
         if(tipo == 3){
@@ -289,16 +232,13 @@ void xAll(Kd k, double v){
     
     nodeKd* no = (nodeKd*) k;
     
-    //id = getId(no);
+  
     
 
     if(no!= NULL){
-        //id = getId(no);
+       
         tipo = getTipo(no);
 
-
-        //printf("GET ID: %d\n", id);
-        //printf("GET TYPE: %d\n", tipo);
 
         if(tipo == 1){
 
@@ -326,7 +266,7 @@ void xAll(Kd k, double v){
             v2 = v2 + v;
             v3 = v3 + v;
             v4 = v4 + v;
-            //setEnergyRect(v, no->info);
+            
             setV1Rect(v1, no->info);
             setV2Rect(v2, no->info);
             setV3Rect(v3, no->info);
@@ -439,27 +379,18 @@ Nodekd searchKdTreebyRoot(Kd k, int id){
 Nodekd searchKdTree(Kd k , int id){
     
     int tipo;
-    double p1;
+   
 
-    //double Z;
-    
     nodeKd* no = (nodeKd*) k;
 
     if(no != NULL){
 
-        //tipo = getId(no);
-        //printf("ID do node: %d", tipo);
-        //Z = getXCircle(no->info);
-
         if(id == getId(no)){
-            
-           //printf("\n!!!!!!!!! X: %lf !!!!!!!!!!\n", Z);
-           //setP1Circle(100.00, no->info);  
-           return (no->info);          
+
+           return (no->info);   
 
         }
 
-        //printf("KKKKKKKKKKK");
         searchKdTree(no->left, id);            
         searchKdTree(no->right, id);
         
@@ -471,145 +402,132 @@ Nodekd searchKdTree(Kd k , int id){
     
 }
 
-void printKdTree(Kd k){
+// void printKdTree(Kd k){
 
-    int tipo;
-    int id;
-    double x;
-    double y;
-    double r;
-    double w;
-    double h;
-    double P1_X;
-    double P2_X;
-    double P3_X;
-    double P1_Y;
-    double P2_Y;
-    double P3_Y;
-    double x2;
-    double y2;
-    double v1;
-    double v2;
-    double v3;
-    double v4;
-    char fill[100];
-    char border[100];
-    char color[100];
+//     int tipo;
+//     int id;
+//     double x;
+//     double y;
+//     double r;
+//     double w;
+//     double h;
+//     double P1_X;
+//     double P2_X;
+//     double P3_X;
+//     double P1_Y;
+//     double P2_Y;
+//     double P3_Y;
+//     double x2;
+//     double y2;
+//     double v1;
+//     double v2;
+//     double v3;
+//     double v4;
+//     char fill[100];
+//     char border[100];
+//     char color[100];
 
-    // KdTree* K = (KdTree*) k;
-    nodeKd* no = (nodeKd*) k;
+  
+//     nodeKd* no = (nodeKd*) k;
 
-    //printf("Entrou aqui\n");
 
-    //x = 9999999.00;
+//     if(no != NULL){
+//         tipo = getTipo(no);
+//         printf("Tipo da figura: %d\n", tipo);
+//         if(tipo == 1 ){
+//             id = getCircleId(no->info);
+//             x = getXCircle(no->info);
+//             y = getYCircle(no->info);
+//             r = getRCircle(no->info);
+//             strcpy(fill, getFillCircle(no->info));
+//             strcpy(border, getBorderCircle(no->info));
+//             P1_X = getP1_X_Circle(no->info);
+//             P2_X = getP2_X_Circle(no->info);
+//             P3_X = getP3_X_Circle(no->info);
+//             v1 = getV1Circle(no->info);
+//             v2 = getV2Circle(no->info);
+//             v3 = getV3Circle(no->info);
 
-    if(no != NULL){
-        tipo = getTipo(no);
-        printf("Tipo da figura: %d\n", tipo);
-        if(tipo == 1 ){
-            id = getCircleId(no->info);
-            x = getXCircle(no->info);
-            y = getYCircle(no->info);
-            r = getRCircle(no->info);
-            strcpy(fill, getFillCircle(no->info));
-            strcpy(border, getBorderCircle(no->info));
-            P1_X = getP1_X_Circle(no->info);
-            P2_X = getP2_X_Circle(no->info);
-            P3_X = getP3_X_Circle(no->info);
-            v1 = getV1Circle(no->info);
-            v2 = getV2Circle(no->info);
-            v3 = getV3Circle(no->info);
+//             printf("%d\n", id);
+//             printf("%lf\n", x);
+//             printf("%lf\n", y);
+//             printf("%lf\n", r);
 
-            printf("%d\n", id);
-            printf("%lf\n", x);
-            printf("%lf\n", y);
-            printf("%lf\n", r);
+//             printf("ASSISTA JOJO\n");
+//             printf("%s\n", fill);
+//             printf("%s\n", border);
 
-            printf("ASSISTA JOJO\n");
-            printf("%s\n", fill);
-            printf("%s\n", border);
+//             printf("%lf\n", P1_X);
+//             printf("%lf\n", P2_X);
+//             printf("%lf\n", P3_X);
+//             printf("%lf\n", v1);
+//             printf("%lf\n", v2);
+//             printf("%lf\n", v3);
+           
+//             printf("\n*********\n");
+//         }
 
-            printf("%lf\n", P1_X);
-            printf("%lf\n", P2_X);
-            printf("%lf\n", P3_X);
-            printf("%lf\n", v1);
-            printf("%lf\n", v2);
-            printf("%lf\n", v3);
-            //printf("%lf\n", v);
+//         if(tipo == 2){
+//             id = getRectId(no->info);
+//             x = getXRect(no->info);
+//             y = getYRect(no->info);
+//             w = getWidthRect(no->info);
+//             h = getHeightRect(no->info);
+           
+//             P1_X = getP1_X_Rect(no->info);
+//             P2_X = getP2_X_Rect(no->info);
+//             P3_X = getP3_X_Rect(no->info);
 
-            printf("\n*********\n");
-        }
-
-        if(tipo == 2){
-            id = getRectId(no->info);
-            x = getXRect(no->info);
-            y = getYRect(no->info);
-            w = getWidthRect(no->info);
-            h = getHeightRect(no->info);
-            // strcpy(fill, getFillCircle(no->info));
-            // strcpy(border, getBorderCircle(no->info));
-            P1_X = getP1_X_Rect(no->info);
-            P2_X = getP2_X_Rect(no->info);
-            P3_X = getP3_X_Rect(no->info);
-
-            v1 = getV1Rect(no->info);
-            v2 = getV2Rect(no->info);
-            v3 = getV3Rect(no->info);
-            v4 = getV4Rect(no->info);
+//             v1 = getV1Rect(no->info);
+//             v2 = getV2Rect(no->info);
+//             v3 = getV3Rect(no->info);
+//             v4 = getV4Rect(no->info);
             
-            // p4 = getP4Rect(no->info);
+//             printf("%d\n", id);
+//             printf("%lf\n", x);
+//             printf("%lf\n", y);
+//             printf("%lf\n", w);
+//             printf("%lf\n", h);
 
-            printf("%d\n", id);
-            printf("%lf\n", x);
-            printf("%lf\n", y);
-            printf("%lf\n", w);
-            printf("%lf\n", h);
+//             printf("P1: %lf\n", P1_X);
+//             printf("P2: %lf\n", P2_X);
+//             printf("P3: %lf\n", P3_X);
 
-            printf("P1: %lf\n", P1_X);
-            printf("P2: %lf\n", P2_X);
-            printf("P3: %lf\n", P3_X);
+//             printf("V1: %lf", v1);
+//             printf("V2: %lf", v2);
+//             printf("V3: %lf", v3);
+//             printf("V4: %lf", v4);
 
-            printf("V1: %lf", v1);
-            printf("V2: %lf", v2);
-            printf("V3: %lf", v3);
-            printf("V4: %lf", v4);
+//         }
 
-            // printf("%lf\n", p1);
-            // printf("%lf\n", p2);
-            // printf("%lf\n", p3);
-            // printf("%lf\n", p4);
-            // printf("%s\n", fill);
-            // printf("%s\n", border);
-        }
+//         if(tipo == 3){
 
-        if(tipo == 3){
-
-            id = getIdLinha(no->info);
-            x = getX1Linha(no->info);
-            y = getY1Linha(no->info);
-            x2 = getX2Linha(no->info);
-            y2 = getY2Linha(no->info);
+//             id = getIdLinha(no->info);
+//             x = getX1Linha(no->info);
+//             y = getY1Linha(no->info);
+//             x2 = getX2Linha(no->info);
+//             y2 = getY2Linha(no->info);
             
-            printf("%d\n", id);
-            printf("%lf\n", x);
-            printf("%lf\n", y);
-            printf("%lf\n", x2);
-            printf("%lf\n", y2);
+//             printf("%d\n", id);
+//             printf("%lf\n", x);
+//             printf("%lf\n", y);
+//             printf("%lf\n", x2);
+//             printf("%lf\n", y2);
 
-        }
+//         }
 
-        if(tipo == 4){
+//         if(tipo == 4){
 
-            printf("teste 4\n");
-        }
+//             printf("teste 4\n");
+//         }
         
-        printKdTree(no->left);
-        printKdTree(no->right);
+//         printKdTree(no->left);
+//         printKdTree(no->right);
        
-    }
+//     }
 
-    //printf("FIM x = %lf", x);
-}
+    
+// }
 
 
 void drawExitbyRoot(Kd k, char* svgQry){
@@ -653,8 +571,6 @@ void drawExit(Kd k, char* svgQry){
     if(no!=NULL){
         tipo = getTipo(no);
         
-        printf("\nTIPO SAIDA QRY\n: %d", tipo);
-
         if(tipo == 1){
             id = getCircleId(no->info);
             x = getXCircle(no->info);
@@ -772,7 +688,7 @@ void drawExit(Kd k, char* svgQry){
                 desenha_Circulo(svgQry, 1.0, P2_X, P2_Y, "#d3d3d3", "#d3d3d3");
                 desenha_Circulo(svgQry, 1.0, P3_X, P3_Y, "#d3d3d3", "#d3d3d3");
                 desenha_Circulo(svgQry, 1.0, P4_X, P4_Y, "#d3d3d3", "#d3d3d3");
-                // desenha_Circulo(svgQry. 1.0, P4_X, P4_Y, "#d3d3d3", "#d3d3d3");            
+                       
             }else if(amountPoints == 1){
                 if(v1 > 0){
                     desenha_Circulo(svgQry, 2.0, P1_X, P1_Y, "#FF00FF", "#FF00FF");
@@ -831,8 +747,8 @@ void drawExit(Kd k, char* svgQry){
         if(tipo == 3){
 
             id = getIdLinha(no->info);
-            x = getX1Linha(no->info);
-            y = getY1Linha(no->info);
+            x1 = getX1Linha(no->info);
+            y1 = getY1Linha(no->info);
             x2 = getX2Linha(no->info);
             y2 = getY2Linha(no->info);
             
@@ -860,25 +776,25 @@ void drawExit(Kd k, char* svgQry){
             }
 
             if(amountPoints == 0){
-                desenha_Circulo(svgQry, 1.0, P1_X, P1_Y, "#d3d3d3", "#d3d3d3");
-                desenha_Circulo(svgQry, 1.0, P2_X, P2_Y, "#d3d3d3", "#d3d3d3");
+                desenha_Circulo(svgQry, 1.0, x1, y1, "#d3d3d3", "#d3d3d3");
+                desenha_Circulo(svgQry, 1.0, x2, y2, "#d3d3d3", "#d3d3d3");
             }else if(amountPoints == 1){
                 
                 if(v1 > 0){
-                    desenha_Circulo(svgQry, 2.0, P1_X, P1_Y, "#FF00FF", "#FF00FF");
+                    desenha_Circulo(svgQry, 2.0, x1, y1, "#FF00FF", "#FF00FF");
                 }
 
                 if(v2 > 0){
-                    desenha_Circulo(svgQry, 2.0, P2_X, P2_Y, "#FF00FF", "#FF00FF");
+                    desenha_Circulo(svgQry, 2.0, x2, y2, "#FF00FF", "#FF00FF");
                 }
 
             }else if(amountPoints == 2){
                 if(v1 > 0){
-                    desenha_Circulo(svgQry, 3.0, P1_X, P1_Y, "#008080", "#008080");
+                    desenha_Circulo(svgQry, 3.0, x1, y1, "#008080", "#008080");
                 }
 
                 if(v2 > 0){
-                    desenha_Circulo(svgQry, 3.0, P2_X, P2_Y, "#008080", "#008080");
+                    desenha_Circulo(svgQry, 3.0, x2, y2, "#008080", "#008080");
                 }
             }
 

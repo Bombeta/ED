@@ -47,8 +47,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 	saidaQry = fopen(svgQry, "w");
 
     if(saidaQry == NULL){   
-        // printf("Entrou aqui");
-		// printf("Arquivo SVG não foi criado!\n");
+        // printf("Arquivo SVG não foi criado!\n");
 		exit(0);
 	}
 
@@ -75,8 +74,6 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 					// caso seja *
 					//int id_ = (int) ID;
-					printf("\n!! ASTERISCO : %c !!\n", ID);
-
 					id = 0;
 
 					fscanf(arqQry, "%lf", &v);
@@ -86,8 +83,6 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 					// caso seja um inteiro
 					int id_ = (int) (ID > 47 && ID < 58) ? ID - 48 : -1;
 
-					printf("Nao pode entrar aquui!");
-					
 					energyFigure(k, id_, v);
 				}
 
@@ -106,13 +101,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 
 					// caso seja *
 					//int id_ = (int) ID;
-					printf("\n!! ASTERISCO : %c !!\n", ID);
-
-					x = 0.00;
-					y = 0.00;
-					w = 0.00;
-					h = 0.00;
-
+				
 					fscanf(arqQry, "%lf", &y , &w, &h);
 
 					selectFigure(k, x, y, w, h, l, txtQry);
@@ -137,7 +126,7 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			
 			if(strcmp(fig, "ip") == 0){
 
-				fscanf(arqQry, "%d", &n);
+				//fscanf(arqQry, "%d", &n);
 				//interactionPoint();
 			}
 
@@ -174,7 +163,6 @@ void readFileQry(FILE* arqQry, char* svgQry, char* txtQry, Kd k){
 			if(strcmp(fig, "q?") == 0)
 			{
 				fscanf(arqQry,"%d", &id);
-				//printf("até aqui\n");
 				reportFigure(k, id, txtQry);			
 
 			}

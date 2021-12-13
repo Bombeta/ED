@@ -38,10 +38,7 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 	char cor1[100];
 	char cor2[100];
 		
-	//printf("TESTe\n");
-
-	//Kd k = createKdTree();
-
+	
 	List lista = createLista();
 	
 	FILE* arqSvg = NULL;
@@ -50,7 +47,6 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 	arqSvg = fopen(svg, "w");	
 
     if(arqSvg == NULL){	
-		// printf("entra qyaqu\n");
 		// printf("Arquivo SVG não foi criado!\n");
 		return 0;
 	}
@@ -74,8 +70,6 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 		while((fscanf(arqGeo,"%s", &fig))!=EOF)
 		{	
 
-			// printf("\n%c\n", fig);
-
 			if(strcmp(fig,"c") == 0)
 			{	
 				fflush(stdin);
@@ -86,17 +80,8 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 				/*Adiciona um circulo a lista */
 				circulo C = cria_Circulo(id, r, x, y, fill, border, 0.00 , 0.00 , 0.00);
 
-				//w = getXCircle(C);
-				//printf("\n W = %lf\n", w);
-				//printCircle(C);
-				// p1  = 100.0000000;
-				// setP1Circle(p1, C);
-				// printf("GETP1: %lf", getP1Circle(C));
-
+			
 				insertList(lista, C, 1);
-
-				//printList(lista);
-				//exit(0);
 
 				insert(k, x , y, 'c', id, C);
 
@@ -150,11 +135,12 @@ void readFileGeo(FILE *arqGeo, char *svg, Kd k){
 		}		
 	}
 
-	printf("FIM");
+	
 
+	//printKdtreebyRoot(k);
 
 	
-	printList(lista);
+	//printList(lista);
 	//exit(0);
 
 	arqSvg = fopen(svg,"a+");	

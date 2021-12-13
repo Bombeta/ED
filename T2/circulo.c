@@ -93,6 +93,13 @@ double getP3_X_Circle(void* circulo){
 	return this->P3_X;
 }
 
+double getP4_X_Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->P4_X;
+}
+
+
 double getP1_Y_Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
@@ -111,12 +118,17 @@ double getP3_Y_Circle(void* circulo){
 	return this->P3_Y;
 }
 
+double getP4_Y_Circle(void* circulo){
+	circulo_t* this;
+	this = (circulo_t*) circulo;
+	return this->P4_Y;
+}
+
 
 
 double getV1Circle(void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
-	printf("\nGET V1 %.2lf\n", this->v1);
 	return this->v1;
 }
 
@@ -133,9 +145,6 @@ double getV3Circle(void* circulo){
 	this = (circulo_t*) circulo;
 	return this->v3;
 }
-
-
-
 
 void setIdCircle(int id, void* circulo){
 	circulo_t* this;
@@ -242,7 +251,7 @@ void setV1Circle(double v1, void* circulo){
 	circulo_t* this;
 	this = (circulo_t*) circulo;
 	this->v1 = v1;
-	//printf("SET V1	%.2lf", this->v1);
+	
 }
 
 void setV2Circle(double v2, void* circulo){
